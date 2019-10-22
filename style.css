@@ -1,0 +1,12 @@
+#game {
+  width: auto;
+  position: relative;
+  margin-top: 0px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#gameboard {
+  background-color: #cddc39;
+  border: 2px solid #827717;
+}
