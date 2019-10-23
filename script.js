@@ -1,20 +1,39 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-ctx.beginPath();
-ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
+var bird = new Image();
+bird.src ="images/bird.png";
 
-ctx.beginPath();
-ctx.arc(240, 160, 20, 0, Math.PI*2, false);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
+var bg = new Image();
+bg.src ="images/bg.png";
 
-ctx.beginPath();
-ctx.rect(160, 10, 100, 40);
-ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
-ctx.stroke();
-ctx.closePath();
+var fg = new Image();
+fg.src ="images/fg.png";
+
+var pipeNorth= new Image();
+pipeNorth.src ="images/pipeNorth.png";
+
+var pipeSouth = new Image();
+pipeSouth.src ="images/pipeSouth.png";
+
+var bird_x =10;
+var bird_y =150;
+
+
+
+function draw()
+{
+    ctx.drawImage(bg,0,0);
+    ctx.drawImage(pipeNorth,100,0);
+    ctx.drawImage(pipeSouth,100,0+pipeNorth.height +75);
+
+    ctx.drawImage(fg,0,canvas.height -fg.height);
+
+    ctx.drawImage(bird,bird_x,bird_y);
+
+    bird_y++;
+
+
+    requestAnimationFrame(draw); 
+}
+draw();
