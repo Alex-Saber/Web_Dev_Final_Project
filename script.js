@@ -19,6 +19,15 @@ BotPipe.src = "images/pipeSouth.png";
 var bird_x = 10;
 var bird_y = 150;
 
+document.addEventListener("keyup", go_up);
+function go_up(event) {
+  if (event.keyCode == 38) {
+    console.log("bird_y", bird_y);
+    bird_y -= 50;
+    console.log("after", bird_y);
+  }
+}
+
 function draw() {
   ctx.drawImage(bg, 0, 0);
   ctx.drawImage(TopPipe, 100, 0);
@@ -26,22 +35,9 @@ function draw() {
 
   ctx.drawImage(fg, 0, canvas.height - fg.height);
 
-  document.addEventListener(
-    "keyup",
-    function(event) {
-      if (event.keyCode == 38) {
-        console.log("bird_y", bird_y);
-        bird_y--;
-        console.log("after", bird_y);
-      }
-    },
-    true
-  );
-
-  bird_y++;
+  bird_y += 1.5;
   ctx.drawImage(bird, bird_x, bird_y);
 
   requestAnimationFrame(draw);
-  gravity = 1;
 }
 draw();
