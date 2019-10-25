@@ -1,1 +1,2 @@
-canvas { background:black; }
+#myCanvas { background:rgb(255, 254, 254);
+border: 100px black; }
