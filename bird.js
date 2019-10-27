@@ -54,7 +54,6 @@ function draw() {
   ctx.drawImage(bird, bird_x, bird_y);
 
   for (var i = 0; i < pipe_array.length; i++) {
-    // pipe_array[i].y += Math.random() * ()
     ctx.drawImage(TopPipe, pipe_array[i].x, pipe_array[i].y);
 
     ctx.drawImage(
@@ -66,7 +65,7 @@ function draw() {
     pipe_array[i].x--;
 
     if (pipe_array[i].x == 50) {
-      pipe_array.push({ x: canvas.width, y: pipe_array[i].y + 10 });
+      pipe_array.push({ x: canvas.width, y: Math.floor(Math.random()*TopPipe.height)-TopPipe.height });
     }
 
     if (pipe_array[i].x == 0) {
