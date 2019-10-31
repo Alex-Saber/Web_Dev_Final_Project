@@ -29,8 +29,7 @@ server.listen(port, (err) => {
 	if (err) {
 		throw err;
 	}
-	/* eslint-disable no-console */
-	console.log('Node Endpoints working :)');
+	console.log('Node Server running on port: ' + port);
 });
 
 module.exports = server;
