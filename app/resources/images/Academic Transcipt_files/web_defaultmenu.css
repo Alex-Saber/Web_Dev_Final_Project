@@ -1,0 +1,1287 @@
+/*
+ *   AUDIT TRAIL: 5.2
+ *     1. Initial release.                        JWF 1/9/2002
+ *       AUDIT TRAIL: 5.3
+ *         2. UI related changes for phase II          RK 7/27/2002
+ *           3. Fix for defect3 53-0017                  RK 8/23/2002
+ *                Added campuspipeline class to be used in body for CP
+ *                  AUDIT TRAIL:6.0                             Rk 9/22/02
+ *                    1. sync changes made in 5.3
+ *                      AUDIT TRAIL:7.0                             Rk 6/22/04
+ *                        1. Fonts modified to use Verdana
+ *                          AUDIT TRAIL:7.3                             Rk 4/22/06
+ *                            1. DIV.statiheaders was added
+ *                              AUDIT TRAIL:7.4
+ *                                1. Defect CMS-DFCT104482                    MEC 05/31/06
+ *                                     Fixed misspelling in .menulinkdesctext -
+ *                                            color: balck;
+ *                                                     should be
+ *                                                                color: black;
+ *                                                                  2. Defect 1-PXAJ4                           RK 08/09/06
+ *                                                                       Modified HR style to remove Height as an attributte.
+ *
+ *                                                                         AUDIT TRAIL END
+ *
+ *                                                                           FILE NAME..: web_defaultmenu.css
+ *                                                                             RELEASE....: 7.4
+ *                                                                               PRODUCT....: WTLWEB
+ *                                                                                 COPYRIGHT..: Copyright (C) SCT Corporation 2002. All rights reserved.
+ *
+ *                                                                                 */
+/* BROWSER CONSIDERATIONS - Overall
+ *    ========================================================
+ *       Rule:   Set margin-left and margin-right only on BODY, not on DIVS.
+ *          Reason: Older browsers do not recognize margins on DIVs.
+ *
+ *             Rule:   No underscores.
+ *                Reason: Underscores are not valid in CSS syntax.
+ *
+ *                   Rule:   Use percentages to define font sizes. Normal text should be 90%.
+ *                      Reason: Presents text in the user's preferred font size. i
+ *                                 Facilitates page fluidity.
+ *
+ *                                    Rule:   Use precentages to define margins.
+ *                                       Reason: Facilitates page fluidity.
+ *
+ *                                          Rule:   Apply font rules to TD and TH elements. Do not rely on inheritance
+ *                                                     from the BODY.
+ *                                                        Reason: Some browsers do not support inheritance well.
+ *                                                        */
+/* TEXT CLASSES                                             */
+/* All text classes should have rules defined for at least  */
+/* the following properties (unless the class has a special */
+/* purpose):                                                */
+/* color, font-family, font-weight, font-size, font-style   */
+/* text-align                                               */
+/* ======================================================== */
+
+/*************************************************************************
+ *   PSU AUDIT TRAIL
+ *
+ *       PSU MOD 00 LRH 04-APR-2005  
+ *             Display 'Help' link in a smaller font
+ *                   Change text color to PSU Green    
+ *                       PSU MOD 01 25-JUL-2019 JDK BAT-1498
+ *                             Banweb Redesign including mobile support
+ *                                 PSU MOD 02 22-AUG-2019 JDK BAT-1869
+ *                                       Add good and bad alert classes for displaying guainfo messages
+ *                                           PSU MOD 03 09-SEP-2019 JDK BAT-1869
+ *                                                 Clear:both for nag page on mobile
+ *                                                    
+ *                                                     *************************************************************************/
+
+.centeraligntext {
+  text-align: center;
+}
+
+.leftaligntext {
+  text-align: left;
+}
+
+.rightaligntext {
+  text-align: right;
+}
+
+.menulisttext {
+  list-style: none;
+}
+
+.captiontext {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: italic;
+  text-align: left;
+  margin-top: 1em;
+}
+
+.skiplinks {
+  display: none;
+}
+
+.pageheaderlinks {
+  color: #FFFFFF;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+  text-align: right;
+}
+
+/* Class for Sub-menu Items                                  */
+/* ========================================================  */
+.pageheaderlinks2 {
+  color: #CED5EA;
+  font-size: 90%;
+  text-align: justify;
+}
+
+.pagebodylinks {
+  color: black;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+  text-align: center;
+}
+
+.gotoanchorlinks {
+  color: black;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+  text-align: left;
+}
+
+.pagefooterlinks {
+  color: black;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+  text-align: center;
+  /* BROWSER CONSIDERATION - To make Netscape and IE compatible for PageFooter Division. */
+  /* Margin-left style specified for Netscape within parent SPAN tag,                    */
+  /* while IE uses the padding-left style within parent DIV tag.                         */
+  margin-left: 3px;
+}
+
+.backlinktext {
+  color: black;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.menuheadertext {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+}
+
+.menulinktext {
+  color: #0F2167;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.normaltext {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+}
+
+.infotext {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+}
+
+.errortext {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+}
+
+.warningtext {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+}
+
+.multipagemsgtext {
+  color: black;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+  text-align: left;
+}
+
+.releasetext {
+  color: black;
+  font-weight: bold;
+  font-size: 80%;
+  font-style: normal;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.requiredmsgtext {
+  color: black;
+  font-weight: normal;
+  font-size: 70%;
+  font-style: normal;
+  text-align: left;
+}
+
+.fieldlabeltext {
+  color: black;
+  font-style: normal;
+  text-align: left;
+}
+
+.fieldlabeltextinvisible {
+  display: none;
+}
+
+.fieldrequiredtext {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+}
+
+.fieldformattext {
+  color: black;
+  font-weight: normal;
+  font-size: 70%;
+  font-style: normal;
+  text-align: left;
+}
+
+.fielderrortext {
+  color: black;
+  font-weight: normal;
+  font-size: 70%;
+  font-style: normal;
+  text-align: left;
+}
+
+/* ANCHORS (LINKS)                                          */
+/* ======================================================== */
+a:link, a:visited, a:active {
+  color: #224EA5;
+  text-decoration: underline;
+}
+
+a:hover, a:focus {
+  color: orangered;
+}
+
+/* ANCHOR Definitions for Home Page MenuItems class.        */
+/* ======================================================== */
+A.menulinktext {
+  font-weight: bold;
+  font-size: 100%;
+  font-style: normal;
+  color: #0000ff;
+  text-decoration: none;
+}
+
+/* BODY                                                     */
+/* ======================================================== */
+BODY {
+  background-color: #FFFFFF;
+  color: black;
+  font-style: normal;
+  text-align: left;
+  /* BROWSER CONSIDERATION - Override browser settings for BODY margin */
+  margin-top: 0%;
+  margin-left: 1%;
+  margin-right: 2%;
+  /*background-image: url(/wtlgifs/web_bg_app.jpg);*/
+  background-repeat: no-repeat;
+}
+
+BODY.campuspipeline {
+  background-color: #FFFFFF;
+  color: black;
+  font-style: normal;
+  text-align: left;
+  /* BROWSER CONSIDERATION - Override browser settings for BODY margin */
+  margin-top: 6px;
+  margin-left: 1%;
+  /*margin-right: -6px;*/
+  background-image: none;
+  background-repeat: no-repeat;
+}
+
+BODY.previewbody {
+  background-color: #FFFFFF;
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  margin-left: 2%;
+  margin-right: 2%;
+  /* Override the background image in the main BODY */
+  background-image: none;
+}
+
+BODY.validationbody {
+  background-color: #FFFFFF;
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  margin-left: 1%;
+  margin-right: 2%;
+  /* Override the background image in the main BODY */
+  background-image: none;
+}
+
+/* DIVIDES                                                  */
+/* All divides should have rules defined for margin and     */
+/* text-align.                                              */
+/* ======================================================== */
+DIV.menulistdiv {
+  text-align: left;
+}
+
+DIV.headerwrapperdiv {
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+/* PSU MOD 01 Change top margin due to smaller PSU graphic for the background */
+DIV.pageheaderdiv1 {
+  text-align: left;
+  /* margin-top: 8%; */
+  margin-top: 4%;
+  margin-left: 0px;
+  border-bottom: 0px solid;
+  border-left: 0px solid;
+  border-right: 0px solid;
+  border-top: 0px solid;
+}
+
+DIV.pageheaderdiv2 {
+  text-align: right;
+  margin-top: 5px;
+  margin-right: 10px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  float: right;
+  display: none;
+}
+
+/* Class for BANNER SEARCH Form text and button controls     */
+/* ========================================================  */
+DIV.headerlinksdiv2 {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  text-transform: none;
+}
+
+DIV.bodylinksdiv {
+  text-align: center;
+  margin-top: 1%;
+}
+
+DIV.footerlinksdiv {
+  text-align: center;
+}
+
+DIV.backlinkdiv {
+  text-align: right;
+  margin-top: -40px;
+}
+
+DIV.pagetitlediv {
+  text-align: left;
+  clear: both;
+  width: 100%;
+}
+
+DIV.infotextdiv {
+  text-align: left;
+}
+
+DIV.pagebodydiv {
+  text-align: left;
+}
+
+DIV.pagefooterdiv {
+  text-align: left;
+  border: 0px;
+  margin-top: 0px;
+  float: left;
+}
+
+DIV.poweredbydiv {
+  text-align: right;
+  margin-right: -1px;
+  margin-top: 0px;
+  border-bottom: 0px solid;
+  border-left: 0px solid;
+  border-right: 0px solid;
+  border-top: 0px solid;
+  float: right;
+}
+
+DIV.previewdiv {
+  text-align: center;
+}
+
+DIV.validationdiv {
+  text-align: center;
+}
+
+DIV.staticheaders {
+  text-align: right;
+  font-size: 90%;
+}
+
+/* HEADERS                                                  */
+/* Do not set font-size for headers - defer to browser.      */
+/* ======================================================== */
+/* H1 is reserved for Page Header */
+/* PSU MOD 01 LRH 04-APR-2005  Change to make PSU header text display */
+/*
+ * H1 {
+ * color: #FFFFFF;
+ * font-weight: bold;
+ * font-style: normal;
+ * margin-top: 0px;
+ * font-size:0%;
+ * }
+ * */
+H1 {
+  color: #6A7F10;
+  font-weight: bold;
+  font-style: normal;
+  margin-top: 65px;
+  font-size: 130%;
+}
+
+/* H2 is reserved for Page Title */
+H2 {
+  color: black;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Horizontal Rule for Menu Section                         */
+/* ======================================================== */
+/* PSU MOD LRH 04-APR-2005  Change color to PSU Green. Also change 'height' */
+HR {
+  color: #6A7F10;
+  text-align: left;
+  vertical-align: top;
+  margin-top: -10px;
+  HEIGHT=2
+}
+
+HR.pageseprator {
+  color: #003366;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* FORM CONTROLS                                            */
+/* ======================================================== */
+INPUT {
+  color: black;
+  font-weight: normal;
+  font-size: 80%;
+  font-style: normal;
+}
+
+TEXTAREA {
+  background-color: #FFFFFF;
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+}
+
+SELECT {
+  background-color: #FFFFFF;
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+}
+
+/* TABLES                                                   */
+/* ======================================================== */
+TABLE.dataentrytable {
+  border-bottom: 0px solid;
+  border-left: 0px solid;
+  border-right: 0px solid;
+  border-top: 0px solid;
+}
+
+TABLE.datadisplaytable {
+  border-bottom: 0px solid;
+  border-left: 0px solid;
+  border-right: 0px solid;
+  border-top: 0px solid;
+}
+
+TABLE.plaintable {
+  border-bottom: 0px solid;
+  border-left: 0px solid;
+  border-right: 0px solid;
+  border-top: 0px solid;
+}
+
+TABLE.menuplaintable {
+  /* Create a horizontal rule effect.
+ * border-top: 1pt #707070 solid;*/
+}
+
+TABLE.pageheadertable {
+  margin-top: 0px;
+}
+
+TABLE.colorsampletable {
+  background-color: #FFFFFF;
+}
+
+/* TABLE HEADERS AND DATA CELLS                             */
+/* ======================================================== */
+TABLE TH {
+  vertical-align: top;
+  color: black;
+}
+
+TABLE TD {
+  vertical-align: top;
+  color: black;
+}
+
+.pageheadertablecell {
+  text-align: left;
+}
+
+.pageheadernavlinkstablecell {
+  text-align: right;
+}
+
+/* DATA ENTRY TABLE HEADERS AND DATA CELLS                  */
+/* Some font rules are redunant because they do not         */
+/* inherit well from the BODY on older browsers.            */
+/* ======================================================== */
+TABLE TD.deheader {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TH.deheader {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.detitle {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+  /* Make titles big and chunky. */
+  padding-bottom: 1em;
+}
+
+TABLE TH.detitle {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+  /* Make titles big and chunky. */
+  padding-bottom: 1em;
+}
+
+TABLE TD.delabel {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TH.delabel {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.deseparator {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.dehighlight {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.dedead {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.dedefault {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.dewhite {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* DATA DISPLAY TABLE HEADERS AND DATA CELLS                */
+/* Some font rules are redunant because they do not         */
+/* inherit well from the BODY on older browsers.            */
+/* ======================================================== */
+TABLE TD.ddheader {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TH.ddheader {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.ddtitle {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+  /* Make titles big and chunky. */
+  padding-bottom: 1em;
+}
+
+TABLE TH.ddtitle {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+  /* Make titles big and chunky. */
+  padding-bottom: 1em;
+}
+
+TABLE TD.ddlabel {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TH.ddlabel {
+  background-color: #E3E5EE;
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.ddseparator {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.ddhighlight {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.dddead {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.dddefault {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+  /*border-bottom: 1pt #BFBFBF solid; */
+}
+
+TABLE TD.ddnontabular {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.ddwhite {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* PLAIN TABLE HEADERS AND DATA CELLS                       */
+/* These table data cell classes pertain to a table that is */
+/* used strictly for layout. They do not have the redundant */
+/* font rules because it is assumed that whatever is placed */
+/* in these TD/TH tags will have its own class.             */
+/* ======================================================== */
+TABLE TD.pltitle {
+  font-weight: normal;
+  font-size: 90%;
+  font-weight: bold;
+}
+
+TABLE TD.plheader {
+  font-weight: normal;
+  font-size: 90%;
+  font-weight: bold;
+}
+
+TABLE TH.pllabel {
+  font-weight: normal;
+  font-size: 90%;
+  font-weight: bold;
+}
+
+TABLE TD.plseparator {
+  font-weight: normal;
+  font-size: 90%;
+  font-weight: normal;
+}
+
+TABLE TD.plhighlight {
+  font-weight: normal;
+  font-size: 90%;
+  font-weight: normal;
+}
+
+TABLE TD.pldead {
+  font-weight: normal;
+}
+
+TABLE TD.plwhite {
+  font-weight: normal;
+  font-size: 90%;
+  font-weight: normal;
+}
+
+TABLE TD.plheadermenulinks {
+  font-weight: normal;
+  font-size: 100%;
+  font-weight: normal;
+  /*background-color:#CED5EA;*/
+}
+
+/* MENU PLAIN TABLE HEADERS AND DATA CELLS                  */
+/* ======================================================== */
+TABLE TD.mptitle {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.mpheader {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TH.mplabel {
+  color: black;
+  font-weight: bold;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.mpwhite {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.mpdefault {
+  color: black;
+  font-weight: normal;
+  /*font-size: 90%;*/
+  padding: 5px 0px;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+TABLE TD.indefault {
+  color: black;
+  font-weight: normal;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabon {
+  padding: 15px;
+  COLOR: #000000;
+  BACKGROUND-COLOR: #f9f9f9;
+  font-size: 90%;
+}
+
+.tabon A:link {
+  COLOR: #333;
+  TEXT-DECORATION: none;
+}
+
+.tabon A:visited {
+  COLOR: #333;
+  TEXT-DECORATION: none;
+}
+
+.tabon A:active {
+  COLOR: #ffffff;
+  TEXT-DECORATION: none
+}
+
+.tabon A:hover {
+  COLOR: #333;
+  TEXT-DECORATION: none;
+}
+
+.taboff {
+  padding: 15px;
+  COLOR: #999;
+  BACKGROUND-REPEAT: no-repeat;
+  BACKGROUND-COLOR: #FFFFFF;
+  font-size: 90%;
+}
+
+.taboff A:link {
+  COLOR: #999;
+  TEXT-DECORATION: none;
+}
+
+.taboff A:visited {
+  COLOR: #999;
+  TEXT-DECORATION: none;
+}
+
+.taboff A:active {
+  COLOR: #000000;
+  TEXT-DECORATION: none
+}
+
+.taboff A:hover {
+  COLOR: #333;
+  TEXT-DECORATION: none;
+}
+
+/*PSU MOD 03 - Multi-column support BAT-1498*/
+table.stuFinTable {
+  margin: 0 auto;
+  width: 50%;
+  float: left;
+}
+
+table.stuFinTable th {
+  padding: 15px 0;
+  text-align: left;
+  font-weight: lighter;
+  font-size: 1.25em;
+}
+
+table.stuFinTable td.psuaddy {
+  text-align: left;
+  font-size: 0.75em;
+  padding: 10px 0 10px 0;
+}
+
+#alert_message {
+  position: relative;
+  top:-15px;
+  border: 1px solid Maroon;
+  border-radius: 3px;
+  color: #4A2710;
+  background-color: #FFF0E6;
+  padding: 25px;
+  text-align: center;
+  display: none;
+}
+
+/* PSU MOD 01 - NEW DESIGN OVERRIDES */
+@font-face {
+  font-family: 'Lato-Regular';
+  font-weight: 400;
+  src: url('/fonts/Lato-Regular.woff') format('woff')),
+    url('/fonts/Lato-Regular.woff2') format('woff2')) font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato-Bold';
+  font-weight: 700;
+  src: url('/fonts/Lato-Bold.woff') format('woff')),
+    url('/fonts/Lato-Bold.woff2') format('woff2')) font-display: swap;
+}
+
+body {
+  margin: 0px;
+  font-family: "Lato-Regular", sans-serif;
+  /* Next 4 lines really do make text nicer on all platforms */
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-image: url('/wtlgifs/banweb-hero-no-logo.jpg');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 2880px auto;
+  /* locking the width so the logo doesnt blur. */
+}
+
+.mainbodywrapper {
+  height: 100%;
+  width: 100%;
+  background-image:url('/wtlgifs/PSU-logo-white.png');
+  background-position: 15px 15px;
+  background-repeat:no-repeat;
+}
+
+.maincontentwrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+div.headerwrapperdiv {
+  float: left;
+  position: relative;
+  width: 100%;
+  padding-top: 220px;
+  /* provides space for the header image */
+}
+
+div.pageheaderdiv1 {
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-top: 0px;
+}
+
+.pageheaderdiv1 h1 {
+  font-size: 1.8em;
+  margin-top: 80px;
+}
+
+.pagetitlediv {
+  display: none;
+  /* used for messages */
+}
+
+.headerlinksdiv {
+  float: left;
+  position: relative;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0px;
+  overflow-x: scroll;
+}
+
+.headerwrapperdiv .plaintable .rightaligntext {
+  position: relative;
+  top: -120px !important;
+  right: 0px !important;
+}
+
+.bgtaboff img {
+  display: none;
+}
+
+.tabon {
+  padding: 8px 25px;
+  color: #555;
+  border-bottom: 3px solid #5D8847;
+  margin-right: 35px;
+  font-family: "Lato-Bold", sans-serif;
+}
+
+.tabdisable {
+  padding: 8px 25px;
+  cursor: no-drop;
+  color: #d8d8d8;
+  border-bottom: 3px solid transparent;
+  margin-right: 35px;
+  font-family: "Lato-Bold", sans-serif;
+}
+
+.tabon a:link, .tabon a:visited, .tabon a:active {
+  color: #111;
+  text-decoration: none
+}
+
+.tabon a:hover, .tabon a:focus {
+  text-decoration: none;
+}
+
+.taboff {
+  padding: 8px 25px;
+  border-bottom: 3px solid transparent;
+}
+
+.taboff a:link, .taboff a:visited, .taboff a:active {
+  color: #444;
+  text-decoration: none
+}
+
+.taboff a:hover, .taboff a:focus {
+  color: #111;
+}
+
+.taboff:hover, .taboff:focus {
+  border-bottom: #eee 3px solid;
+}
+
+.tWrap {
+  float:left;
+  width:100%;
+}
+
+.tWrap table {
+  margin-right: 60px !important;
+}
+
+.menulinkdesctext {
+  float: left;
+  font-size: .8em;
+  margin-top: 6px;
+  /* PSU MOD 03 - Indent the description text */
+  margin-left:15px;
+  line-height: 1.5em;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+ 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+  border-top:1px solid #ccc;
+}
+
+
+.pagefooterdiv {
+  float: left;
+  position: absolute;
+  margin-top: 20px !important;
+}
+
+.banner_copyright {
+  margin-top: 10px;
+}
+
+/*PSU MOD 02 - Add good/bad alert styles */
+.bad_alert{
+  width: 70%;
+  margin: 10px auto;
+  text-align: center;
+  padding: 25px;
+  background-color: #FFF0E6;
+  color: #4A2710;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.bad_alert a, .bad_alert a:link, .bad_alert a:hover, .bad_alert a:visited, .bad_alert a:active{
+  color: #8a0000;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.good_alert{
+  width: 70%;
+  margin: 10px auto;
+  text-align: center;
+  padding: 25px;
+  background-color: #5D8847;
+  color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.good_alert a, .good_alert a:link, .good_alert a:hover, .good_alert a:visited, .good_alert a:active{
+  color: #E8D3A2;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/*PSU MOD 03 - Clear both on info_block */
+div.info_block {
+    clear:both !important;
+}
+
+/*PSU MOD 01 - Keep the columns from streching too
+ *  * far apart on larger screens */
+@media only screen and (min-width: 1200px) {
+  table.stuFinTable {
+    min-width: 35%;
+    width: auto;
+    max-width: 35%;
+  }
+}
+
+/* PSU MOD 01 - MOBILE BREAKS */
+@media only screen and (max-width: 800px) {
+  body {
+    background-image:url('/wtlgifs/banweb-hero-mobile-tall.jpg');
+    background-size: 800px auto;
+    
+  }
+
+  /* PSU MOD 01 - good/bad alerts */
+  .bad_alert{
+    width: 95%;
+  }
+  .good_alert{
+    width: 95%;
+  }
+
+  div.headerwrapperdiv {
+    padding-top: 100px;
+    /* provides space for the header image */
+  }
+
+  .maincontentwrapper {
+    width: 100%;
+  }
+
+  .pageheaderdiv1 h1 {
+    margin-top: 110px;
+    font-size: 1.2em;
+  }
+
+  .headerwrapperdiv .plaintable .rightaligntext {
+    top: -150px !important;
+    right: 15px !important;
+  }
+
+  .headerlinksdiv {
+    padding-top: 0px;
+    margin-top: 15px;
+  }
+
+  .tabon, .taboff {
+    padding: 8px 15px;
+  }
+
+  .tWrap table {
+    padding: 0px 15px;
+  }
+
+  table.stuFinTable th {
+    padding-left: 5px;
+  }
+
+  table.stuFinTable {
+    float: none;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .pageheaderdiv1 h1, .pagefooterdiv, .banner_copyright {
+    margin-left: 15px;
+  }
+}
+

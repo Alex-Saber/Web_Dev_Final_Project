@@ -1,0 +1,146 @@
+/*Mobile screen*/
+@media (min-width: 200px) {
+  .carousel-caption {
+    font-size: 5pt;
+  }
+  .carousel-caption {
+    font-size: 11pt;
+  }
+  footer > p {
+    font-size: 5pt;
+  }
+}
+/*Extra small window screen*/
+@media (min-width: 400px) {
+  .carousel-caption {
+    font-size: 5pt;
+  }
+  .carousel-caption {
+    font-size: 5pt;
+  }
+  footer > p {
+    font-size: 7pt;
+  }
+}
+/*Small window screen*/
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+  .carousel-caption {
+    font-size: 7pt;
+  }
+  footer > p {
+    font-size: 8pt;
+  }
+}
+/*Medium sized window screen*/
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+  .carousel-caption {
+    font-size: 8pt;
+  }
+  footer > p {
+    font-size: 8pt;
+  }
+}
+/*Large window screen*/
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+  .carousel-caption {
+    font-size: 9pt;
+  }
+  footer > p {
+    font-size: 8pt;
+  }
+}
+/*Full Sized window*/
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1040px;
+  }
+  .carousel-caption {
+    font-size: 11pt;
+  }
+  footer > p {
+    font-size: 8pt;
+  }
+}
+
+body {
+  background: rgb(19, 6, 19);
+  font-family: monospace;
+  font-size: 11pt;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+footer > p {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: right;
+  color: #e4e2ff;
+}
+
+h1 {
+  font-size: 18pt;
+  color: #e4e2ff;
+}
+
+.title {
+  font-size: 45pt;
+  text-align: center;
+}
+
+.menu {
+  text-align: center;
+  font-size: 16pt;
+  color: #e4e2ff;
+}
+
+a:link,
+a:visited {
+  color: rgb(61, 98, 219);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(109, 182, 250);
+}
+
+mark {
+  background-color: rgba(162, 200, 231, 0.822);
+}
+
+.container {
+  width: 100%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel {
+  width: 80%;
+  height: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+p {
+  color: rgb(109, 182, 250);
+}
+
+section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
