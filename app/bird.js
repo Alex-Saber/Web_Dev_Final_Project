@@ -2,22 +2,22 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 var bird = new Image();
-bird.src = "images/bird.png";
+bird.src = "../images/bird.png";
 
 var bg = new Image();
-bg.src = "images/bg.png";
+bg.src = "../images/bg.png";
 
 var fg = new Image();
-fg.src = "images/fg.png";
+fg.src = "../images/fg.png";
 
 var TopPipe = new Image();
-TopPipe.src = "images/pipeNorth.png";
+TopPipe.src = "../images/pipeNorth.png";
 
 var BotPipe = new Image();
-BotPipe.src = "images/pipeSouth.png";
+BotPipe.src = "../images/pipeSouth.png";
 
-var GameOver = new Audio();
-GameOver.src = "sound/OHH.mp3";
+//var GameOver = new Audio();
+//GameOver.src = "../sound/OHH.mp3";
 var bird_x = 10;
 var bird_y = 150;
 var score = 0;
@@ -73,15 +73,13 @@ function draw() {
     }
 
     //Collision logic
+    if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
+    {
+      location.reload();
+    }
+    
 
-    console.log("bird");
-    console.log(bird_x);
-    console.log(bird_y);
-    console.log("pipe:");
-    console.log(pipe_array[i].x);
-    console.log(pipe_array[i].y);
-
-    GameOver.play();
+   // GameOver.play();
   }
 
   ctx.font = "30px Open Sans";
