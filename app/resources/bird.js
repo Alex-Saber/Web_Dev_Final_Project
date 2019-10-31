@@ -1,8 +1,8 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+var pause = false;
 var bird = new Image();
-bird.src = "../images/bird.png";
 
 var bg = new Image();
 bg.src = "../images/bg.png";
@@ -42,20 +42,25 @@ function draw() {
   ctx.drawImage(bg, 0, 0);
   ctx.drawImage(fg, 0, canvas.height - fg.height);
 
+  if (pause == false) {
+    gravity += 0.1;
+    bird_y += gravity;
 
-  gravity += 0.1;
-  bird_y += gravity;
-
-  if (jump && jump_frame <= 5) {
-    gravity = 0;
-    bird_y -= 15;
-    jump_frame += 1;
+    if (jump && jump_frame <= 5) {
+      gravity = 0;
+      bird_y -= 15;
+      jump_frame += 1;
+    }
+    if (jump_frame > 5) {
+      jump_frame = 0;
+      jump = false;
+    }
   }
-  if (jump_frame > 5) {
-    jump_frame = 0;
-    jump = false;
+  if (pause == false) {
+    bird.src = "../images/bird.png";
+  } else {
+    bird.src = "../images/ded_bird.png";
   }
-
   ctx.drawImage(bird, bird_x, bird_y);
 
   for (var i = 0; i < pipe_array.length; i++) {
@@ -67,10 +72,14 @@ function draw() {
       pipe_array[i].y + TopPipe.height + 80
     );
 
-    pipe_array[i].x--;
-
+    if (pause == false) {
+      pipe_array[i].x--;
+    }
     if (pipe_array[i].x === 50) {
-      pipe_array.push({ x: canvas.width, y: Math.floor(Math.random()*TopPipe.height)-TopPipe.height });
+      pipe_array.push({
+        x: canvas.width,
+        y: Math.floor(Math.random() * TopPipe.height) - TopPipe.height
+      });
     }
 
     if (pipe_array[i].x === 0) {
@@ -78,13 +87,27 @@ function draw() {
     }
 
     // //Collision logic
-    if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
-    {
+    if (
+      bird_x + bird.width >= pipe_array[i].x &&
+      bird_x <= pipe_array[i].x + TopPipe.width &&
+      (bird_y <= pipe_array[i].y + TopPipe.height ||
+        bird_y + bird.height >= pipe_array[i].y + 80)
+    ) {
       // Pause the game
+      pause = true;
+      document.addEventListener("keyup", restart);
+      function restart(event) {
+        if (event.keyCode === 88) {
+          location.reload();
+        }
+      }
+      if (pause == true) {
+        bird_y += gravity;
+        gravity += 0.1;
+      }
     }
-    
 
-   // GameOver.play();
+    // GameOver.play();
   }
 
   ctx.font = "30px Open Sans";
