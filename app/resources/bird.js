@@ -29,7 +29,7 @@ pipe_array[0] = { x: canvas.width, y: 0 };
 
 document.addEventListener("keyup", go_up);
 function go_up(event) {
-  if (event.keyCode == 38) {
+  if (event.keyCode === 38) {
     if (jump === false) {
       jump = true;
     }
@@ -64,19 +64,19 @@ function draw() {
 
     pipe_array[i].x--;
 
-    if (pipe_array[i].x == 50) {
+    if (pipe_array[i].x === 50) {
       pipe_array.push({ x: canvas.width, y: Math.floor(Math.random()*TopPipe.height)-TopPipe.height });
     }
 
-    if (pipe_array[i].x == 0) {
+    if (pipe_array[i].x === 0) {
       score++;
     }
 
-    //Collision logic
-    if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
-    {
-      location.reload();
-    }
+    // //Collision logic
+    // if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
+    // {
+    //   location.reload();
+    // }
     
 
    // GameOver.play();
