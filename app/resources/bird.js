@@ -36,13 +36,18 @@ function go_up(event) {
   }
 }
 
+let gravity = 0.5;
+
 function draw() {
   ctx.drawImage(bg, 0, 0);
   ctx.drawImage(fg, 0, canvas.height - fg.height);
 
-  bird_y += 1;
+
+  gravity += 0.1;
+  bird_y += gravity;
 
   if (jump && jump_frame <= 5) {
+    gravity = 0;
     bird_y -= 15;
     jump_frame += 1;
   }
