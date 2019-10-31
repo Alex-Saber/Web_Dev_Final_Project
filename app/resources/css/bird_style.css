@@ -1,2 +1,9 @@
-#myCanvas { background:rgb(255, 254, 254);
-border: 100px black; }
+#myCanvas {
+    background:rgb(255, 254, 254);
+    border: 100px black;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+}
