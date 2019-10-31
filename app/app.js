@@ -38,6 +38,6 @@ app.get('/', (err, res) => {
 	res.render('index.html');
 });
 
-app.get('/bird.html', (err, res) => {
-	res.render('bird.html');
-});
+// app.get('/bird.html', (err, res) => {
+// 	res.render('bird.html');
+// });

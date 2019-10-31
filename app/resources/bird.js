@@ -78,10 +78,10 @@ function draw() {
     }
 
     // //Collision logic
-    // if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
-    // {
-    //   location.reload();
-    // }
+    if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
+    {
+      // Pause the game
+    }
     
 
    // GameOver.play();
