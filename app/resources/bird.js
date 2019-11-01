@@ -48,7 +48,7 @@ function draw() {
 
     if (jump && jump_frame <= 5) {
       gravity = 0;
-      bird_y -= 15;
+      bird_y -= 10;
       jump_frame += 1;
     }
     if (jump_frame > 5) {
@@ -69,7 +69,7 @@ function draw() {
     ctx.drawImage(
       BotPipe,
       pipe_array[i].x,
-      pipe_array[i].y + TopPipe.height + 80
+      pipe_array[i].y + TopPipe.height + 5 * bird.height
     );
 
     if (pause == false) {
@@ -90,21 +90,27 @@ function draw() {
     if (
       bird_x + bird.width >= pipe_array[i].x &&
       bird_x <= pipe_array[i].x + TopPipe.width &&
-      (bird_y <= pipe_array[i].y + TopPipe.height ||
-        bird_y + bird.height >= pipe_array[i].y + 80)
+      (bird_y < pipe_array[i].y + TopPipe.height ||
+        bird_y + bird.height >
+          pipe_array[i].y + TopPipe.height + 5 * bird.height)
     ) {
       // Pause the game
       pause = true;
+
       document.addEventListener("keyup", restart);
       function restart(event) {
         if (event.keyCode === 88) {
           location.reload();
         }
       }
-      if (pause == true) {
-        bird_y += gravity;
-        gravity += 0.1;
-      }
+    }
+    if (pause == true) {
+      bird_y += gravity;
+      gravity += 0.1;
+      console.log(bird_y);
+      //if (bird_y >= canvas.height) {
+      //bird_y = 600;
+      //}
     }
 
     // GameOver.play();
