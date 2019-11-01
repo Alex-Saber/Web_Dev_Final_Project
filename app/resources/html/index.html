@@ -24,6 +24,10 @@
       href="../css/atac-arcade.css"
       media="screen"
     />
+    <script type="text/javascript" src="../index.js"></script>
+      <script type="text/javascript" src="../bird.js"></script>
+      <script src="../shooter.js"></script>
+      <link rel="stylesheet" src="../css/bird_style.css">
   </head>
   <body>
     <!--Header-->
@@ -31,17 +35,40 @@
       <h1 class="title">ATAC Arcade</h1>
       <div>
         <nav class="menu">
-          <a href="index.html"><mark>Home</mark></a> |
-          <a href="flappy-bird-home.html">Flappy Bird</a> |
-          <a href="tic-tac-toe-home.html">Tic-Tac-Toe</a> |
-          <a href="snake-home.html">Snake</a> |
-          <a href="space-invaders-home.html">Space Invaders!</a> |
-          <a href="login.html">Login</a>
-        </nav>
+          <button type="button" class="btn btn-secondary btn-sm" id="home-nav" onclick="toggleClasses('#home-page')">
+                Home
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="flappy-bird-nav" onclick="toggleClasses('#flappy-bird-page')">
+                Flappy Bird
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="tic-tac-toe-nav" onclick="toggleClasses('#tic-tac-toe-page')">
+                Tic-Tac-Toe
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="snake-nav" onclick="toggleClasses('#snake-page')">
+                Snake
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="space-invaders-nav" onclick="toggleClasses('#space-invaders-page')">
+                Space Invaders
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="login-nav" onclick="toggleClasses('#login-page')">
+                Login
+            </button>
+<!--
+          <a href=""><mark id="home-nav">Home</mark></a> |
+          <a href=""><mark id="flappy-bird-nav">Flappy Bird</mark></a>
+          |
+          <a href=""><mark id="tic-tac-toe-nav">Tic-Tac-Toe</mark></a>
+          | <a href=""><mark id="snake-nav">Snake</mark></a> |
+          <a href=""><mark id="space-invaders-nav">Space Invaders!</mark></a>
+          |
+          <a href=""><mark id="login-nav">Login</mark></a>-->
       </div>
     </header>
-    <!--Welcome message-->
-    <section class="container">
+
+    <!--HOME START-->
+    <section class="container visible" id="home-page">
+    <section class="container visible">
+      <!--Welcome message-->
       <h1>Welcome message</h1>
       <p>Description</p>
     </section>
@@ -91,7 +118,163 @@
         <span class="sr-only">Next</span>
       </a>
     </section>
-
+    </section>
+    <!--HOME END-->
+    <!--FLAPPY BIRD START-->
+    <section class="container invisible" id="flappy-bird-page">
+      <canvas class="myCanvas" width="280" height="500"></canvas>
+    </section>
+    <!--FLAPPY BIRD END-->
+    <!--TIC TAC TOE START-->
+    <section class="container invisible" id="tic-tac-toe-page">
+      <p>
+        Tic tac toe
+      </p>
+    </section>
+    <!--TIC TAC TOE END-->
+    <!--SNAKE START-->
+    <section class="container invisible" id="snake-page">
+      <p>
+        snake
+      </p>
+    </section>
+    <!--SNAKE END-->
+    <!--SPACE INVADERS START-->
+    <section class="container invisible" id="space-invaders-page">
+      <canvas class="myCanvas" width="600" height="600"></canvas>
+    </section>
+    <!--SPACE INVADERS END-->
+    <!--LOGIN END-->
+    <section class="container invisible" id="login-page">
+        <!--Nav tabs for forms-->
+        
+        <ul class="nav nav-tabs" id="form-tabs" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="login-tab"
+              data-toggle="tab"
+              href="#login-form"
+              role="tab"
+              aria-controls="login-form"
+              aria-selected="true"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="create-account-tab"
+              data-toggle="tab"
+              href="#create-account-form"
+              role="tab"
+              aria-controls="create-account-form"
+              aria-selected="false"
+              >Create Account</a
+            >
+          </li>
+        </ul>
+        <!--Nab tab content for forms-->
+        <div class="tab-content" id="form-tabs-content">
+          <!--card body for login-->
+          <div
+            class="tab-pane fade show active"
+            id="login-form"
+            role="tabpanel"
+            aria-labelledby="login-form"
+          >
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Login</h4>
+                <form action="" method="post" enctype="text/plain">
+                  <div class="form-group">
+                    <label for="username1">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username1"
+                      placeholder="username"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password1">password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="password1"
+                      placeholder="password"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    SUBMIT
+                  </button>
+                  <button type="reset" class="btn btn-secondary btn-sm">
+                    RESET
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--Card body for account creation-->
+          <div
+            class="tab-pane fade show"
+            id="create-account-form"
+            role="tabpanel"
+            aria-labelledby="create-account-form"
+          >
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Account Creation</h4>
+                <form action="" method="post" enctype="text/plain">
+                  <div class="form-group">
+                    <label for="username2">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username2"
+                      placeholder="username"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pasword2">Password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="password2"
+                      placeholder="password"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      placeholder="john.smith@gmail.com"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    SUBMIT
+                  </button>
+                  <button type="reset" class="btn btn-secondary btn-sm">
+                    RESET
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--LOGIN END-->
     <!--Footer-->
     <footer class="footer">
       Footer
