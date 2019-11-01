@@ -104,6 +104,9 @@ function draw() {
       if (pause == true) {
         bird_y += gravity;
         gravity += 0.1;
+        if (bird_y >= canvas.height) {
+          bird_y = canvas.height + 50;
+        }
       }
     }
 
