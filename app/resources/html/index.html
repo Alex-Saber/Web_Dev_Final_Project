@@ -18,16 +18,14 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
     ></script>
+    <script type="text/javascript" src="../index.js"></script>
     <link
       rel="stylesheet"
       type="text/css"
       href="../css/atac-arcade.css"
       media="screen"
     />
-    <script type="text/javascript" src="../index.js"></script>
-      <script type="text/javascript" src="../bird.js"></script>
-      <script src="../shooter.js"></script>
-      <link rel="stylesheet" src="../css/bird_style.css">
+    <link rel="stylesheet" type="text/css" src="../css/bird_style.css">
   </head>
   <body>
     <!--Header-->
@@ -122,7 +120,8 @@
     <!--HOME END-->
     <!--FLAPPY BIRD START-->
     <section class="container invisible" id="flappy-bird-page">
-      <canvas class="myCanvas" width="280" height="500"></canvas>
+      <canvas class="myCanvas" id="flappy-canvas" width="280" height="500"></canvas>
+    <script type="text/javascript" src="../bird.js"></script>
     </section>
     <!--FLAPPY BIRD END-->
     <!--TIC TAC TOE START-->
@@ -141,7 +140,8 @@
     <!--SNAKE END-->
     <!--SPACE INVADERS START-->
     <section class="container invisible" id="space-invaders-page">
-      <canvas class="myCanvas" width="600" height="600"></canvas>
+      <canvas class="myCanvas" id="invaders-canvas" width="600" height="600"></canvas>
+    <script type="text/javascript" src="../shooter.js"></script>
     </section>
     <!--SPACE INVADERS END-->
     <!--LOGIN END-->

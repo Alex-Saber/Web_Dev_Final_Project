@@ -77,7 +77,7 @@ window.onload = function() {
 };
 
 let toggleClasses = function(nextPage) {
-  document.querySelector(currentPage).className = "invisible";
-  document.querySelector(nextPage).className = "visible";
+  document.querySelector(currentPage).className = "container invisible";
+  document.querySelector(nextPage).className = "container visible";
   currentPage = nextPage;
 };

@@ -1,20 +1,20 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("flappy-canvas");
 var ctx = canvas.getContext("2d");
 
 var bird = new Image();
-bird.src = "../images/bird.png";
+bird.src = "./images/bird.png";
 
 var bg = new Image();
-bg.src = "../images/bg.png";
+bg.src = "./images/bg.png";
 
 var fg = new Image();
-fg.src = "../images/fg.png";
+fg.src = "./images/fg.png";
 
 var TopPipe = new Image();
-TopPipe.src = "../images/pipeNorth.png";
+TopPipe.src = "./images/pipeNorth.png";
 
 var BotPipe = new Image();
-BotPipe.src = "../images/pipeSouth.png";
+BotPipe.src = "./images/pipeSouth.png";
 
 //var GameOver = new Audio();
 //GameOver.src = "../sound/OHH.mp3";
@@ -41,7 +41,6 @@ let gravity = 0.5;
 function draw() {
   ctx.drawImage(bg, 0, 0);
   ctx.drawImage(fg, 0, canvas.height - fg.height);
-
 
   gravity += 0.1;
   bird_y += gravity;
@@ -70,7 +69,10 @@ function draw() {
     pipe_array[i].x--;
 
     if (pipe_array[i].x === 50) {
-      pipe_array.push({ x: canvas.width, y: Math.floor(Math.random()*TopPipe.height)-TopPipe.height });
+      pipe_array.push({
+        x: canvas.width,
+        y: Math.floor(Math.random() * TopPipe.height) - TopPipe.height
+      });
     }
 
     if (pipe_array[i].x === 0) {
@@ -78,13 +80,16 @@ function draw() {
     }
 
     // //Collision logic
-    if(bird_x+bird.width >= pipe_array[i].x && bird_x <= pipe_array[i].x+TopPipe.width && ( bird_y <= pipe_array[i].y + TopPipe.height || bird_y+bird.height >= pipe_array[i].y+80))
-    {
+    if (
+      bird_x + bird.width >= pipe_array[i].x &&
+      bird_x <= pipe_array[i].x + TopPipe.width &&
+      (bird_y <= pipe_array[i].y + TopPipe.height ||
+        bird_y + bird.height >= pipe_array[i].y + 80)
+    ) {
       // Pause the game
     }
-    
 
-   // GameOver.play();
+    // GameOver.play();
   }
 
   ctx.font = "30px Open Sans";

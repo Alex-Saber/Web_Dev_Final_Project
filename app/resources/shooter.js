@@ -1,4 +1,4 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("invaders-canvas");
 var ctx = canvas.getContext("2d");
 
 var ship = new Image();
