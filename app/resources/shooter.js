@@ -4,10 +4,10 @@ var ctx = canvas.getContext("2d");
 var ship = new Image();
 var ship_x = canvas.width / 2;
 var ship_y = canvas.height - 100;
-ship.src = "./images/ship.gif";
+ship.src = "../images/ship.gif";
 
 var space = new Image();
-space.src = "./images/space.png";
+space.src = "../images/space.png";
 
 var left = false;
 var right = false;
@@ -20,12 +20,12 @@ var enemy_x = 10;
 var enemy_y = 0;
 var enemy_speed = 3;
 var enemy = new Image();
-enemy.src = "./images/enemy1.png";
+enemy.src = "../images/enemy1.png";
 
 var laser_length = 40000;
 var laser_array = [];
 var laser = new Image();
-laser.src = "./images/bullet.png";
+laser.src = "../images/bullet.png";
 
 document.addEventListener("keydown", keyDown, false);
 document.addEventListener("keyup", keyUp, false);

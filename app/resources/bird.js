@@ -2,19 +2,19 @@ var canvas = document.getElementById("flappy-canvas");
 var ctx = canvas.getContext("2d");
 
 var bird = new Image();
-bird.src = "./images/bird.png";
+bird.src = "../images/bird.png";
 
 var bg = new Image();
-bg.src = "./images/bg.png";
+bg.src = "../images/bg.png";
 
 var fg = new Image();
-fg.src = "./images/fg.png";
+fg.src = "../images/fg.png";
 
 var TopPipe = new Image();
-TopPipe.src = "./images/pipeNorth.png";
+TopPipe.src = "../images/pipeNorth.png";
 
 var BotPipe = new Image();
-BotPipe.src = "./images/pipeSouth.png";
+BotPipe.src = "../images/pipeSouth.png";
 
 //var GameOver = new Audio();
 //GameOver.src = "../sound/OHH.mp3";
