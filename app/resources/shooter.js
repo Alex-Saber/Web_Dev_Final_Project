@@ -14,7 +14,7 @@ var right = false;
 var up = false;
 var down = false;
 
-var enemies_total = 10;
+var enemies_total = 20;
 var enemies_array = [];
 var enemy_x = 10;
 var enemy_y = 0;
@@ -22,7 +22,7 @@ var enemy_speed = 3;
 var enemy = new Image();
 enemy.src = "../images/enemy1.png";
 
-var laser_length = 40000;
+var laser_length = 1000000;
 var laser_array = [];
 var laser = new Image();
 laser.src = "../images/bullet.png";
@@ -44,6 +44,15 @@ function keyUp(e) {
   if (e.keyCode == 38) up = false;
   else if (e.keyCode == 40) down = false;
 }
+//add enemies
+for (var i = 0; i < enemies_total; i++) {
+  enemies_array.push([enemy_x, enemy_y]);
+  enemy_x += enemy.width + 30;
+  if(enemy_x>=canvas.width)
+  {
+    enemy_x=10;
+  }
+}
 
 function drawship() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -62,27 +71,43 @@ function drawship() {
   if (ship_y + ship.height >= canvas.height)
     ship_y = canvas.height - ship.height;
 
-  for (var i = 0; i < enemies_total; i++) {
-    enemies_array.push([enemy_x, enemy_y, enemy_speed]);
-    enemy_x += enemy.width + 30;
-    ctx.drawImage(enemy, enemies_array[i][0], enemies_array[i][1]);
-  }
-  for (var i = 0; i < enemies_total; ++i) {
+
+  //move enenmies and draw
+  for (var i = 0; i < enemies_array.length; ++i) {
     if (enemies_array[i][1] < canvas.height) {
       enemies_array[i][1] += 1;
     } else if (enemies_array[i][1] >= canvas.height) {
       enemies_array[i][1] = 0;
     }
+    ctx.drawImage(enemy, enemies_array[i][0], enemies_array[i][1]);
+    
   }
   if (laser_array.length != 0) {
     for (var i = 0; i < laser_array.length; i++) {
       ctx.drawImage(laser, laser_array[i][0], laser_array[i][1]);
     }
-    for (var i = 0; i < laser_array.length; i++) {
-      laser_array[i][1] -= 10;
-      if (laser_array[i][1] <= 0) {
-        laser_array[i].splice(i, 1);
+  }
+  for (var i = 0; i < laser_array.length; i++) {
+    laser_array[i][1] -= 10;
+    if (laser_array[i][1] <= 0) {
+      laser_array[i].splice(i, 1);
+    }
+  }
+  //Collision
+  var remove = false;
+  for (var i = 0; i < laser_array.length; i++) {
+    for (var j = 0; j < enemies_array.length; j++) {
+      if (laser_array[i][1] <= (enemies_array[j][1] + enemy.height) &&
+         laser_array[i][0] >= enemies_array[j][0] && 
+         laser_array[i][0] <= (enemies_array[j][0] + enemy.width)) {
+        remove = true;
+        enemies_array.splice(j, 1);
+        enemies_array.push([Math.random()* canvas.width+1,enemy_y]);
       }
+    }
+    if (remove == true) {
+      laser_array.splice(i, 1);
+      remove = false;
     }
   }
 
