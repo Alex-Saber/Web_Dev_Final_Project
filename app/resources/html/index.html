@@ -33,6 +33,14 @@
       <h1 class="title">ATAC Arcade</h1>
       <div>
         <nav class="menu">
+          <span id="test-nav" onclick="toggleClasses('#flappy-bird-page')">Test</span> |
+          <span class="dropdown">
+            <span class="dropdown-toggle" id="dropdownGames" data-toggle="drowpdown" aria-haspopup="true" aria-expanded="false">Games</span>
+            <div class="dropdown-menu" aria-labelledby="dropdownGames">
+              <span class="dropdown-item" id="flappy-bird-test" onclick="toggleClasses('#flappy-bird-page')">Flappy Bird</span>
+              <span class="dropdown-item" id="flappy-bird-test" onclick="toggleClasses('#flappy-bird-page')">Flappy Bird</span>
+            </div>
+          </span>
           <button type="button" class="btn btn-secondary btn-sm" id="home-nav" onclick="toggleClasses('#home-page')">
             Home
           </button>
@@ -48,8 +56,14 @@
           <button type="button" class="btn btn-secondary btn-sm" id="space-invaders-nav" onclick="toggleClasses('#space-invaders-page')">
             Space Invaders
           </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="scoreboards-nav" onclick="toggleClasses('#scoreboards-page')">
+            Scoreboards
+          </button>
           <button type="button" class="btn btn-secondary btn-sm" id="login-nav" onclick="toggleClasses('#login-page')">
             Login
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm invisible" id="account-info-nav" onclick="toggleClasses('#account-info-page')">
+            Account Info
           </button>
       </div>
     </header>
@@ -263,6 +277,14 @@
       </div>
     </section>
     <!--LOGIN END-->
+    <!--SCOREBOARDS START-->
+    <section class="container invisible" id="scoreboards-page">
+    </section>
+    <!--SCOREBOARDS END-->
+    <!--ACCOUNT INFO START-->
+    <section class="container invisible" id="account-info-page">
+    </section>
+    <!--ACCOUNT INFO END-->
     <!--Footer-->
     <footer class="footer">
       Footer

@@ -45,6 +45,30 @@
         <li class="nav-item">
           <a
             class="nav-link"
+            id="tic-tac-toe-tab"
+            data-toggle="tab"
+            href="#tic-tac-toe-scoreboard"
+            role="tab"
+            aria-controls="tic-tac-toe-scoreboard"
+            aria-selected="false"
+            >Tic Tac Toe</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="snake-tab"
+            data-toggle="tab"
+            href="#snake-scoreboard"
+            role="tab"
+            aria-controls="snake-scoreboard"
+            aria-selected="false"
+            >Snake</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
             id="space-invaders-tab"
             data-toggle="tab"
             href="#space-invaders-scoreboard"
@@ -57,7 +81,7 @@
       </ul>
       <!--Nav tab content for scoreboards-->
       <div class="tab-content" id="scoreboard-tabs-content">
-        <!--Table for flappy bird-->
+        <!--Flappy Bird Scoreboard-->
         <div
           class="tab-pane fade show active"
           id="flappy-bird-scoreboard"
@@ -87,16 +111,105 @@
             </tbody>
           </table>
         </div>
-        <!--Table for space invaders-->
+        <!--Tic Tac Toe Scoreboard-->
+        <div
+          class="tab-pane fade show"
+          id="tic-tac-toe-scoreboard"
+          role="tabpanel"
+          aria-labelledby="tic-tac-toe-scoreboard"
+        >
+          <table class="table table-hover">
+            <h4 class="table-heading">Tic-Tac-Toe Highscores</h4>
+            <thead>
+              <tr class="even-rows">
+                <th>#</th>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd-rows">
+                <th scope="row">1</th>
+                <td>rando player 1</td>
+                <td>593400</td>
+              </tr>
+              <tr class="even-rows">
+                <th scope="row">2</th>
+                <td>rando player 2</td>
+                <td>43200</td>
+              </tr>
+              <tr class="odd-rows">
+                <th scope="row">3</th>
+                <td>rando player 3</td>
+                <td>200</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--Snake Scoreboard-->
+        <div
+          class="tab-pane fade show"
+          id="snake-scoreboard"
+          role="tabpanel"
+          aria-labelledby="snake-scoreboard"
+        >
+          <table class="table table-hover">
+            <h4 class="table-heading">Snake Highscores</h4>
+            <thead>
+              <tr class="even-rows">
+                <th>#</th>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd-rows">
+                <th scope="row">1</th>
+                <td>rando 1</td>
+                <td>35040</td>
+              </tr>
+              <tr class="even-rows">
+                <th scope="row">2</th>
+                <td>rando 2</td>
+                <td>1900</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--Space Invaders Scoreboard-->
         <div
           class="tab-pane fade show"
           id="space-invaders-scoreboard"
           role="tabpanel"
           aria-labelledby="space-invaders-scoreboard"
         >
-          <div class="card">
-            <h4>Space Invaders</h4>
-          </div>
+          <table class="table table-hover">
+            <h4 class="table-heading">Space Invaders Highscores</h4>
+            <thead>
+              <tr class="even-rows">
+                <th>#</th>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd-rows">
+                <th scope="row">1</th>
+                <td>player 1</td>
+                <td>100430</td>
+              </tr>
+              <tr class="even-rows">
+                <th scope="row">2</th>
+                <td>player 2</td>
+                <td>200</td>
+              </tr>
+              <tr class="odd-rows">
+                <th scope="row">3</th>
+                <td>player 3</td>
+                <td>10</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

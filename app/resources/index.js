@@ -37,3 +37,10 @@ let toggleClasses = function(nextPage) {
   }
   currentPage = nextPage;
 };
+
+let signIn = function() {
+  /*Auth*/
+
+  /*Make Account Info Page visible*/
+  $("#account-info-nav").className = "btn btn-secondary btn-sm visible";
+};
