@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ATAC Arcade</title>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/atac-arcade.css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <!--Scoreboards-->
+    <section class="container" id="scoreboards">
+      <!--Nav tabs for scoreboards-->
+      <ul class="nav nav-tabs" id="scoreboard-tabs" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="flappy-bird-tab"
+            data-toggle="tab"
+            href="#flappy-bird-scoreboard"
+            role="tab"
+            aria-controls="flappy-bird-scoreboard"
+            aria-selected="true"
+            >Flappy Bird</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="space-invaders-tab"
+            data-toggle="tab"
+            href="#space-invaders-scoreboard"
+            role="tab"
+            aria-controls="space-invaders-scoreboard"
+            aria-selected="false"
+            >Space Invaders</a
+          >
+        </li>
+      </ul>
+      <!--Nav tab content for scoreboards-->
+      <div class="tab-content" id="scoreboard-tabs-content">
+        <!--Table for flappy bird-->
+        <div
+          class="tab-pane fade show active"
+          id="flappy-bird-scoreboard"
+          role="tabpanel"
+          aria-labelledby="flappy-bird-scoreboard"
+        >
+          <table class="table table-hover">
+            <h4 class="table-heading">Flappy Bird Highscores</h4>
+            <thead>
+              <tr class="even-rows">
+                <th>#</th>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd-rows">
+                <th scope="row">1</th>
+                <td>random player 1</td>
+                <td>100000</td>
+              </tr>
+              <tr class="even-rows">
+                <th scope="row">2</th>
+                <td>random player 2</td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--Table for space invaders-->
+        <div
+          class="tab-pane fade show"
+          id="space-invaders-scoreboard"
+          role="tabpanel"
+          aria-labelledby="space-invaders-scoreboard"
+        >
+          <div class="card">
+            <h4>Space Invaders</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Footer-->
+    <footer class="footer">
+      Footer
+    </footer>
+  </body>
+</html>

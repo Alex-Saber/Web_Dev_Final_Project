@@ -152,3 +152,33 @@ section {
 .visible {
   display: block;
 }
+
+thead,
+th {
+  color: rgb(109, 182, 250);
+}
+
+td {
+  color: rgb(61, 98, 219);
+}
+
+.table-heading {
+  text-align: center;
+  font-size: 16pt;
+  color: #e4e2ff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+table {
+  padding: 30px;
+}
+
+.odd-rows {
+  background-color: rgb(23, 7, 51);
+}
+.even-rows {
+  background-color: rgb(27, 24, 53);
+}
