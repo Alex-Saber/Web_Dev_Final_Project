@@ -1,83 +1,39 @@
 let currentPage = "#home-page";
+let oldGame = document.createElement("script");
+oldGame.type = "text/javascript";
+oldGame.src = "";
+let oldGameSrc = false;
 
-/*window.onload = function() {
-  for (i = 0; i < pageList.length; ++i) {
-    let displayType = "none";
-    if (pageList[i] == "#home-page") {
-      displayType = "block";
-    }
-    $(pageList[i]).css({
-      display: displayType
-    });
-
-    console.log(currentPage);
-  }
-  toggle();
-};
-
-var toggle = function() {
-  var pageList1 = [
-    "#home-page",
-    "#flappy-bird-page",
-    "#tic-tac-toe-page",
-    "#snake-page",
-    "#space-invaders-page",
-    "#login-page"
-  ];
-
-  var pageNavList1 = [
-    "#home-nav",
-    "#flappy-bird-nav",
-    "#tic-tac-toe-nav",
-    "#snake-nav",
-    "#space-invaders-nav",
-    "#login-nav"
-  ];
-  for (i = 0; i < pageList.length; ++i) {
-    $(pageNavList1[i]).on("click", function() {
-      console.log("in on click");
-      $(currentPage).css({
-        display: "none"
-      });
-      $(pageList1[i]).css({
-        display: "block"
-      });
-      currentPage = pageList1[i];
-      console.log(pageList1[i]);
-      console.log(currentPage);
-    });
-  }
-};
-*/
-window.onload = function() {
-  /*var pageList = [
-    "#home-page",
-    "#flappy-bird-page",
-    "#tic-tac-toe-page",
-    "#snake-page",
-    "#space-invaders-page",
-    "#login-page"
-  ];
-
-  var pageNavList = [
-    "#home-nav",
-    "#flappy-bird-nav",
-    "#tic-tac-toe-nav",
-    "#snake-nav",
-    "#space-invaders-nav",
-    "#login-nav"
-  ];
-  for (i = 0; i < pageList.length; ++i) {
-    $(pageNavList[i]).on("click", function() {
-      document.querySelector(currentPage).className = "invisible";
-      document.querySelector(pageList[i]).className = "visible";
-      currentPage = pageList[i];
-    });
-  }*/
-};
+let gameScripts = [
+  ["#flappy-bird-page", "../bird.js"],
+  ["#space-invaders-page", "../shooter.js"]
+];
 
 let toggleClasses = function(nextPage) {
+  /*Toggle pages*/
   document.querySelector(currentPage).className = "container invisible";
   document.querySelector(nextPage).className = "container visible";
+  /*Run corresponding game script if any and remove last game script if any*/
+  var newGame = document.createElement("script");
+  newGame.type = "text/javascript";
+  newGame.src = "";
+  let newGameSrc = false;
+  let gameScriptsLength = gameScripts.length;
+  for (let i = 0; i < gameScriptsLength; i += 1) {
+    if (nextPage == gameScripts[i][0]) {
+      newGame.src = gameScripts[i][1];
+      newGameSrc = true;
+    }
+  }
+  if (newGameSrc) {
+    console.log("old: ", oldGame.src);
+    console.log(oldGameSrc);
+    if (oldGameSrc) {
+      document.body.removeChild(oldGame);
+    }
+    document.body.appendChild(newGame);
+    oldGame = newGame;
+    oldGameSrc = true;
+  }
   currentPage = nextPage;
 };
