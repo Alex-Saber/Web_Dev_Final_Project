@@ -9,6 +9,8 @@ let gameScripts = [
   ["#space-invaders-page", "../shooter.js"]
 ];
 
+/* This function changes page display based on which menu
+   item the user selects */
 let toggleClasses = function(nextPage) {
   /*Toggle pages*/
   document.querySelector(currentPage).className = "container invisible";
@@ -38,9 +40,25 @@ let toggleClasses = function(nextPage) {
   currentPage = nextPage;
 };
 
+/* This function allows a user to login to their account*/
 let signIn = function() {
   /*Auth*/
 
   /*Make Account Info Page visible*/
-  $("#account-info-nav").className = "btn btn-secondary btn-sm visible";
+  document.querySelector("#account-info-nav").className =
+    "btn btn-secondary btn-sm visible-button";
+  document.querySelector("#login-nav").className =
+    "btn btn-secondary btn-sm invisible";
+  toggleClasses("#account-info-page");
+};
+
+let signOut = function() {
+  /*stuff*/
+
+  /*Make Account Info Page invisible*/
+  document.querySelector("#login-nav").className =
+    "btn btn-secondary btn-sm visible-button";
+  document.querySelector("#account-info-nav").className =
+    "btn btn-secondary btn-sm invisible";
+  toggleClasses("#home-page");
 };

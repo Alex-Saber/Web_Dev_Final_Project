@@ -154,6 +154,10 @@ section {
   display: block;
 }
 
+.visible-button {
+  display: inline;
+}
+
 .card {
   background-color: rgb(27, 24, 53);
 }
@@ -215,4 +219,9 @@ table {
 .user-highscores {
   grid-row: 6 / span 6;
   grid-column: 5 / span 2;
+}
+
+#logout-button {
+  width: 100%;
+  margin: auto;
 }
