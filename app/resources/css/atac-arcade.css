@@ -84,10 +84,6 @@ body {
   padding-bottom: 20px;
 }
 
-p {
-  color: rgb(109, 182, 250);
-}
-
 footer > p {
   margin-top: 40px;
   margin-bottom: 20px;
@@ -116,10 +112,6 @@ a:link,
 a:visited {
   color: rgb(61, 98, 219);
   text-decoration: none;
-}
-
-a:hover {
-  color: rgb(109, 182, 250);
 }
 
 mark {
@@ -158,20 +150,22 @@ section {
   display: inline;
 }
 
-.card {
+.card,
+.even-rows {
   background-color: rgb(27, 24, 53);
 }
 
-.form-control {
+.form-control,
+.odd-rows {
   background-color: rgb(23, 7, 51);
 }
 
-label {
-  color: rgb(109, 182, 250);
-}
-
 thead,
-th {
+th,
+label,
+ul,
+a:hover,
+p {
   color: rgb(109, 182, 250);
 }
 
@@ -191,13 +185,6 @@ td {
 
 table {
   padding: 30px;
-}
-
-.odd-rows {
-  background-color: rgb(23, 7, 51);
-}
-.even-rows {
-  background-color: rgb(27, 24, 53);
 }
 
 .user-account-info {
@@ -224,4 +211,29 @@ table {
 #logout-button {
   width: 100%;
   margin: auto;
+}
+
+.myCanvas {
+  background: rgb(255, 254, 254);
+  border: 100px black;
+  margin: 0 auto;
+}
+
+.game-layout {
+  width: 100%;
+  display: grid;
+}
+
+.game {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.instructions {
+  grid-column: 2;
+  grid-row: 1;
+  box-shadow: 1px 1px 3px 1px rgb(109, 182, 250),
+    -1px -1px 3px 1px rgb(109, 182, 250);
+  border-radius: 3px;
+  padding: 20px;
 }

@@ -18,6 +18,7 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
     ></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" src="../index.js"></script>
     <link
       rel="stylesheet"
@@ -117,7 +118,19 @@
   <!--HOME END-->
   <!--FLAPPY BIRD START-->
   <section class="container invisible" id="flappy-bird-page">
-    <canvas class="myCanvas" id="flappy-canvas" width="280" height="500"></canvas>
+    <div class="game-layout">
+      <div class="game">
+        <canvas class="myCanvas" id="flappy-canvas" width="280" height="500"></canvas>
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+          <li>
+            <i class="far fa-caret-square-up"> to jump</i>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
   <!--FLAPPY BIRD END-->
   <!--TIC TAC TOE START-->
@@ -125,6 +138,16 @@
     <p>
       Tic tac toe
     </p>
+    <div class="game-layout">
+      <div class="game">
+        <!--tic tac toe canvas-->
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+        </ul>
+      </div>
+    </div>
   </section>
   <!--TIC TAC TOE END-->
   <!--SNAKE START-->
@@ -132,11 +155,44 @@
     <p>
       snake
     </p>
+    <div class="game-layout">
+      <div class="game">
+        <!--snake canvas-->
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </section>
   </section>
   <!--SNAKE END-->
   <!--SPACE INVADERS START-->
   <section class="container invisible" id="space-invaders-page">
-    <canvas class="myCanvas" id="invaders-canvas" width="600" height="600"></canvas>
+    <div class="game-layout">
+      <div class="game">
+        <canvas class="myCanvas" id="invaders-canvas" width="600" height="600"></canvas>
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+          <li>
+            <i class="far fa-caret-square-up"> to move up</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-down"> to move down</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-left"> to move left</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-right"> to move right</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
   </section>
   <!--SPACE INVADERS END-->
   <!--LOGIN END-->
