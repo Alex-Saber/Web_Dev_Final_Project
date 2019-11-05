@@ -28,8 +28,6 @@ let toggleClasses = function(nextPage) {
     }
   }
   if (newGameSrc) {
-    console.log("old: ", oldGame.src);
-    console.log(oldGameSrc);
     if (oldGameSrc) {
       document.body.removeChild(oldGame);
     }
@@ -52,6 +50,7 @@ let signIn = function() {
   toggleClasses("#account-info-page");
 };
 
+/* logs the user out of the account*/
 let signOut = function() {
   /*stuff*/
 
@@ -61,4 +60,23 @@ let signOut = function() {
   document.querySelector("#account-info-nav").className =
     "btn btn-secondary btn-sm invisible";
   toggleClasses("#home-page");
+};
+
+/* Checks if all required fields are filled for login*/
+let checkLoginFields = function() {
+  var username = $("#username1").val();
+  var password = $("#password1").val();
+  if (username && password) signIn();
+};
+
+/* create new user account*/
+let createAccount = function() {};
+
+/* checks if all required fields are filled for account creation*/
+let checkAccountCreationFields = function() {
+  var username = $("#username2").val();
+  var password = $("#password2").val();
+  var name = $("#name").val();
+  var email = $("#email").val();
+  if (username && password && name && email) createAccount();
 };
