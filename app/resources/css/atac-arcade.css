@@ -95,7 +95,8 @@ footer > p {
   color: #e4e2ff;
 }
 
-h1 {
+h1,
+h4 {
   font-size: 18pt;
   color: #e4e2ff;
 }
@@ -153,6 +154,18 @@ section {
   display: block;
 }
 
+.card {
+  background-color: rgb(27, 24, 53);
+}
+
+.form-control {
+  background-color: rgb(23, 7, 51);
+}
+
+label {
+  color: rgb(109, 182, 250);
+}
+
 thead,
 th {
   color: rgb(109, 182, 250);
@@ -181,4 +194,25 @@ table {
 }
 .even-rows {
   background-color: rgb(27, 24, 53);
+}
+
+.user-account-info {
+  display: grid;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.user-activity {
+  grid-row: 1 / span 11;
+  grid-column: 1 / span 3;
+}
+
+.user-info {
+  grid-row: 1 / span 4;
+  grid-column: 5 / span 2;
+}
+
+.user-highscores {
+  grid-row: 6 / span 6;
+  grid-column: 5 / span 2;
 }
