@@ -2,8 +2,8 @@ function playBird() {
   var canvas = document.getElementById("flappy-canvas");
   var ctx = canvas.getContext("2d");
 
+  var pause = false;
   var bird = new Image();
-  bird.src = "../images/bird.png";
 
   var bg = new Image();
   bg.src = "../images/bg.png";
@@ -43,19 +43,25 @@ function playBird() {
     ctx.drawImage(bg, 0, 0);
     ctx.drawImage(fg, 0, canvas.height - fg.height);
 
-    gravity += 0.1;
-    bird_y += gravity;
+    if (pause == false) {
+      gravity += 0.1;
+      bird_y += gravity;
 
-    if (jump && jump_frame <= 5) {
-      gravity = 0;
-      bird_y -= 15;
-      jump_frame += 1;
+      if (jump && jump_frame <= 5) {
+        gravity = 0;
+        bird_y -= 10;
+        jump_frame += 1;
+      }
+      if (jump_frame > 5) {
+        jump_frame = 0;
+        jump = false;
+      }
     }
-    if (jump_frame > 5) {
-      jump_frame = 0;
-      jump = false;
+    if (pause == false) {
+      bird.src = "../images/bird.png";
+    } else {
+      bird.src = "../images/ded_bird.png";
     }
-
     ctx.drawImage(bird, bird_x, bird_y);
 
     for (var i = 0; i < pipe_array.length; i++) {
@@ -64,11 +70,12 @@ function playBird() {
       ctx.drawImage(
         BotPipe,
         pipe_array[i].x,
-        pipe_array[i].y + TopPipe.height + 80
+        pipe_array[i].y + TopPipe.height + 5 * bird.height
       );
 
-      pipe_array[i].x--;
-
+      if (pause == false) {
+        pipe_array[i].x--;
+      }
       if (pipe_array[i].x === 50) {
         pipe_array.push({
           x: canvas.width,
@@ -84,10 +91,27 @@ function playBird() {
       if (
         bird_x + bird.width >= pipe_array[i].x &&
         bird_x <= pipe_array[i].x + TopPipe.width &&
-        (bird_y <= pipe_array[i].y + TopPipe.height ||
-          bird_y + bird.height >= pipe_array[i].y + 80)
+        (bird_y < pipe_array[i].y + TopPipe.height ||
+          bird_y + bird.height >
+            pipe_array[i].y + TopPipe.height + 5 * bird.height)
       ) {
         // Pause the game
+        pause = true;
+
+        document.addEventListener("keyup", restart);
+        function restart(event) {
+          if (event.keyCode === 88) {
+            location.reload();
+          }
+        }
+      }
+      if (pause == true) {
+        bird_y += gravity;
+        gravity += 0.1;
+        console.log(bird_y);
+        //if (bird_y >= canvas.height) {
+        //bird_y = 600;
+        //}
       }
 
       // GameOver.play();
