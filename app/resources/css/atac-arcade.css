@@ -91,7 +91,8 @@ footer > p {
   color: #e4e2ff;
 }
 
-h1 {
+h1,
+h4 {
   font-size: 18pt;
   color: #e4e2ff;
 }
@@ -113,10 +114,6 @@ a:visited {
   text-decoration: none;
 }
 
-a:hover {
-  color: rgb(109, 182, 250);
-}
-
 mark {
   background-color: rgba(162, 200, 231, 0.822);
 }
@@ -136,10 +133,6 @@ mark {
   margin-top: 50px;
 }
 
-p {
-  color: rgb(109, 182, 250);
-}
-
 section {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -147,4 +140,100 @@ section {
 
 .invisible {
   display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.visible-button {
+  display: inline;
+}
+
+.card,
+.even-rows {
+  background-color: rgb(27, 24, 53);
+}
+
+.form-control,
+.odd-rows {
+  background-color: rgb(23, 7, 51);
+}
+
+thead,
+th,
+label,
+ul,
+a:hover,
+p {
+  color: rgb(109, 182, 250);
+}
+
+td {
+  color: rgb(61, 98, 219);
+}
+
+.table-heading {
+  text-align: center;
+  font-size: 16pt;
+  color: #e4e2ff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+table {
+  padding: 30px;
+}
+
+.user-account-info {
+  display: grid;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.user-activity {
+  grid-row: 1 / span 11;
+  grid-column: 1 / span 3;
+}
+
+.user-info {
+  grid-row: 1 / span 4;
+  grid-column: 5 / span 2;
+}
+
+.user-highscores {
+  grid-row: 6 / span 6;
+  grid-column: 5 / span 2;
+}
+
+#logout-button {
+  width: 100%;
+  margin: auto;
+}
+
+.myCanvas {
+  background: rgb(255, 254, 254);
+  border: 100px black;
+  margin: 0 auto;
+}
+
+.game-layout {
+  width: 100%;
+  display: grid;
+}
+
+.game {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.instructions {
+  grid-column: 2;
+  grid-row: 1;
+  box-shadow: 1px 1px 3px 1px rgb(109, 182, 250),
+    -1px -1px 3px 1px rgb(109, 182, 250);
+  border-radius: 3px;
+  padding: 20px;
 }

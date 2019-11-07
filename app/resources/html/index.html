@@ -18,30 +18,53 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
     ></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="../index.js"></script>
     <link
       rel="stylesheet"
       type="text/css"
       href="../css/atac-arcade.css"
       media="screen"
     />
+    <link rel="stylesheet" type="text/css" src="../css/bird_style.css">
   </head>
   <body>
-    <!--Header-->
-    <header class="header">
-      <h1 class="title">ATAC Arcade</h1>
-      <div>
-        <nav class="menu">
-          <a href="index.html"><mark>Home</mark></a> |
-          <a href="flappy-bird-home.html">Flappy Bird</a> |
-          <a href="tic-tac-toe-home.html">Tic-Tac-Toe</a> |
-          <a href="snake-home.html">Snake</a> |
-          <a href="space-invaders-home.html">Space Invaders!</a> |
-          <a href="login.html">Login</a>
-        </nav>
-      </div>
-    </header>
-    <!--Welcome message-->
-    <section class="container">
+  <!--Header-->
+  <header class="header">
+    <h1 class="title">ATAC Arcade</h1>
+    <div>
+      <nav class="menu">
+        <button type="button" class="btn btn-secondary btn-sm" id="home-nav" onclick="toggleClasses('#home-page')">
+          Home
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="flappy-bird-nav" onclick="toggleClasses('#flappy-bird-page')">
+          Flappy Bird
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="tic-tac-toe-nav" onclick="toggleClasses('#tic-tac-toe-page')">
+          Tic-Tac-Toe
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="snake-nav" onclick="toggleClasses('#snake-page')">
+          Snake
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="space-invaders-nav" onclick="toggleClasses('#space-invaders-page')">
+          Space Invaders
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="scoreboards-nav" onclick="toggleClasses('#scoreboards-page')">
+          Scoreboards
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm visible-button" id="login-nav" onclick="toggleClasses('#login-page')">
+          Login
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm invisible" id="account-info-nav" onclick="toggleClasses('#account-info-page')">
+          Account Info
+        </button>
+    </div>
+  </header>
+
+  <!--HOME START-->
+  <section class="container visible" id="home-page">
+    <section class="container visible">
+      <!--Welcome message-->
       <h1>Welcome message</h1>
       <p>Description</p>
     </section>
@@ -91,10 +114,497 @@
         <span class="sr-only">Next</span>
       </a>
     </section>
-
-    <!--Footer-->
-    <footer class="footer">
-      Footer
-    </footer>
+  </section>
+  <!--HOME END-->
+  <!--FLAPPY BIRD START-->
+  <section class="container invisible" id="flappy-bird-page">
+    <div class="game-layout">
+      <div class="game">
+        <canvas class="myCanvas" id="flappy-canvas" width="280" height="500"></canvas>
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+          <li>
+            <i class="far fa-caret-square-up"> to jump</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--FLAPPY BIRD END-->
+  <!--TIC TAC TOE START-->
+  <section class="container invisible" id="tic-tac-toe-page">
+    <p>
+      Tic tac toe
+    </p>
+    <div class="game-layout">
+      <div class="game">
+        <!--tic tac toe canvas-->
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--TIC TAC TOE END-->
+  <!--SNAKE START-->
+  <section class="container invisible" id="snake-page">
+    <p>
+      snake
+    </p>
+    <div class="game-layout">
+      <div class="game">
+        <!--snake canvas-->
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </section>
+  </section>
+  <!--SNAKE END-->
+  <!--SPACE INVADERS START-->
+  <section class="container invisible" id="space-invaders-page">
+    <div class="game-layout">
+      <div class="game">
+        <canvas class="myCanvas" id="invaders-canvas" width="600" height="600"></canvas>
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+          <li>
+            <i class="far fa-caret-square-up"> to move up</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-down"> to move down</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-left"> to move left</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-right"> to move right</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  </section>
+  <!--SPACE INVADERS END-->
+  <!--LOGIN END-->
+  <section class="container invisible" id="login-page">
+    <!--Nav tabs for forms-->
+    <ul class="nav nav-tabs" id="form-tabs" role="tablist">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          id="login-tab"
+          data-toggle="tab"
+          href="#login-form"
+          role="tab"
+          aria-controls="login-form"
+          aria-selected="true"
+          >Login</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="create-account-tab"
+          data-toggle="tab"
+          href="#create-account-form"
+          role="tab"
+          aria-controls="create-account-form"
+          aria-selected="false"
+          >Create Account</a
+        >
+      </li>
+    </ul>
+    <!--Nab tab content for forms-->
+    <div class="tab-content" id="form-tabs-content">
+      <!--card body for login-->
+      <div
+        class="tab-pane fade show active"
+        id="login-form"
+        role="tabpanel"
+        aria-labelledby="login-form"
+      >
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Login</h4>
+            <form action="" method="post" enctype="text/plain">
+              <div class="form-group">
+                <label for="username1">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username1"
+                  placeholder="username"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password1">password</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="password1"
+                  placeholder="password"
+                />
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" onclick="signIn()">
+                SUBMIT
+              </button>
+              <button type="reset" class="btn btn-secondary btn-sm">
+                RESET
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--Card body for account creation-->
+      <div
+        class="tab-pane fade show"
+        id="create-account-form"
+        role="tabpanel"
+        aria-labelledby="create-account-form"
+      >
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Account Creation</h4>
+            <form action="" method="post" enctype="text/plain">
+              <div class="form-group">
+                <label for="username2">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username2"
+                  placeholder="username"
+                />
+              </div>
+              <div class="form-group">
+                <label for="pasword2">Password</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="password2"
+                  placeholder="password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="John Smith"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  placeholder="john.smith@gmail.com"
+                />
+              </div>
+              <button type="button" class="btn btn-primary btn-sm">
+                SUBMIT
+              </button>
+              <button type="reset" class="btn btn-secondary btn-sm">
+                RESET
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--LOGIN END-->
+  <!--SCOREBOARDS START-->
+  <section class="container invisible" id="scoreboards-page">
+    <!--Nav tabs for scoreboards-->
+    <ul class="nav nav-tabs" id="scoreboard-tabs" role="tablist">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          id="flappy-bird-tab"
+          data-toggle="tab"
+          href="#flappy-bird-scoreboard"
+          role="tab"
+          aria-controls="flappy-bird-scoreboard"
+          aria-selected="true"
+          >Flappy Bird</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="tic-tac-toe-tab"
+          data-toggle="tab"
+          href="#tic-tac-toe-scoreboard"
+          role="tab"
+          aria-controls="tic-tac-toe-scoreboard"
+          aria-selected="false"
+          >Tic Tac Toe</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="snake-tab"
+          data-toggle="tab"
+          href="#snake-scoreboard"
+          role="tab"
+          aria-controls="snake-scoreboard"
+          aria-selected="false"
+          >Snake</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="space-invaders-tab"
+          data-toggle="tab"
+          href="#space-invaders-scoreboard"
+          role="tab"
+          aria-controls="space-invaders-scoreboard"
+          aria-selected="false"
+          >Space Invaders</a
+        >
+      </li>
+    </ul>
+    <!--Nav tab content for scoreboards-->
+    <div class="tab-content" id="scoreboard-tabs-content">
+      <!--Flappy Bird Scoreboard-->
+      <div
+        class="tab-pane fade show active"
+        id="flappy-bird-scoreboard"
+        role="tabpanel"
+        aria-labelledby="flappy-bird-scoreboard"
+      >
+        <table class="table table-hover">
+          <h4 class="table-heading">Flappy Bird Highscores</h4>
+          <thead>
+            <tr class="even-rows">
+              <th>#</th>
+              <th>Username</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd-rows">
+              <th scope="row">1</th>
+              <td>random player 1</td>
+              <td>100000</td>
+            </tr>
+            <tr class="even-rows">
+              <th scope="row">2</th>
+              <td>random player 2</td>
+              <td>100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Tic Tac Toe Scoreboard-->
+      <div
+        class="tab-pane fade show"
+        id="tic-tac-toe-scoreboard"
+        role="tabpanel"
+        aria-labelledby="tic-tac-toe-scoreboard"
+      >
+        <table class="table table-hover">
+          <h4 class="table-heading">Tic-Tac-Toe Highscores</h4>
+          <thead>
+            <tr class="even-rows">
+              <th>#</th>
+              <th>Username</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd-rows">
+              <th scope="row">1</th>
+              <td>rando player 1</td>
+              <td>593400</td>
+            </tr>
+            <tr class="even-rows">
+              <th scope="row">2</th>
+              <td>rando player 2</td>
+              <td>43200</td>
+            </tr>
+            <tr class="odd-rows">
+              <th scope="row">3</th>
+              <td>rando player 3</td>
+              <td>200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Snake Scoreboard-->
+      <div
+        class="tab-pane fade show"
+        id="snake-scoreboard"
+        role="tabpanel"
+        aria-labelledby="snake-scoreboard"
+      >
+        <table class="table table-hover">
+          <h4 class="table-heading">Snake Highscores</h4>
+          <thead>
+            <tr class="even-rows">
+              <th>#</th>
+              <th>Username</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd-rows">
+              <th scope="row">1</th>
+              <td>rando 1</td>
+              <td>35040</td>
+            </tr>
+            <tr class="even-rows">
+              <th scope="row">2</th>
+              <td>rando 2</td>
+              <td>1900</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Space Invaders Scoreboard-->
+      <div
+        class="tab-pane fade show"
+        id="space-invaders-scoreboard"
+        role="tabpanel"
+        aria-labelledby="space-invaders-scoreboard"
+      >
+        <table class="table table-hover">
+          <h4 class="table-heading">Space Invaders Highscores</h4>
+          <thead>
+            <tr class="even-rows">
+              <th>#</th>
+              <th>Username</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd-rows">
+              <th scope="row">1</th>
+              <td>player 1</td>
+              <td>100430</td>
+            </tr>
+            <tr class="even-rows">
+              <th scope="row">2</th>
+              <td>player 2</td>
+              <td>200</td>
+            </tr>
+            <tr class="odd-rows">
+              <th scope="row">3</th>
+              <td>player 3</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!--SCOREBOARDS END-->
+  <!--ACCOUNT INFO START-->
+  <section class="container invisible" id="account-info-page">
+    <section class="user-account-info">
+       <!--User Activity Start-->
+    <Section class="user-activity">
+        <table class="table table-hover">
+          <h4 class="table-heading">User Activity</h4>
+          <thead>
+            <tr class="even-rows">
+              <th>Timestamp</th>
+              <th>Game</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd-rows">
+              <td>Nov. 4, 2019 3:24pm</td>
+              <td>Flappy Bird</td>
+              <td>34</td>
+            </tr>
+            <tr class="even-rows">
+              <td>Oct. 29, 2019 12:45pm</td>
+              <td>Space Invaders</td>
+              <td>100</td>
+            </tr>
+          </tbody>
+        </table>
+      </Section>
+      <!--User Activity End-->
+      <!--User Info Start-->
+      <Section class="user-info">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Account Info</h4>
+            <p class="card-text">
+              Username:
+            </p>
+            <p class="card-text">
+              Name:
+            </p>
+            <p class="card-text">
+              Email:
+            </p>
+            <button
+              id="logout-button"
+              type="button"
+              class="btn btn-secondary btn-sm"
+              onclick="signOut()"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </Section>
+      <!--User Info End-->
+      <!--User Highscores Start-->
+      <section class="user-highscores">
+        <table class="table table-hover">
+          <h4 class="table-heading">Highscores</h4>
+          <thead>
+            <tr class="even-rows">
+              <th>Game</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd-rows">
+              <td>Flappy Bird</td>
+              <td>34</td>
+            </tr>
+            <tr class="even-rows">
+              <td>Tic-Tac-Toe</td>
+              <td>3</td>
+            </tr>
+            <tr class="odd-rows">
+              <td>Snake</td>
+              <td>1352</td>
+            </tr>
+            <tr class="even-rows">
+              <td>Space Invaders</td>
+              <td>4334</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!--User Highscores End-->
+    </section>
+  </section>
+  <!--ACCOUNT INFO END-->
+  <!--Footer-->
+  <footer class="footer">
+    Footer
+  </footer>
   </body>
 </html>
