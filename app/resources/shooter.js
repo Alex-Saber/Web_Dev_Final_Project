@@ -8,8 +8,6 @@ function playShooter() {
   ship.src = "../images/ship.gif";
 
   var space = new Image();
-  space.src = "../images/space.png";
-
   var left = false;
   var right = false;
   var up = false;
@@ -45,7 +43,6 @@ function playShooter() {
     if (e.keyCode == 38) up = false;
     else if (e.keyCode == 40) down = false;
   }
-
   function drawship() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(space, 0, 0);
