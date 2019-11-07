@@ -80,3 +80,17 @@ let checkAccountCreationFields = function() {
   var email = $("#email").val();
   if (username && password && name && email) createAccount();
 };
+
+let arrowKeysHandler = function(e) {
+  switch (e.keyCode) {
+    case 38:
+    case 40: //Arrow keys
+    case 32:
+      e.preventDefault();
+      break; //Space
+    default:
+      break; //Don't block other keys
+  }
+};
+
+window.addEventListener("keydown", arrowKeysHandler, false);
