@@ -237,3 +237,8 @@ table {
   border-radius: 3px;
   padding: 20px;
 }
+
+.invalid-input {
+  box-shadow: 1px 1px 3px 1px red, -1px -1px 3px 1px red;
+  border-radius: 3px;
+}
