@@ -35,7 +35,11 @@ let toggleClasses = function(nextPage) {
     oldGame = newGame;
     oldGameSrc = true;
   }
+  /*Update current page value*/
   currentPage = nextPage;
+  /*Reset form values*/
+  $(".form-control").val("");
+  document.querySelector(".form-control").className = "form-control";
 };
 
 /* This function allows a user to login to their account*/
@@ -60,6 +64,15 @@ let signOut = function() {
   document.querySelector("#account-info-nav").className =
     "btn btn-secondary btn-sm invisible";
   toggleClasses("#home-page");
+};
+
+let checkFormInput = function(id) {
+  var element = $(id).val();
+  if (!element) {
+    document.querySelector(id).className = "form-control invalid-input";
+  } else {
+    document.querySelector(id).className = "form-control";
+  }
 };
 
 /* Checks if all required fields are filled for login*/
