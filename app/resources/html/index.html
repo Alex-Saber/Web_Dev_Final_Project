@@ -114,9 +114,10 @@
       <div id="game-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <!--Flappy bird-->
-          <div class="carousel-item active">
+          <div class="carousel-item active" onclick="toggleClasses('#flappy-bird-page')" onmouseover="carouselTitleColorChange()">
             <!--Flappy bird gif-->
-            <img class="d-50 w-50 game-gif" src="../images/shooter.gif" alt="Flappy bird"/>
+            <h5 class="d-25 w-25 carousel-img-title">Flappy Bird</h5>
+            <img class="d-25 w-25 carousel-img" src="../images/bird.gif" alt="Flappy bird"/>
           </div>
           <!--Tic-tac-toe
           <div class="carousel-item">
@@ -129,9 +130,10 @@
             <img class="d-block w-100" src="" alt="Snake" />
           </div>-->
           <!--Space Invaders!-->
-          <div class="carousel-item">
+          <div class="carousel-item" onclick="toggleClasses('#space-invaders-page')" onmouseover="carouselTitleColorChange()">
             <!--Space Invaders! gif-->
-            <img class="d-25 w-25 game-gif" src="../images/bird.gif" alt="space invaders!"/>
+            <h5 class="d-50 w-50 carousel-img-title">Space Invaders!</h5>
+            <img class="d-50 w-50 carousel-img" src="../images/shooter.gif" alt="space invaders!"/>
           </div>
         </div>
         <!--Carousel controlers-->

@@ -141,3 +141,14 @@ let arrowKeysHandler = function(e) {
 };
 
 window.addEventListener("keydown", arrowKeysHandler, false);
+
+let carouselTitleColorChange = function() {
+  $(".carousel-item").on("mouseover", function() {
+    $(".carousel-img-title").css("color", "rgb(109, 182, 250)");
+    $(".carousel-item").css("cursor", "pointer");
+  });
+  $(".carousel-item").on("mouseout", function() {
+    $(".carousel-img-title").css("color", "rgb(61, 98, 219)");
+    $(".carousel-item").css("cursor", "default");
+  });
+};
