@@ -230,12 +230,12 @@ table {
 
 .game {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 1 / span 3;
 }
 
 .instructions {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
   box-shadow: 1px 1px 3px 1px rgb(109, 182, 250),
     -1px -1px 3px 1px rgb(109, 182, 250);
   border-radius: 3px;
