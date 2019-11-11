@@ -97,6 +97,10 @@ h4 {
   color: #e4e2ff;
 }
 
+h5 {
+  color: rgba(162, 200, 231, 0.822);
+}
+
 .title {
   font-size: 45pt;
   text-align: center;
@@ -241,4 +245,35 @@ table {
 .invalid-input {
   box-shadow: 1px 1px 3px 1px red, -1px -1px 3px 1px red;
   border-radius: 3px;
+}
+
+#about-us-layout {
+  width: 100%;
+  display: grid;
+}
+
+#alex {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#trung {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#angelic {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.creator-img {
+  width: 240px;
+  height: 240px;
+  margin-bottom: 10px;
+}
+
+.game-gif {
+  display: flex;
+  align-self: center;
 }

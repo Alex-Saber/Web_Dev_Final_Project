@@ -63,56 +63,97 @@
 
   <!--HOME START-->
   <section class="container visible" id="home-page">
-    <section class="container visible">
+    <section class="container">
       <!--Welcome message-->
-      <h1>Welcome message</h1>
-      <p>Description</p>
+      <h1>HELLO THERE!</h1>
+      <p>Welcome to ATAC arcade! ATAC was created by <mark>A</mark>lex, <mark>T</mark>rung, and <mark>A</mark>ngelic
+        in a Full Stack Web Development class taught by <mark>C</mark>aternia. Our site offers a variety of games:
+        Flappy Bird, Tic-Tac-Toe, Snake, and Space Invaders!. You may either play without an account, or create one
+        in order to keep track of your personal highscores. We hope you enjoy our services. Enjoy!
+      </p>
+    </section>
+    <section class="container">
+      <!--About Us-->
+      <h1>About Us</h1>
+      <div id="about-us-layout">
+        <div id="alex">
+          <h5>Alex Saber</h5>
+          <img src="" class="creator-img" alt="img of alex">
+          <p>
+            Github: <a target="_blank" href="https://github.com/Alex-Saber">Alex-Saber</a>
+          </p>
+          <p>
+            Portfolio: <a target="_blank" href="https://Alex-Saber.github.io">Alex-Saber.github.io</a>
+          </p>
+        </div>
+        <div id="trung">
+          <h5>Trung Nguyen</h5>
+          <img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-1/p240x240/11066803_922859491099175_2149605327984046983_n.jpg?_nc_cat=106&_nc_oc=AQnie-Ur7lO2maRCP8N6YeqkC-4xcrgJzUql0j9WA0W_iMqjQ1GQYrqLxP1zdeyQJqo&_nc_ht=scontent-sea1-1.xx&oh=61bd4a82bf4f8e4a5eead94466976995&oe=5E1E79A7" class="creator-img" alt="img of trung">
+          <p>
+            Github: <a target="_blank" href="https://github.com/ntrung1008">ntrung1008</a>
+          </p>
+          <p>
+            Portfolio: <a target="_blank" href="https://ntrung1008.github.io">ntrung1008.github.io</a>
+          </p>
+        </div>
+        <div id="angelic">
+          <h5>Angelic Phan</h5>
+          <img src="../images/angelic.jpeg" class="creator-img" alt="img of angelic">
+          <p>
+            Github: <a target="_blank" href="https://github.com/angelicphan">angelicphan</a>
+          </p>
+          <p>
+            Portfolio: <a target="_blank" href="https://angelicphan.github.io">angelicphan.github.io</a>
+          </p>
+        </div>
+      </div>
     </section>
     <!--Game carousel-->
     <section class="container">
+      <h1>Our Games</h1>
       <div id="game-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <!--Flappy bird-->
           <div class="carousel-item active">
             <!--Flappy bird gif-->
-            <img class="d-block w-100" src="" alt="Flappy bird" />
+            <img class="d-50 w-50 game-gif" src="../images/shooter.gif" alt="Flappy bird"/>
           </div>
-          <!--Tic-tac-toe-->
-          <div class="carousel-item active">
-            <!--Tic-tac-toe gif-->
+          <!--Tic-tac-toe
+          <div class="carousel-item">
+            Tic-tac-toe gif
             <img class="d-block w-100" src="" alt="Tic-tac-toe" />
           </div>
-          <!--Snake-->
-          <div class="carousel-item active">
-            <!--Snake gif-->
+          Snake
+          <div class="carousel-item">
+            Snake gif
             <img class="d-block w-100" src="" alt="Snake" />
-          </div>
+          </div>-->
           <!--Space Invaders!-->
-          <div class="carousel-item active">
+          <div class="carousel-item">
             <!--Space Invaders! gif-->
-            <img class="d-block w-100" src="" alt="space invaders!" />
+            <img class="d-25 w-25 game-gif" src="../images/bird.gif" alt="space invaders!"/>
           </div>
         </div>
+        <!--Carousel controlers-->
+        <a
+          class="carousel-control-prev"
+          href="#game-carousel"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#game-carousel"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-      <!--Carousel controlers-->
-      <a
-        class="carousel-control-prev"
-        href="#game-carousel"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a
-        class="carousel-control-next"
-        href="#game-carousel"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </section>
   </section>
   <!--HOME END-->
