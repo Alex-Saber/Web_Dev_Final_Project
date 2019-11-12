@@ -13,8 +13,8 @@ let gameScripts = [
    item the user selects */
 let toggleClasses = function(nextPage) {
   /*Toggle pages*/
-  document.querySelector(currentPage).className = "container invisible";
-  document.querySelector(nextPage).className = "container visible";
+  document.querySelector(currentPage).className = "container-fluid invisible";
+  document.querySelector(nextPage).className = "container-fluid visible";
   /*Run corresponding game script if any and remove last game script if any*/
   var newGame = document.createElement("script");
   newGame.type = "text/javascript";
