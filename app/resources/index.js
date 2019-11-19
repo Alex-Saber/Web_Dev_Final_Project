@@ -13,8 +13,8 @@ let gameScripts = [
    item the user selects */
 let toggleClasses = function(nextPage) {
   /*Toggle pages*/
-  document.querySelector(currentPage).className = "container invisible";
-  document.querySelector(nextPage).className = "container visible";
+  document.querySelector(currentPage).className = "container-fluid invisible";
+  document.querySelector(nextPage).className = "container-fluid visible";
   /*Run corresponding game script if any and remove last game script if any*/
   var newGame = document.createElement("script");
   newGame.type = "text/javascript";
@@ -35,7 +35,11 @@ let toggleClasses = function(nextPage) {
     oldGame = newGame;
     oldGameSrc = true;
   }
+  /*Update current page value*/
   currentPage = nextPage;
+  /*Reset form values*/
+  $(".form-control").val("");
+  document.querySelector(".form-control").className = "form-control";
 };
 
 /* This function allows a user to login to their account*/
@@ -94,6 +98,15 @@ let signOut = function() {
   document.querySelector("#account-info-nav").className =
     "btn btn-secondary btn-sm invisible";
   toggleClasses("#home-page");
+};
+
+let checkFormInput = function(id) {
+  var element = $(id).val();
+  if (!element) {
+    document.querySelector(id).className = "form-control invalid-input";
+  } else {
+    document.querySelector(id).className = "form-control";
+  }
 };
 
 /* Checks if all required fields are filled for login*/
@@ -190,3 +203,14 @@ let arrowKeysHandler = function(e) {
 };
 
 window.addEventListener("keydown", arrowKeysHandler, false);
+
+let carouselTitleColorChange = function() {
+  $(".carousel-item").on("mouseover", function() {
+    $(".carousel-img-title").css("color", "rgb(109, 182, 250)");
+    $(".carousel-item").css("cursor", "pointer");
+  });
+  $(".carousel-item").on("mouseout", function() {
+    $(".carousel-img-title").css("color", "rgb(61, 98, 219)");
+    $(".carousel-item").css("cursor", "default");
+  });
+};
