@@ -5,11 +5,12 @@ const server = require('http').Server(app);
 const port = 3000;
 const helmet = require('helmet');
 const fs = require('fs');
+var MongoClient = require('mongodb').MongoClient;
 
 app.use(helmet());
 app.use(helmet.noSniff());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/resources'));
 app.use(express.static(__dirname + '/resources/html'));
 
@@ -35,9 +36,62 @@ server.listen(port, (err) => {
 module.exports = server;
 
 app.get('/', (err, res) => {
+
 	res.render('index.html');
 });
 
-// app.get('/bird.html', (err, res) => {
-// 	res.render('bird.html');
-// });
+app.post('/user/login', (request, response) => {
+	console.log('POST /')
+	console.log(request.body)
+
+	let username = request.body.username;
+	let password = request.body.password;
+
+    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function (err, db) {
+
+        db.db("atac").collection("users", function (err, collection) {
+
+        	collection.findOne({"username": request.body.username}, function(err, result) {
+
+        		console.log(result);
+
+				response.send(result);
+
+				db.close();
+	    	});
+		});
+    });
+});
+
+
+app.post('/user/create', (request, response) => {
+	console.log('POST /')
+	console.log(request.body)
+
+	let username = request.body.username;
+	let password = request.body.password;
+	let name = request.body.name;
+	let email = request.body.email;
+
+	let newDoc = {"username": username,
+				  "password": password,
+		          "name": name,
+		          "email": email,
+	              "user_activity": []}
+
+
+    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function (err, db) {
+
+        db.db("atac").collection("users", function (err, collection) {
+
+        	collection.insertOne(newDoc, function(err, result) {
+
+        		console.log(result);
+
+				response.send(newDoc);
+
+				db.close();
+	    	});
+		});
+    });
+});

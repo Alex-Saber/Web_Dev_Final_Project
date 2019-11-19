@@ -58,6 +58,7 @@
         <button type="button" class="btn btn-secondary btn-sm invisible" id="account-info-nav" onclick="toggleClasses('#account-info-page')">
           Account Info
         </button>
+      </nav>
     </div>
   </header>
 
@@ -279,7 +280,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Login</h4>
-            <form action="" method="post" enctype="text/plain">
+            <form action="">
               <div class="form-group">
                 <label for="username1">Username</label>
                 <input
@@ -300,9 +301,7 @@
                   oninput="checkFormInput('#password1')"
                 />
               </div>
-              <button type="button" class="btn btn-primary btn-sm" onclick="checkLoginFields()">
-                SUBMIT
-              </button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="checkLoginFields()">SUBMIT</button>
               <button type="reset" class="btn btn-secondary btn-sm">
                 RESET
               </button>
@@ -320,7 +319,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Account Creation</h4>
-            <form action="" method="post" enctype="text/plain">
+            <form>
               <div class="form-group">
                 <label for="username2">Username</label>
                 <input
@@ -328,17 +327,25 @@
                   class="form-control"
                   id="username2"
                   placeholder="username"
+<<<<<<< HEAD
+                  name="username"
+=======
                   oninput="checkFormInput('#username2')"
+>>>>>>> 71141aab80d38a0190517f4f2547de7d91e2ba8a
                 />
               </div>
               <div class="form-group">
-                <label for="pasword2">Password</label>
+                <label for="password2">Password</label>
                 <input
                   type="password"
                   class="form-control"
                   id="password2"
                   placeholder="password"
+<<<<<<< HEAD
+                  name="password"
+=======
                   oninput="checkFormInput('#password2')"
+>>>>>>> 71141aab80d38a0190517f4f2547de7d91e2ba8a
                 />
               </div>
               <div class="form-group">
@@ -348,7 +355,11 @@
                   class="form-control"
                   id="name"
                   placeholder="John Smith"
+<<<<<<< HEAD
+                  name="name"
+=======
                   oninput="checkFormInput('#name')"
+>>>>>>> 71141aab80d38a0190517f4f2547de7d91e2ba8a
                 />
               </div>
               <div class="form-group">
@@ -358,12 +369,14 @@
                   class="form-control"
                   id="email"
                   placeholder="john.smith@gmail.com"
+<<<<<<< HEAD
+                  name="email"
+=======
                   oninput="checkFormInput('#email')"
+>>>>>>> 71141aab80d38a0190517f4f2547de7d91e2ba8a
                 />
               </div>
-              <button type="button" class="btn btn-primary btn-sm" onclick="checkAccountCreationFields()">
-                SUBMIT
-              </button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="checkAccountCreationFields()">SUBMIT</button>
               <button type="reset" class="btn btn-secondary btn-sm">
                 RESET
               </button>
