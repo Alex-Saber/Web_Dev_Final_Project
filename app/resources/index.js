@@ -6,7 +6,8 @@ let oldGameSrc = false;
 
 let gameScripts = [
   ["#flappy-bird-page", "../bird.js"],
-  ["#space-invaders-page", "../shooter.js"]
+  ["#space-invaders-page", "../shooter.js"],
+  ["#snake-page", "../snake.js"]
 ];
 
 /* This function changes page display based on which menu
