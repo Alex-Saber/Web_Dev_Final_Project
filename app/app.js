@@ -6,6 +6,8 @@ const port = 3000;
 const helmet = require('helmet');
 const fs = require('fs');
 
+
+
 app.use(helmet());
 app.use(helmet.noSniff());
 app.use(bodyParser.json());
@@ -34,10 +36,31 @@ server.listen(port, (err) => {
 
 module.exports = server;
 
+
+
 app.get('/', (err, res) => {
+
 	res.render('index.html');
 });
 
-// app.get('/bird.html', (err, res) => {
-// 	res.render('bird.html');
-// });
+
+app.post('/user/create', (req, res) => {
+    // console.log(req.body);
+
+	MongoClient.connect("mongodb://localhost:27017/atac", function (err, db) {
+
+        db.collection('users', function (err, collection) {
+
+            collection.insert({req.b: })
+
+        });
+
+    });
+
+    // return;
+});
+
+var MongoClient = require('mongodb').MongoClient;
+app.post('/user/login', (err, res) => {
+
+});
