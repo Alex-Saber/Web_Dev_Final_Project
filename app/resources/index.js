@@ -67,6 +67,18 @@ let checkLoginFields = function() {
   var username = $("#username1").val();
   var password = $("#password1").val();
   if (username && password) signIn();
+  if (!username) {
+    document.querySelector("#username1").className =
+      "form-control invalid-input";
+  } else {
+    document.querySelector("#username1").className = "form-control";
+  }
+  if (!password) {
+    document.querySelector("#password1").className =
+      "form-control invalid-input";
+  } else {
+    document.querySelector("#password1").className = "form-control";
+  }
 };
 
 /* create new user account*/
@@ -79,6 +91,28 @@ let checkAccountCreationFields = function() {
   var name = $("#name").val();
   var email = $("#email").val();
   if (username && password && name && email) createAccount();
+  if (!username) {
+    document.querySelector("#username2").className =
+      "form-control invalid-input";
+  } else {
+    document.querySelector("#username2").className = "form-control";
+  }
+  if (!password) {
+    document.querySelector("#password2").className =
+      "form-control invalid-input";
+  } else {
+    document.querySelector("#password2").className = "form-control";
+  }
+  if (!name) {
+    document.querySelector("#name").className = "form-control invalid-input";
+  } else {
+    document.querySelector("#name").className = "form-control";
+  }
+  if (!email) {
+    document.querySelector("#email").className = "form-control invalid-input";
+  } else {
+    document.querySelector("#email").className = "form-control";
+  }
 };
 
 let arrowKeysHandler = function(e) {
