@@ -108,10 +108,9 @@ function playBird() {
       if (pause == true) {
         bird_y += gravity;
         gravity += 0.1;
-        console.log(bird_y);
-        //if (bird_y >= canvas.height) {
-        //bird_y = 600;
-        //}
+        if (bird_y >= canvas.height) {
+          bird_y = 600;
+        }
       }
 
       // GameOver.play();

@@ -51,33 +51,30 @@ let signIn = function(username, password) {
   let url = "http://localhost:3000/user/login";
   console.log(url);
   let request_body = {
-    "username": username,
-    "password": password
+    username: username,
+    password: password
   };
 
   let fetch_obj = {
     method: "POST",
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(request_body)
   };
 
-  fetch(url, fetch_obj)
-    .then(function (response) {
-        console.log(response.status);
-        if (response.status === 200) {
-            // Fill account page with information from the post request.
-            response.json().then(data => {
-                console.log(data);
-            });
-        }
-        else if (response.status === 401) {
-            // Account credentials are incorrect
-        }
-    });
-
+  fetch(url, fetch_obj).then(function(response) {
+    console.log(response.status);
+    if (response.status === 200) {
+      // Fill account page with information from the post request.
+      response.json().then(data => {
+        console.log(data);
+      });
+    } else if (response.status === 401) {
+      // Account credentials are incorrect
+    }
+  });
 
   /*Make Account Info Page visible*/
   document.querySelector("#account-info-nav").className =
@@ -85,12 +82,10 @@ let signIn = function(username, password) {
   document.querySelector("#login-nav").className =
     "btn btn-secondary btn-sm invisible";
   toggleClasses("#account-info-page");
-
 };
 
 /* logs the user out of the account*/
 let signOut = function() {
-
   //
   /*Make Account Info Page invisible*/
   document.querySelector("#login-nav").className =
@@ -115,15 +110,15 @@ let checkLoginFields = function() {
   var password = $("#password1").val();
   if (username && password) signIn(username, password);
   if (!username) {
-    document.querySelector("#username1").className = "form-control invalid-input";
-  }
-  else {
+    document.querySelector("#username1").className =
+      "form-control invalid-input";
+  } else {
     document.querySelector("#username1").className = "form-control";
   }
   if (!password) {
-    document.querySelector("#password1").className = "form-control invalid-input";
-  }
-  else {
+    document.querySelector("#password1").className =
+      "form-control invalid-input";
+  } else {
     document.querySelector("#password1").className = "form-control";
   }
 };
@@ -133,31 +128,29 @@ let createAccount = function(username, password, name, email) {
   let url = "http://localhost:3000/user/create";
   console.log(url);
   let request_body = {
-    "username": username,
-    "password": password,
-    "name": name,
-    "email": email
+    username: username,
+    password: password,
+    name: name,
+    email: email
   };
 
   let fetch_obj = {
     method: "POST",
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(request_body)
   };
 
-  fetch(url, fetch_obj)
-    .then(function (response) {
-        console.log(response.status);
-        if (response.status === 200) {
-            // Fill account page with information from the post request.
-        }
-        else if (response.status === 401) {
-            // Account credentials already exist
-        }
-    });
+  fetch(url, fetch_obj).then(function(response) {
+    console.log(response.status);
+    if (response.status === 200) {
+      // Fill account page with information from the post request.
+    } else if (response.status === 401) {
+      // Account credentials already exist
+    }
+  });
 };
 
 /* checks if all required fields are filled for account creation*/
@@ -166,7 +159,8 @@ let checkAccountCreationFields = function() {
   var password = $("#password2").val();
   var name = $("#name").val();
   var email = $("#email").val();
-  if (username && password && name && email) createAccount(username, password, name, email);
+  if (username && password && name && email)
+    createAccount(username, password, name, email);
   if (!username) {
     document.querySelector("#username2").className =
       "form-control invalid-input";
@@ -174,7 +168,8 @@ let checkAccountCreationFields = function() {
     document.querySelector("#username2").className = "form-control";
   }
   if (!password) {
-    document.querySelector("#password2").className = "form-control invalid-input";
+    document.querySelector("#password2").className =
+      "form-control invalid-input";
   } else {
     document.querySelector("#password2").className = "form-control";
   }
@@ -194,7 +189,6 @@ let arrowKeysHandler = function(e) {
   switch (e.keyCode) {
     case 38:
     case 40: //Arrow keys
-    case 32:
       e.preventDefault();
       break; //Space
     default:
