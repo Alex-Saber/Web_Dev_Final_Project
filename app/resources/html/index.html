@@ -236,7 +236,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Login</h4>
-            <form action="http://localhost:3000/user/create" method="POST">
+            <form action="">
               <div class="form-group">
                 <label for="username1">Username</label>
                 <input
@@ -255,9 +255,7 @@
                   placeholder="password"
                 />
               </div>
-              <button type="button" class="btn btn-primary btn-sm" onclick="checkLoginFields()">
-                SUBMIT
-              </button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="checkLoginFields()">SUBMIT</button>
               <button type="reset" class="btn btn-secondary btn-sm">
                 RESET
               </button>
@@ -275,7 +273,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Account Creation</h4>
-            <form action="" method="post" enctype="text/plain">
+            <form>
               <div class="form-group">
                 <label for="username2">Username</label>
                 <input
@@ -283,6 +281,7 @@
                   class="form-control"
                   id="username2"
                   placeholder="username"
+                  name="username"
                 />
               </div>
               <div class="form-group">
@@ -292,6 +291,7 @@
                   class="form-control"
                   id="password2"
                   placeholder="password"
+                  name="password"
                 />
               </div>
               <div class="form-group">
@@ -301,6 +301,7 @@
                   class="form-control"
                   id="name"
                   placeholder="John Smith"
+                  name="name"
                 />
               </div>
               <div class="form-group">
@@ -310,11 +311,10 @@
                   class="form-control"
                   id="email"
                   placeholder="john.smith@gmail.com"
+                  name="email"
                 />
               </div>
-              <button type="button" class="btn btn-primary btn-sm" onclick="checkAccountCreationFields()">
-                SUBMIT
-              </button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="checkAccountCreationFields()">SUBMIT</button>
               <button type="reset" class="btn btn-secondary btn-sm">
                 RESET
               </button>
