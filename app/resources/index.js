@@ -43,6 +43,30 @@ let toggleClasses = function(nextPage) {
   document.querySelector(".form-control").className = "form-control";
 };
 
+/*Populate the Account Info page with the user's information*/
+let populateAccountInfo = function(userInfo) {
+  document.querySelector("#account-username").textContent += userInfo.username;
+  document.querySelector("#account-name").textContent += userInfo.name;
+  document.querySelector("#account-email").textContent += userInfo.email;
+};
+
+/*Remove user's info from the Account Info Page*/
+let unpopulateAccountInfo = function() {
+  document.querySelector("#account-username").textContent = "Username: ";
+  document.querySelector("#account-name").textContent = "Name: ";
+  document.querySelector("#account-email").textContent = "Email: ";
+};
+
+/*Make the Account Info page visible*/
+let makeAccountPageVisible = function() {
+  /*Make Account Info Page visible*/
+  document.querySelector("#account-info-nav").className =
+    "btn btn-secondary btn-sm visible-button";
+  document.querySelector("#login-nav").className =
+    "btn btn-secondary btn-sm invisible";
+  toggleClasses("#account-info-page");
+};
+
 /* This function allows a user to login to their account*/
 let signIn = function(username, password) {
   /*Auth*/
@@ -70,30 +94,25 @@ let signIn = function(username, password) {
     if (response.status === 200) {
       // Fill account page with information from the post request.
       response.json().then(data => {
-        console.log(data);
+        populateAccountInfo(data);
+        makeAccountPageVisible();
       });
     } else if (response.status === 401) {
       // Account credentials are incorrect
     }
   });
-
-  /*Make Account Info Page visible*/
-  document.querySelector("#account-info-nav").className =
-    "btn btn-secondary btn-sm visible-button";
-  document.querySelector("#login-nav").className =
-    "btn btn-secondary btn-sm invisible";
-  toggleClasses("#account-info-page");
 };
 
 /* logs the user out of the account*/
 let signOut = function() {
-  //
   /*Make Account Info Page invisible*/
   document.querySelector("#login-nav").className =
     "btn btn-secondary btn-sm visible-button";
   document.querySelector("#account-info-nav").className =
     "btn btn-secondary btn-sm invisible";
   toggleClasses("#home-page");
+  /*Remove user info from account info page*/
+  unpopulateAccountInfo();
 };
 
 let checkFormInput = function(id) {
@@ -148,6 +167,10 @@ let createAccount = function(username, password, name, email) {
     console.log(response.status);
     if (response.status === 200) {
       // Fill account page with information from the post request.
+      response.json().then(data => {
+        populateAccountInfo(data);
+        makeAccountPageVisible();
+      });
     } else if (response.status === 401) {
       // Account credentials already exist
     }
