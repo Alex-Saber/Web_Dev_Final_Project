@@ -288,13 +288,22 @@ section {
 }
 
 .card,
-.even-rows {
+.even-rows,
+.table-striped > tbody > tr:nth-child(even),
+.table-striped > thead {
   background-color: rgb(27, 24, 53);
 }
 
 .form-control,
-.odd-rows {
+.odd-rows,
+.table-striped > tbody > tr:nth-child(odd) {
   background-color: rgb(23, 7, 51);
+}
+
+.table-striped > tbody > tr {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 thead,
