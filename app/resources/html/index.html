@@ -47,9 +47,6 @@
         <button type="button" class="btn btn-secondary btn-sm" id="flappy-bird-nav" onclick="toggleClasses('#flappy-bird-page')">
           Flappy Bird
         </button>
-        <button type="button" class="btn btn-secondary btn-sm" id="tic-tac-toe-nav" onclick="toggleClasses('#tic-tac-toe-page')">
-          Tic-Tac-Toe
-        </button>
         <button type="button" class="btn btn-secondary btn-sm" id="snake-nav" onclick="toggleClasses('#snake-page')">
           Snake
         </button>
@@ -76,7 +73,7 @@
       <h1>HELLO THERE!</h1>
       <p>Welcome to ATAC arcade! ATAC was created by <mark>A</mark>lex, <mark>T</mark>rung, and <mark>A</mark>ngelic
         in a Full Stack Web Development class taught by <mark>C</mark>aternia. Our site offers a variety of games:
-        Flappy Bird, Tic-Tac-Toe, Snake, and Space Invaders!. You may either play without an account, or create one
+        Flappy Bird, Snake, and Space Invaders!. You may either play without an account, or create one
         in order to keep track of your personal highscores. We hope you enjoy our services. Enjoy!
       </p>
     </section>
@@ -127,16 +124,6 @@
             <h5 class="d-25 w-25 carousel-img-title">Flappy Bird</h5>
             <img class="d-25 w-25 carousel-img" src="../images/bird.gif" alt="Flappy bird"/>
           </div>
-          <!--Tic-tac-toe
-          <div class="carousel-item">
-            Tic-tac-toe gif
-            <img class="d-block w-100" src="" alt="Tic-tac-toe" />
-          </div>
-          Snake
-          <div class="carousel-item">
-            Snake gif
-            <img class="d-block w-100" src="" alt="Snake" />
-          </div>-->
           <!--Space Invaders!-->
           <div class="carousel-item" onclick="toggleClasses('#space-invaders-page')" onmouseover="carouselTitleColorChange()">
             <!--Space Invaders! gif-->
@@ -184,23 +171,6 @@
     </div>
   </section>
   <!--FLAPPY BIRD END-->
-  <!--TIC TAC TOE START-->
-  <section class="container-fluid invisible" id="tic-tac-toe-page">
-    <p>
-      Tic tac toe
-    </p>
-    <div class="game-layout">
-      <div class="game">
-        <!--tic tac toe canvas-->
-      </div>
-      <div class="instructions">
-        <h4>How to Play</h4>
-        <ul>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <!--TIC TAC TOE END-->
   <!--SNAKE START-->
   <section class="container-fluid invisible" id="snake-page">
     <p>
@@ -398,18 +368,6 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          id="tic-tac-toe-tab"
-          data-toggle="tab"
-          href="#tic-tac-toe-scoreboard"
-          role="tab"
-          aria-controls="tic-tac-toe-scoreboard"
-          aria-selected="false"
-          >Tic Tac Toe</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
           id="snake-tab"
           data-toggle="tab"
           href="#snake-scoreboard"
@@ -460,41 +418,6 @@
               <th scope="row">2</th>
               <td>random player 2</td>
               <td>100</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--Tic Tac Toe Scoreboard-->
-      <div
-        class="tab-pane fade show"
-        id="tic-tac-toe-scoreboard"
-        role="tabpanel"
-        aria-labelledby="tic-tac-toe-scoreboard"
-      >
-        <table class="table table-hover">
-          <h4 class="table-heading">Tic-Tac-Toe Highscores</h4>
-          <thead>
-            <tr class="even-rows">
-              <th>#</th>
-              <th>Username</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="odd-rows">
-              <th scope="row">1</th>
-              <td>rando player 1</td>
-              <td>593400</td>
-            </tr>
-            <tr class="even-rows">
-              <th scope="row">2</th>
-              <td>rando player 2</td>
-              <td>43200</td>
-            </tr>
-            <tr class="odd-rows">
-              <th scope="row">3</th>
-              <td>rando player 3</td>
-              <td>200</td>
             </tr>
           </tbody>
         </table>
@@ -626,10 +549,6 @@
             <tr class="odd-rows">
               <td>Flappy Bird</td>
               <td id="bird_score"></td>
-            </tr>
-            <tr class="even-rows">
-              <td>Tic-Tac-Toe</td>
-              <td id="ttt_score"></td>
             </tr>
             <tr class="odd-rows">
               <td>Snake</td>

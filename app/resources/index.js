@@ -13,7 +13,6 @@ let gameScripts = [
 
 let gameScores = [
   ["Flappy Bird", "0", "#bird_score"],
-  ["Tic-Tac-Toe", "0", "#ttt_score"],
   ["Snake", "0", "#snake_score"],
   ["Space Invaders", "0", "#invaders_score"]
 ];
