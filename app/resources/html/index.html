@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ATAC Arcade</title>
-    <script
+    <!--JQuery-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    ></script>
+    ></script>-->
+    <!--Bootstrap-->
     <link
       rel="stylesheet"
       type="text/css"
@@ -18,7 +21,12 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
     ></script>
+    <!--Fontawesome-->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--bootstrapTable-->
+    <link href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <!--Our own scripts/files-->
     <script type="text/javascript" src="../index.js"></script>
     <link
       rel="stylesheet"
@@ -26,7 +34,6 @@
       href="../css/atac-arcade.css"
       media="screen"
     />
-    <link rel="stylesheet" type="text/css" src="../css/bird_style.css">
   </head>
   <body>
   <!--Header-->
@@ -565,27 +572,16 @@
     <section class="user-account-info">
        <!--User Activity Start-->
     <Section class="user-activity">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped" id="user-activity-table">
           <h4 class="table-heading">User Activity</h4>
           <thead>
-            <tr class="even-rows">
-              <th>Timestamp</th>
-              <th>Game</th>
-              <th>Score</th>
+            <tr>
+            <!--<tr class="even-rows">-->
+              <th data-field="Timestamp">Timestamp</th>
+              <th data-field="Game">Game</th>
+              <th data-field="Score">Score</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="odd-rows">
-              <td>Nov. 4, 2019 3:24pm</td>
-              <td>Flappy Bird</td>
-              <td>34</td>
-            </tr>
-            <tr class="even-rows">
-              <td>Oct. 29, 2019 12:45pm</td>
-              <td>Space Invaders</td>
-              <td>100</td>
-            </tr>
-          </tbody>
         </table>
       </Section>
       <!--User Activity End-->
@@ -594,13 +590,13 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Account Info</h4>
-            <p class="card-text">
+            <p class="card-text" id="account-username">
               Username:
             </p>
-            <p class="card-text">
+            <p class="card-text" id="account-name">
               Name:
             </p>
-            <p class="card-text">
+            <p class="card-text" id="account-email">
               Email:
             </p>
             <button
@@ -617,9 +613,10 @@
       <!--User Info End-->
       <!--User Highscores Start-->
       <section class="user-highscores">
-        <table class="table table-hover">
+        <table class="table table-hover" id="user-highscores-table">
           <h4 class="table-heading">Highscores</h4>
           <thead>
+            <!--<tr class="even-rows">-->
             <tr class="even-rows">
               <th>Game</th>
               <th>Score</th>
@@ -628,19 +625,19 @@
           <tbody>
             <tr class="odd-rows">
               <td>Flappy Bird</td>
-              <td>34</td>
+              <td id="bird_score"></td>
             </tr>
             <tr class="even-rows">
               <td>Tic-Tac-Toe</td>
-              <td>3</td>
+              <td id="ttt_score"></td>
             </tr>
             <tr class="odd-rows">
               <td>Snake</td>
-              <td>1352</td>
+              <td id="snake_score"></td>
             </tr>
             <tr class="even-rows">
               <td>Space Invaders</td>
-              <td>4334</td>
+              <td id="invaders_score"></td>
             </tr>
           </tbody>
         </table>
