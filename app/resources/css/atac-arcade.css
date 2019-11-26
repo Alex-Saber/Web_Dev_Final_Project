@@ -217,7 +217,7 @@ body {
   padding-bottom: 20px;
 }
 
-footer > p {
+footer {
   margin-top: 40px;
   margin-bottom: 20px;
   text-align: right;
@@ -298,12 +298,6 @@ section {
 .odd-rows,
 .table-striped > tbody > tr:nth-child(odd) {
   background-color: rgb(23, 7, 51);
-}
-
-.table-striped > tbody > tr {
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
 }
 
 thead,
