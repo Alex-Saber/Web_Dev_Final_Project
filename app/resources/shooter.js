@@ -1,3 +1,10 @@
+document.addEventListener("keydown", move);
+function move(e) {
+  if (e.keyCode == 13) {
+    //location.reload();
+    playShooter();
+  }
+}
 let playShooter = function() {
   var canvas = document.getElementById("invaders-canvas");
   var ctx = canvas.getContext("2d");
@@ -16,6 +23,7 @@ let playShooter = function() {
   var right = false;
   var up = false;
   var down = false;
+  var shooter_score_update = false;
 
   var enemies_total = 10;
   var enemies_array = [];
@@ -41,7 +49,8 @@ let playShooter = function() {
     if (e.keyCode == 88 && laser_array.length <= laser_length)
       laser_array.push([ship_x, ship_y, 0]);
     if (e.keyCode == 13) {
-      location.reload();
+      // playShooter();
+      return 1;
     }
   }
   function keyUp(e) {
@@ -110,7 +119,14 @@ let playShooter = function() {
             remove = true;
             enemies_array.splice(j, 1);
             score += 1;
-            enemies_array.push([Math.random() * canvas.width + 1, enemy_y]);
+            enemies_array.push([
+              Math.random() * (canvas.width - 10) + 1,
+              enemy_y
+            ]);
+            enemies_array.push([
+              Math.random() * (canvas.width - 10) + 1,
+              enemy_y
+            ]);
           }
         }
         if (remove == true) {
@@ -176,6 +192,27 @@ let playShooter = function() {
         canvas.width / 2 - 100,
         canvas.height / 2 + 70
       );
+      if (shooter_score_update == false) {
+        let url = "http://localhost:3000/user/update/score";
+        let request_body = {
+          name: "Space invader game",
+          score: score
+        };
+        let fetch_obj = {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(request_body)
+        };
+        fetch(url, fetch_obj).then(function(response) {
+          response.json().then(data => {
+            console.log(data);
+          });
+        });
+        shooter_score_update = true;
+      }
     }
   }
   drawship();

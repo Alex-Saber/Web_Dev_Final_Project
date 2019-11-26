@@ -1,3 +1,10 @@
+document.addEventListener("keydown", move);
+function move(e) {
+  if (e.keyCode == 13) {
+    //location.reload();
+    playBird();
+  }
+}
 function playBird() {
   var canvas = document.getElementById("flappy-canvas");
   var ctx = canvas.getContext("2d");
@@ -23,6 +30,8 @@ function playBird() {
   var bird_y = 150;
   var score = 0;
 
+  var bird_score_update = false;
+
   var jump = false;
   var jump_frame = false;
   var pipe_array = [100000];
@@ -34,6 +43,13 @@ function playBird() {
       if (jump === false) {
         jump = true;
       }
+    }
+  }
+  document.addEventListener("keyup", restart);
+  function restart(event) {
+    if (event.keyCode === 13) {
+      return 1;
+      //window.location.reload(false);
     }
   }
 
@@ -97,12 +113,36 @@ function playBird() {
       ) {
         // Pause the game
         pause = true;
-
-        document.addEventListener("keyup", restart);
-        function restart(event) {
-          if (event.keyCode === 88) {
-            location.reload();
-          }
+        ctx.font = "bold 40px Arial";
+        ctx.fillText("Game Over!", canvas.width / 2 - 100, canvas.height / 2);
+        ctx.fillText("Score: ", canvas.width / 2 - 100, canvas.height / 2 + 40);
+        ctx.fillText(score, canvas.width / 2 + 50, canvas.height / 2 + 40);
+        ctx.font = "bold 20px Arial";
+        ctx.fillText(
+          "Press enter to try again",
+          canvas.width / 2 - 100,
+          canvas.height / 2 + 70
+        );
+        if (bird_score_update == false) {
+          let url = "http://localhost:3000/user/update/score";
+          let request_body = {
+            name: "Bird game",
+            score: score
+          };
+          let fetch_obj = {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(request_body)
+          };
+          fetch(url, fetch_obj).then(function(response) {
+            response.json().then(data => {
+              console.log(data);
+            });
+          });
+          bird_score_update = true;
         }
       }
       if (pause == true) {
@@ -116,8 +156,8 @@ function playBird() {
       // GameOver.play();
     }
 
-    ctx.font = "30px Open Sans";
-    ctx.fillText("Score :" + score, 10, canvas.height - 20);
+    // ctx.font = "30px Open Sans";
+    //ctx.fillText("Score :" + score, 10, canvas.height - 20);
     requestAnimationFrame(draw);
   }
   draw();
