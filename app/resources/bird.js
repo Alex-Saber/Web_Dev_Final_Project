@@ -123,7 +123,7 @@ function playBird() {
           canvas.width / 2 - 100,
           canvas.height / 2 + 70
         );
-        if (bird_score_update == false) {
+        /*if (bird_score_update == false) {
           let url = "http://localhost:3000/user/update/score";
           let request_body = {
             name: "Bird game",
@@ -143,7 +143,15 @@ function playBird() {
             });
           });
           bird_score_update = true;
-        }
+        }*/
+        let time = new Date();
+        let activity = {
+          timestamp: time,
+          game: "Flappy Bird",
+          score: score
+          // username: USERNAME
+        };
+        updateUserActivityAndScores(activity);
       }
       if (pause == true) {
         bird_y += gravity;

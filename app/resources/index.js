@@ -3,6 +3,7 @@ let oldGame = document.createElement("script");
 oldGame.type = "text/javascript";
 oldGame.src = "";
 let oldGameSrc = false;
+let USERNAME = "";
 
 let gameScripts = [
   ["#flappy-bird-page", "../bird.js"],
@@ -52,7 +53,7 @@ let toggleClasses = function(nextPage) {
 
 let populateScoreboardsInfo = function() {};
 
-let udateUserActivityAndScores = function(activity) {
+let updateUserActivityAndScores = function(activity) {
   //write activity to db
   /*let url = "http://localhost:3000/user/update";
   console.log(url);
@@ -70,22 +71,28 @@ let udateUserActivityAndScores = function(activity) {
     body: JSON.stringify(request_body)
   }; */
   //update activity table
-  $("#user-activity-table").bootstrapTable("append", activity);
+  let userActivity = {
+    Timestamp: activity.timestamp,
+    Game: activity.game,
+    Score: activity.score
+  };
+  $("#user-activity-table").bootstrapTable("append", userActivity);
   //update highscores table
   let len = gameScores.length;
   for (let g = 0; g < len; ++g) {
     if (
-      activity.Game == gameScores[g][0] &&
-      gameScores[g][1] < activity.Score
+      userActivity.Game == gameScores[g][0] &&
+      gameScores[g][1] < userActivity.Score
     ) {
-      gameScores[g][1] = activity.Score;
-      document.querySelector(gameScores[s][2]).textContent = gameScores[s][1];
+      gameScores[g][1] = userActivity.Score;
+      document.querySelector(gameScores[g][2]).textContent = gameScores[g][1];
     }
   }
 };
 
 /*Populate the Account Info page with the user's information*/
 let populateAccountInfo = function(userInfo) {
+  USERNAME = userInfo.username;
   document.querySelector("#account-username").textContent += userInfo.username;
   document.querySelector("#account-name").textContent += userInfo.name;
   document.querySelector("#account-email").textContent += userInfo.email;

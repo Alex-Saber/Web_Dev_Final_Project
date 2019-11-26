@@ -171,7 +171,8 @@ let playShooter = function() {
           ship_x + ship.width > enemies_array[i][0]
         ) {
           alive = false;
-          console.log(alive);
+          date = new Date();
+          console.log(date);
         }
       }
       ctx.drawImage(ship, ship_x, ship_y);
@@ -192,7 +193,7 @@ let playShooter = function() {
         canvas.width / 2 - 100,
         canvas.height / 2 + 70
       );
-      if (shooter_score_update == false) {
+      /* if (shooter_score_update == false) {
         let url = "http://localhost:3000/user/update/score";
         let request_body = {
           name: "Space invader game",
@@ -212,7 +213,15 @@ let playShooter = function() {
           });
         });
         shooter_score_update = true;
-      }
+      }*/
+      let time = new Date();
+      let activity = {
+        timestamp: time,
+        game: "Space Invaders",
+        score: score
+        //username: USERNAME
+      };
+      updateUserActivityAndScores(activity);
     }
   }
   drawship();
