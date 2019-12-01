@@ -3,11 +3,18 @@ let oldGame = document.createElement("script");
 oldGame.type = "text/javascript";
 oldGame.src = "";
 let oldGameSrc = false;
+let USERNAME = "";
 
 let gameScripts = [
   ["#flappy-bird-page", "../bird.js"],
   ["#space-invaders-page", "../shooter.js"],
   ["#snake-page", "../snake.js"]
+];
+
+let gameScores = [
+  ["Flappy Bird", "0", "#bird_score"],
+  ["Snake", "0", "#snake_score"],
+  ["Space Invaders", "0", "#invaders_score"]
 ];
 
 /* This function changes page display based on which menu
@@ -43,6 +50,91 @@ let toggleClasses = function(nextPage) {
   document.querySelector(".form-control").className = "form-control";
 };
 
+let populateScoreboardsInfo = function() {};
+
+let updateUserActivityAndScores = function(activity) {
+  //write activity to db
+  /*let url = "http://localhost:3000/user/update";
+  console.log(url);
+  let request_body = {
+    username: username,
+    password: password
+  };
+
+  let fetch_obj = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(request_body)
+  }; */
+  //update activity table
+  let userActivity = {
+    Timestamp: activity.timestamp,
+    Game: activity.game,
+    Score: activity.score
+  };
+  $("#user-activity-table").bootstrapTable("append", userActivity);
+  //update highscores table
+  let len = gameScores.length;
+  for (let g = 0; g < len; ++g) {
+    if (
+      userActivity.Game == gameScores[g][0] &&
+      gameScores[g][1] < userActivity.Score
+    ) {
+      gameScores[g][1] = userActivity.Score;
+      document.querySelector(gameScores[g][2]).textContent = gameScores[g][1];
+    }
+  }
+};
+
+/*Populate the Account Info page with the user's information*/
+let populateAccountInfo = function(userInfo) {
+  USERNAME = userInfo.username;
+  document.querySelector("#account-username").textContent += userInfo.username;
+  document.querySelector("#account-name").textContent += userInfo.name;
+  document.querySelector("#account-email").textContent += userInfo.email;
+  $("#user-activity-table").bootstrapTable({ data: userInfo.user_activity });
+  let length = userInfo.user_activity.length;
+  let len = gameScores.length;
+  for (let i = 0; i < length; ++i) {
+    for (let g = 0; g < len; ++g) {
+      if (
+        userInfo.user_activity[i].Game == gameScores[g][0] &&
+        gameScores[g][1] < userInfo.user_activity[i].Score
+      )
+        gameScores[g][1] = userInfo.user_activity[i].Score;
+    }
+  }
+  for (let s = 0; s < len; ++s)
+    document.querySelector(gameScores[s][2]).textContent = gameScores[s][1];
+};
+
+/*Remove user's info from the Account Info Page*/
+let unpopulateAccountInfo = function() {
+  document.querySelector("#account-username").textContent = "Username: ";
+  document.querySelector("#account-name").textContent = "Name: ";
+  document.querySelector("#account-email").textContent = "Email: ";
+  let len = gameScores.length;
+  let blankData = [];
+  $("#user-activity-table").bootstrapTable("removeAll");
+  for (let s = 0; s < len; ++s) {
+    gameScores[s][1] = "0";
+    document.querySelector(gameScores[s][2]).textContent = gameScores[s][1];
+  }
+};
+
+/*Make the Account Info page visible*/
+let makeAccountPageVisible = function() {
+  /*Make Account Info Page visible*/
+  document.querySelector("#account-info-nav").className =
+    "btn btn-secondary btn-sm visible-button";
+  document.querySelector("#login-nav").className =
+    "btn btn-secondary btn-sm invisible";
+  toggleClasses("#account-info-page");
+};
+
 /* This function allows a user to login to their account*/
 let signIn = function(username, password) {
   /*Auth*/
@@ -70,30 +162,26 @@ let signIn = function(username, password) {
     if (response.status === 200) {
       // Fill account page with information from the post request.
       response.json().then(data => {
-        console.log(data);
+        populateAccountInfo(data);
+        populateScoreboardsInfo();
+        makeAccountPageVisible();
       });
     } else if (response.status === 401) {
       // Account credentials are incorrect
     }
   });
-
-  /*Make Account Info Page visible*/
-  document.querySelector("#account-info-nav").className =
-    "btn btn-secondary btn-sm visible-button";
-  document.querySelector("#login-nav").className =
-    "btn btn-secondary btn-sm invisible";
-  toggleClasses("#account-info-page");
 };
 
 /* logs the user out of the account*/
 let signOut = function() {
-  //
   /*Make Account Info Page invisible*/
   document.querySelector("#login-nav").className =
     "btn btn-secondary btn-sm visible-button";
   document.querySelector("#account-info-nav").className =
     "btn btn-secondary btn-sm invisible";
   toggleClasses("#home-page");
+  /*Remove user info from account info page*/
+  unpopulateAccountInfo();
 };
 
 let checkFormInput = function(id) {
@@ -148,6 +236,11 @@ let createAccount = function(username, password, name, email) {
     console.log(response.status);
     if (response.status === 200) {
       // Fill account page with information from the post request.
+      response.json().then(data => {
+        populateAccountInfo(data);
+        populateScoreboardsInfo();
+        makeAccountPageVisible();
+      });
     } else if (response.status === 401) {
       // Account credentials already exist
     }

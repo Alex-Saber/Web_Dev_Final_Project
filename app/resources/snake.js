@@ -1,22 +1,32 @@
+document.addEventListener("keydown", move);
+function move(e) {
+  if (e.keyCode == 13) {
+    //location.reload();
+    playSnake();
+  }
+}
 let playSnake = function() {
   var canvas = document.getElementById("snake-canvas");
   var ctx = canvas.getContext("2d");
 
-  var block = 10; //one block of body is 20 px
+  var block = 20; //one block of body is 20 px
   var snake = [];
   snake[0] = { x: 2 * block, y: 2 * block };
   snake[1] = { x: 1 * block, y: 2 * block };
 
   var food = new Image();
   food.src = "../images/pizza.png";
-  var food_x = (60 / 2) * block;
-  var food_y = (60 / 2) * block;
+  var food_x = 120;
+  var food_y = 120;
 
   var background = new Image();
   background.src = "../images/grass.png";
 
   var dead = false;
   var score = 0;
+  var counter = 0;
+  var delay = 5;
+  var snake_score_update = false;
   var direction = "R";
   document.addEventListener("keydown", movement);
   function movement(e) {
@@ -31,34 +41,40 @@ let playSnake = function() {
     }
     if (e.keyCode == 13) {
       //location.reload();
-      playSnake();
+      return 1;
     }
   }
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(background, 0, 0);
+    //ctx.fillStyle = "white";
+    //ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (dead == false) {
       for (var i = 0; i < snake.length; i++) {
         ctx.fillStyle = i == 0 ? "red" : "black";
         ctx.fillRect(snake[i].x, snake[i].y, block, block);
       }
       ctx.drawImage(food, food_x, food_y);
+      //ctx.fillStyle = "blue";
+      //ctx.fillRect(food_x, food_y, block, block);
 
+      counter++;
       //movement logic
+      //if (counter == delay) {
       var new_head_x = snake[0].x;
       var new_head_y = snake[0].y;
       if (direction == "L") {
-        new_head_x -= block;
+        new_head_x -= 5;
       }
       if (direction == "R") {
-        new_head_x += block;
+        new_head_x += 5;
       }
       if (direction == "U") {
-        new_head_y -= block;
+        new_head_y -= 5;
       }
       if (direction == "D") {
-        new_head_y += block;
+        new_head_y += 5;
       }
       //self collision logic
       for (var i = 1; i < snake.length; i++) {
@@ -67,17 +83,25 @@ let playSnake = function() {
           console.log("eat self");
         }
       }
+      //counter = 0;
+      // }
 
       snake.unshift({ x: new_head_x, y: new_head_y });
 
       //food logic
-      if (new_head_x == food_x && new_head_y == food_y) {
-        food_x = (Math.random() * 60 + 1) * block;
-        food_y = (Math.random() * 60 + 1) * block;
+      if (
+        new_head_x >= food_x &&
+        new_head_x <= food_x + block &&
+        new_head_y >= food_y &&
+        new_head_y <= food_y + block
+      ) {
+        food_x = Math.floor(Math.random() * 25 + 2) * block;
+        food_y = Math.floor(Math.random() * 25 + 2) * block;
         // food_x = new_head_x;
         // food_y = new_head_y;
         score += 1;
-        console.log("Nom");
+        console.log(food_x);
+        console.log(food_y);
       } else {
         snake.pop();
       }
@@ -102,6 +126,35 @@ let playSnake = function() {
         canvas.width / 2 - 100,
         canvas.height / 2 + 70
       );
+      /*if (snake_score_update == false) {
+        let url = "http://localhost:3000/user/update/score";
+        let request_body = {
+          name: "Snake game",
+          score: score
+        };
+        let fetch_obj = {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(request_body)
+        };
+        fetch(url, fetch_obj).then(function(response) {
+          response.json().then(data => {
+            console.log(data);
+          });
+        });
+        snake_score_update = true;
+      }*/
+      let time = new Date();
+      let activity = {
+        timestamp: time,
+        game: "Snake",
+        score: score
+        //username: USERNAME
+      };
+      updateUserActivityAndScores(activity);
     }
     requestAnimationFrame(draw);
   }

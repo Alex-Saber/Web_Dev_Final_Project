@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ATAC Arcade</title>
-    <script
+    <!--JQuery-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    ></script>
+    ></script>-->
+    <!--Bootstrap-->
     <link
       rel="stylesheet"
       type="text/css"
@@ -18,7 +21,12 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
     ></script>
+    <!--Fontawesome-->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--bootstrapTable-->
+    <link href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <!--Our own scripts/files-->
     <script type="text/javascript" src="../index.js"></script>
     <link
       rel="stylesheet"
@@ -26,7 +34,6 @@
       href="../css/atac-arcade.css"
       media="screen"
     />
-    <link rel="stylesheet" type="text/css" src="../css/bird_style.css">
   </head>
   <body>
   <!--Header-->
@@ -39,9 +46,6 @@
         </button>
         <button type="button" class="btn btn-secondary btn-sm" id="flappy-bird-nav" onclick="toggleClasses('#flappy-bird-page')">
           Flappy Bird
-        </button>
-        <button type="button" class="btn btn-secondary btn-sm" id="tic-tac-toe-nav" onclick="toggleClasses('#tic-tac-toe-page')">
-          Tic-Tac-Toe
         </button>
         <button type="button" class="btn btn-secondary btn-sm" id="snake-nav" onclick="toggleClasses('#snake-page')">
           Snake
@@ -69,7 +73,7 @@
       <h1>HELLO THERE!</h1>
       <p>Welcome to ATAC arcade! ATAC was created by <mark>A</mark>lex, <mark>T</mark>rung, and <mark>A</mark>ngelic
         in a Full Stack Web Development class taught by <mark>C</mark>aternia. Our site offers a variety of games:
-        Flappy Bird, Tic-Tac-Toe, Snake, and Space Invaders!. You may either play without an account, or create one
+        Flappy Bird, Snake, and Space Invaders!. You may either play without an account, or create one
         in order to keep track of your personal highscores. We hope you enjoy our services. Enjoy!
       </p>
     </section>
@@ -81,7 +85,7 @@
           <h5>Alex Saber</h5>
           <img src="" class="creator-img" alt="img of alex">
           <p>
-            Github: <a target="_blank" href="https://github.com/Alex-Saber">Alex-Saber</a>
+            <i class="fab fa-github"></i> Github: <a target="_blank" href="https://github.com/Alex-Saber">Alex-Saber</a>
           </p>
           <p>
             Portfolio: <a target="_blank" href="https://Alex-Saber.github.io">Alex-Saber.github.io</a>
@@ -91,7 +95,7 @@
           <h5>Trung Nguyen</h5>
           <img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-1/p240x240/11066803_922859491099175_2149605327984046983_n.jpg?_nc_cat=106&_nc_oc=AQnie-Ur7lO2maRCP8N6YeqkC-4xcrgJzUql0j9WA0W_iMqjQ1GQYrqLxP1zdeyQJqo&_nc_ht=scontent-sea1-1.xx&oh=61bd4a82bf4f8e4a5eead94466976995&oe=5E1E79A7" class="creator-img" alt="img of trung">
           <p>
-            Github: <a target="_blank" href="https://github.com/ntrung1008">ntrung1008</a>
+            <i class="fab fa-github"></i> Github: <a target="_blank" href="https://github.com/ntrung1008">ntrung1008</a>
           </p>
           <p>
             Portfolio: <a target="_blank" href="https://ntrung1008.github.io">ntrung1008.github.io</a>
@@ -101,7 +105,7 @@
           <h5>Angelic Phan</h5>
           <img src="../images/angelic.jpeg" class="creator-img" alt="img of angelic">
           <p>
-            Github: <a target="_blank" href="https://github.com/angelicphan">angelicphan</a>
+            <i class="fab fa-github"></i> Github: <a target="_blank" href="https://github.com/angelicphan">angelicphan</a>
           </p>
           <p>
             Portfolio: <a target="_blank" href="https://angelicphan.github.io">angelicphan.github.io</a>
@@ -120,16 +124,6 @@
             <h5 class="d-25 w-25 carousel-img-title">Flappy Bird</h5>
             <img class="d-25 w-25 carousel-img" src="../images/bird.gif" alt="Flappy bird"/>
           </div>
-          <!--Tic-tac-toe
-          <div class="carousel-item">
-            Tic-tac-toe gif
-            <img class="d-block w-100" src="" alt="Tic-tac-toe" />
-          </div>
-          Snake
-          <div class="carousel-item">
-            Snake gif
-            <img class="d-block w-100" src="" alt="Snake" />
-          </div>-->
           <!--Space Invaders!-->
           <div class="carousel-item" onclick="toggleClasses('#space-invaders-page')" onmouseover="carouselTitleColorChange()">
             <!--Space Invaders! gif-->
@@ -177,23 +171,6 @@
     </div>
   </section>
   <!--FLAPPY BIRD END-->
-  <!--TIC TAC TOE START-->
-  <section class="container-fluid invisible" id="tic-tac-toe-page">
-    <p>
-      Tic tac toe
-    </p>
-    <div class="game-layout">
-      <div class="game">
-        <!--tic tac toe canvas-->
-      </div>
-      <div class="instructions">
-        <h4>How to Play</h4>
-        <ul>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <!--TIC TAC TOE END-->
   <!--SNAKE START-->
   <section class="container-fluid invisible" id="snake-page">
     <p>
@@ -207,7 +184,19 @@
       <div class="instructions">
         <h4>How to Play</h4>
         <ul>
-        </ul>
+          <li>
+              <i class="far fa-caret-square-up"> to move up</i>
+            </li>
+            <li>
+              <i class="far fa-caret-square-down"> to move down</i>
+            </li>
+            <li>
+              <i class="far fa-caret-square-left"> to move left</i>
+            </li>
+            <li>
+              <i class="far fa-caret-square-right"> to move right</i>
+            </li>
+      </ul>
       </div>
     </div>
   </section>
@@ -233,6 +222,9 @@
           </li>
           <li>
             <i class="far fa-caret-square-right"> to move right</i>
+          </li>
+          <li>
+            "x" to shoot
           </li>
         </ul>
       </div>
@@ -391,18 +383,6 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          id="tic-tac-toe-tab"
-          data-toggle="tab"
-          href="#tic-tac-toe-scoreboard"
-          role="tab"
-          aria-controls="tic-tac-toe-scoreboard"
-          aria-selected="false"
-          >Tic Tac Toe</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
           id="snake-tab"
           data-toggle="tab"
           href="#snake-scoreboard"
@@ -453,41 +433,6 @@
               <th scope="row">2</th>
               <td>random player 2</td>
               <td>100</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--Tic Tac Toe Scoreboard-->
-      <div
-        class="tab-pane fade show"
-        id="tic-tac-toe-scoreboard"
-        role="tabpanel"
-        aria-labelledby="tic-tac-toe-scoreboard"
-      >
-        <table class="table table-hover">
-          <h4 class="table-heading">Tic-Tac-Toe Highscores</h4>
-          <thead>
-            <tr class="even-rows">
-              <th>#</th>
-              <th>Username</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="odd-rows">
-              <th scope="row">1</th>
-              <td>rando player 1</td>
-              <td>593400</td>
-            </tr>
-            <tr class="even-rows">
-              <th scope="row">2</th>
-              <td>rando player 2</td>
-              <td>43200</td>
-            </tr>
-            <tr class="odd-rows">
-              <th scope="row">3</th>
-              <td>rando player 3</td>
-              <td>200</td>
             </tr>
           </tbody>
         </table>
@@ -565,27 +510,16 @@
     <section class="user-account-info">
        <!--User Activity Start-->
     <Section class="user-activity">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped" id="user-activity-table">
           <h4 class="table-heading">User Activity</h4>
           <thead>
-            <tr class="even-rows">
-              <th>Timestamp</th>
-              <th>Game</th>
-              <th>Score</th>
+            <tr>
+            <!--<tr class="even-rows">-->
+              <th data-field="Timestamp">Timestamp</th>
+              <th data-field="Game">Game</th>
+              <th data-field="Score">Score</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="odd-rows">
-              <td>Nov. 4, 2019 3:24pm</td>
-              <td>Flappy Bird</td>
-              <td>34</td>
-            </tr>
-            <tr class="even-rows">
-              <td>Oct. 29, 2019 12:45pm</td>
-              <td>Space Invaders</td>
-              <td>100</td>
-            </tr>
-          </tbody>
         </table>
       </Section>
       <!--User Activity End-->
@@ -594,13 +528,13 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Account Info</h4>
-            <p class="card-text">
+            <p class="card-text" id="account-username">
               Username:
             </p>
-            <p class="card-text">
+            <p class="card-text" id="account-name">
               Name:
             </p>
-            <p class="card-text">
+            <p class="card-text" id="account-email">
               Email:
             </p>
             <button
@@ -617,9 +551,10 @@
       <!--User Info End-->
       <!--User Highscores Start-->
       <section class="user-highscores">
-        <table class="table table-hover">
+        <table class="table table-hover" id="user-highscores-table">
           <h4 class="table-heading">Highscores</h4>
           <thead>
+            <!--<tr class="even-rows">-->
             <tr class="even-rows">
               <th>Game</th>
               <th>Score</th>
@@ -628,19 +563,15 @@
           <tbody>
             <tr class="odd-rows">
               <td>Flappy Bird</td>
-              <td>34</td>
-            </tr>
-            <tr class="even-rows">
-              <td>Tic-Tac-Toe</td>
-              <td>3</td>
+              <td id="bird_score"></td>
             </tr>
             <tr class="odd-rows">
               <td>Snake</td>
-              <td>1352</td>
+              <td id="snake_score"></td>
             </tr>
             <tr class="even-rows">
               <td>Space Invaders</td>
-              <td>4334</td>
+              <td id="invaders_score"></td>
             </tr>
           </tbody>
         </table>
@@ -651,7 +582,7 @@
   <!--ACCOUNT INFO END-->
   <!--Footer-->
   <footer class="footer">
-    Footer
+    ATAC Arcade <i class="far fa-copyright"></i> 2019 
   </footer>
   </body>
 </html>
