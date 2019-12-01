@@ -41,8 +41,8 @@ app.get('/', (err, res) => {
 });
 
 app.post('/user/login', (request, response) => {
-	console.log('POST /')
-	console.log(request.body)
+	console.log('POST /');
+	console.log(request.body);
 
 	let username = request.body.username;
 	let password = request.body.password;
@@ -77,7 +77,39 @@ app.post('/user/create', (request, response) => {
 				  "password": password,
 		          "name": name,
 		          "email": email,
-	              "user_activity": []}
+	              "user_activity": []};
+
+
+    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function (err, db) {
+
+        db.db("atac").collection("users", function (err, collection) {
+
+        	collection.insertOne(newDoc, function(err, result) {
+
+        		console.log(result);
+
+				response.send(newDoc);
+
+				db.close();
+	    	});
+		});
+    });
+});
+
+app.post('/user/update/score', (request, response) => {
+	console.log('POST /');
+	console.log(request.body);
+
+	let username = request.body.username;
+	let password = request.body.password;
+	let name = request.body.name;
+	let email = request.body.email;
+
+	let newDoc = {"username": username,
+				  "password": password,
+		          "name": name,
+		          "email": email,
+	              "user_activity": []};
 
 
     MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function (err, db) {
