@@ -32,7 +32,7 @@ app.options("*", function(req, res) {
   res.send(200);
 });
 
-server.listen(portprocess.env.PORT || 3000, err => {
+server.listen(3000, err => {
   if (err) {
     throw err;
   }
