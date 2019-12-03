@@ -280,6 +280,10 @@ section {
 }
 
 .visible {
+  display: block;
+}
+
+.visible-button {
   display: inline;
 }
 

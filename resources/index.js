@@ -1,10 +1,54 @@
+let currentPage = "#home-page";
+let oldGame = document.createElement("script");
+oldGame.type = "text/javascript";
+oldGame.src = "";
+let oldGameSrc = false;
 let USERNAME = "";
+
+let gameScripts = [
+  ["#flappy-bird-page", "../bird.js"],
+  ["#space-invaders-page", "../shooter.js"],
+  ["#snake-page", "../snake.js"]
+];
 
 let gameScores = [
   ["Flappy Bird", "0", "#bird_score"],
   ["Snake", "0", "#snake_score"],
   ["Space Invaders", "0", "#invaders_score"]
 ];
+
+/* This function changes page display based on which menu
+   item the user selects */
+let toggleClasses = function(nextPage) {
+  /*Toggle pages*/
+  document.querySelector(currentPage).className = "container-fluid invisible";
+  document.querySelector(nextPage).className = "container-fluid visible";
+  /*Run corresponding game script if any and remove last game script if any*/
+  var newGame = document.createElement("script");
+  newGame.type = "text/javascript";
+  newGame.src = "";
+  let newGameSrc = false;
+  let gameScriptsLength = gameScripts.length;
+  for (let i = 0; i < gameScriptsLength; i += 1) {
+    if (nextPage == gameScripts[i][0]) {
+      newGame.src = gameScripts[i][1];
+      newGameSrc = true;
+    }
+  }
+  if (newGameSrc) {
+    if (oldGameSrc) {
+      document.body.removeChild(oldGame);
+    }
+    document.body.appendChild(newGame);
+    oldGame = newGame;
+    oldGameSrc = true;
+  }
+  /*Update current page value*/
+  currentPage = nextPage;
+  /*Reset form values*/
+  $(".form-control").val("");
+  document.querySelector(".form-control").className = "form-control";
+};
 
 let populateScoreboardsInfo = function() {};
 
@@ -13,7 +57,7 @@ let updateUserActivityAndScores = function(activity) {
   let url = "http://localhost:3000/user/update/score";
   console.log(url);
   let request_body = {
-    user_activity: activity
+    "user_activity": activity
   };
 
   let fetch_obj = {
@@ -31,6 +75,7 @@ let updateUserActivityAndScores = function(activity) {
       console.log("Successfully updated DB");
     }
   });
+
 
   //update activity table
   let userActivity = {
@@ -91,9 +136,11 @@ let unpopulateAccountInfo = function() {
 /*Make the Account Info page visible*/
 let makeAccountPageVisible = function() {
   /*Make Account Info Page visible*/
-  document.querySelector("#account-info-nav").className = "visible";
-  document.querySelector("#login-nav").className = "invisible";
-  window.location.pathname = "/account.html";
+  document.querySelector("#account-info-nav").className =
+    "btn btn-secondary btn-sm visible-button";
+  document.querySelector("#login-nav").className =
+    "btn btn-secondary btn-sm invisible";
+  toggleClasses("#account-info-page");
 };
 
 /* This function allows a user to login to their account*/
@@ -136,9 +183,11 @@ let signIn = function(username, password) {
 /* logs the user out of the account*/
 let signOut = function() {
   /*Make Account Info Page invisible*/
-  document.querySelector("#login-nav").className = "visible";
-  document.querySelector("#account-info-nav").className = "invisible";
-  window.location.pathname = "/index.html";
+  document.querySelector("#login-nav").className =
+    "btn btn-secondary btn-sm visible-button";
+  document.querySelector("#account-info-nav").className =
+    "btn btn-secondary btn-sm invisible";
+  toggleClasses("#home-page");
   /*Remove user info from account info page*/
   unpopulateAccountInfo();
 };
@@ -261,4 +310,3 @@ let carouselTitleColorChange = function() {
     $(".carousel-item").css("cursor", "default");
   });
 };
-
