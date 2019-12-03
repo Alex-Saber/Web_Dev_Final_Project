@@ -310,3 +310,7 @@ let carouselTitleColorChange = function() {
     $(".carousel-item").css("cursor", "default");
   });
 };
+
+let startGame = function(gameName) {
+
+};
