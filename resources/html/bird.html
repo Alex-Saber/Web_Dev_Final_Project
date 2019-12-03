@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ATAC Arcade</title>
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>-->
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
+    ></script>
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--bootstrapTable-->
+    <link
+      href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <!--Our own scripts/files-->
+    <script type="text/javascript" src="../index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/atac-arcade.css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <!--Header-->
+    <header class="header">
+      <h1 class="title">ATAC Arcade</h1>
+      <div>
+        <nav class="menu">
+          <a id="home-nav" href="index.html">Home</a> |
+          <a id="flappy-bird-nav" href="bird.html"><mark>Flappy Bird</mark></a>
+          | <a id="snake-nav" href="snake.html">Snake</a> |
+          <a id="space-invaders-nav" href="shooter.html">Space Invaders!</a> |
+          <a id="scoreboards-nav" href="scoreboards.html">Scoreboards</a> |
+          <a id="login-nav" class="visible" href="login.html">Login</a> |
+          <a id="account-info-nav" class="invisible" href="account.html"
+            >Account</a
+          >
+        </nav>
+      </div>
+    </header>
+    <!--FLAPPY BIRD START-->
+    <section class="container-fluid" id="flappy-bird-page">
+      <div class="game-layout">
+        <div class="game">
+          <canvas
+            class="myCanvas"
+            id="flappy-canvas"
+            width="280"
+            height="500"
+          ></canvas>
+        </div>
+        <div class="instructions">
+          <h4>How to Play</h4>
+          <ul>
+            <li>
+              <i class="far fa-caret-square-up"> to jump</i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!--FLAPPY BIRD END-->
+    <footer class="footer">
+      ATAC Arcade <i class="far fa-copyright"></i> 2019
+    </footer>
+  </body>
+  <sciprt>
+    <script type="text/javascript" src="../bird.js"></script>
+  </sciprt>
+</html>
