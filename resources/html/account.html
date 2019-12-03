@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ATAC Arcade</title>
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>-->
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
+    ></script>
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--bootstrapTable-->
+    <link
+      href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <!--Our own scripts/files-->
+    <script type="text/javascript" src="../index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/atac-arcade.css"
+      media="screen"
+    />
+  </head>
+  <body>
+    <!--Header-->
+    <header class="header">
+      <h1 class="title">ATAC Arcade</h1>
+      <div>
+        <nav class="menu">
+          <a id="home-nav" href="index.html">Home</a> |
+          <a id="flappy-bird-nav" href="bird.html">Flappy Bird</a> |
+          <a id="snake-nav" href="snake.html">Snake</a> |
+          <a id="space-invaders-nav" href="shooter.html">Space Invaders!</a> |
+          <a id="scoreboards-nav" href="scoreboards.html">Scoreboards</a> |
+          <a id="login-nav" class="visible" href="login.html">Login</a> |
+          <a id="account-info-nav" class="invisible" href="account.html"
+            ><mark>Account</mark></a
+          >
+        </nav>
+      </div>
+    </header>
+    <!--ACCOUNT INFO START-->
+    <section class="container-fluid" id="account-info-page">
+      <section class="user-account-info">
+        <!--User Activity Start-->
+        <section class="user-activity">
+          <table
+            class="table table-hover table-striped"
+            id="user-activity-table"
+          >
+            <h4 class="table-heading">User Activity</h4>
+            <thead>
+              <tr>
+                <!--<tr class="even-rows">-->
+                <th data-field="Timestamp">Timestamp</th>
+                <th data-field="Game">Game</th>
+                <th data-field="Score">Score</th>
+              </tr>
+            </thead>
+          </table>
+        </section>
+        <!--User Activity End-->
+        <!--User Info Start-->
+        <section class="user-info">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Account Info</h4>
+              <p class="card-text" id="account-username">
+                Username:
+              </p>
+              <p class="card-text" id="account-name">
+                Name:
+              </p>
+              <p class="card-text" id="account-email">
+                Email:
+              </p>
+              <button
+                id="logout-button"
+                type="button"
+                class="btn btn-secondary btn-sm"
+                onclick="signOut()"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </section>
+        <!--User Info End-->
+        <!--User Highscores Start-->
+        <section class="user-highscores">
+          <table class="table table-hover" id="user-highscores-table">
+            <h4 class="table-heading">Highscores</h4>
+            <thead>
+              <!--<tr class="even-rows">-->
+              <tr class="even-rows">
+                <th>Game</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd-rows">
+                <td>Flappy Bird</td>
+                <td id="bird_score"></td>
+              </tr>
+              <tr class="odd-rows">
+                <td>Snake</td>
+                <td id="snake_score"></td>
+              </tr>
+              <tr class="even-rows">
+                <td>Space Invaders</td>
+                <td id="invaders_score"></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <!--User Highscores End-->
+      </section>
+    </section>
+    <!--ACCOUNT INFO END-->
+    <!--Footer-->
+    <footer class="footer">
+      ATAC Arcade <i class="far fa-copyright"></i> 2019
+    </footer>
+  </body>
+</html>
