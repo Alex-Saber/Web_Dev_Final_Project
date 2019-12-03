@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ATAC Arcade</title>
+    <!--JQuery-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>-->
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"
+    ></script>
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--bootstrapTable-->
+    <link href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <!--Our own scripts/files-->
+    <script type="text/javascript" src="../index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/atac-arcade.css"
+      media="screen"
+    />
+  </head>
+  <body>
+  <!--Header-->
+  <header class="header">
+    <h1 class="title">ATAC Arcade</h1>
+    <div>
+      <nav class="menu">
+        <a id="home-nav" href="index.html">Home</a> |
+        <a id="flappy-bird-nav" href="bird.html">Flappy Bird</a> |
+        <a id="snake-nav" href="snake.html">Snake</a> |
+        <a id="space-invaders-nav" href="shooter.html"><mark>Space Invaders!</mark></a> |
+        <a id="scoreboards-nav" href="scoreboards.html">Scoreboards</a> |
+        <a id="login-nav" class="visible" href="login.html">Login</a> |
+        <a id="account-info-nav" class="invisible" href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+  <!--SPACE INVADERS START-->
+  <section class="container-fluid" id="space-invaders-page">
+    <div class="game-layout">
+      <div class="game">
+        <canvas class="myCanvas" id="invaders-canvas" width="600" height="600"></canvas>
+      </div>
+      <div class="instructions">
+        <h4>How to Play</h4>
+        <ul>
+          <li>
+            <i class="far fa-caret-square-up"> to move up</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-down"> to move down</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-left"> to move left</i>
+          </li>
+          <li>
+            <i class="far fa-caret-square-right"> to move right</i>
+          </li>
+          <li>
+            "x" to shoot
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  </section>
+  <!--SPACE INVADERS END-->
+  <!--Footer-->
+  <footer class="footer">
+    ATAC Arcade <i class="far fa-copyright"></i> 2019 
+  </footer>
+  </body>
+  <sciprt>
+    <script type="text/javascript" src="../shooter.js"></script>
+  </sciprt>
+</html>
