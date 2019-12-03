@@ -310,3 +310,4 @@ let carouselTitleColorChange = function() {
     $(".carousel-item").css("cursor", "default");
   });
 };
+
