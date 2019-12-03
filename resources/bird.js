@@ -48,6 +48,7 @@ function playBird() {
   document.addEventListener("keyup", restart);
   function restart(event) {
     if (event.keyCode === 13) {
+      bird_score_update = false;
       return 1;
       //window.location.reload(false);
     }
