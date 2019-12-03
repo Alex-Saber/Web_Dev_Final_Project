@@ -54,11 +54,10 @@ let populateScoreboardsInfo = function() {};
 
 let updateUserActivityAndScores = function(activity) {
   //write activity to db
-  /*let url = "http://localhost:3000/user/update";
+  let url = "http://localhost:3000/user/update/score";
   console.log(url);
   let request_body = {
-    username: username,
-    password: password
+    "user_activity": activity
   };
 
   let fetch_obj = {
@@ -68,7 +67,16 @@ let updateUserActivityAndScores = function(activity) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(request_body)
-  }; */
+  };
+
+  fetch(url, fetch_obj).then(function(response) {
+    console.log(response.status);
+    if (response.status === 200) {
+      console.log("Successfully updated DB");
+    }
+  });
+
+
   //update activity table
   let userActivity = {
     Timestamp: activity.timestamp,

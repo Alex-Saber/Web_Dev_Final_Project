@@ -151,7 +151,10 @@ function playBird() {
           score: score
           // username: USERNAME
         };
-        updateUserActivityAndScores(activity);
+        if (bird_score_update === false) {
+          updateUserActivityAndScores(activity);
+          bird_score_update = true;
+        }
       }
       if (pause == true) {
         bird_y += gravity;
