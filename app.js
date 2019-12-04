@@ -144,7 +144,12 @@ app.post("/update/scoreboards", (request, response) => {
 
   let user_activity = request.body;
 
-  user_activity.Username = global_username;
+  if (global_username !== null) {
+      user_activity.Username = global_username;
+  }
+  else {
+      user_activity.Username = "Anonymous";
+  }
 
   console.log(user_activity);
   MongoClient.connect(
