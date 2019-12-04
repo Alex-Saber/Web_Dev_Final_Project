@@ -369,10 +369,6 @@ let carouselTitleColorChange = function() {
   });
 };
 
-let Status = function(value, row, index) {
-  return index;
-};
-
 //**********************************  Run methods  ********************************************************
 window.addEventListener("keydown", arrowKeysHandler, false);
 let startGame = function(gameName) {};
