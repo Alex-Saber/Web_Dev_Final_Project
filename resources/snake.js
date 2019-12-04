@@ -153,34 +153,12 @@ let snake = function() {
           canvas.width / 2 - 100,
           canvas.height / 2 + 70
         );
-        /*if (snake_score_update == false) {
-                  let url = "http://localhost:3000/user/update/score";
-                  let request_body = {
-                    name: "Snake game",
-                    score: score
-                  };
-                  let fetch_obj = {
-                    method: "POST",
-                    headers: {
-                      Accept: "application/json",
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(request_body)
-                  };
-                  fetch(url, fetch_obj).then(function(response) {
-                    response.json().then(data => {
-                      console.log(data);
-                    });
-                  });
-                  snake_score_update = true;
-                }*/
         if (snake_score_update == false) {
           let time = new Date();
           let activity = {
             Timestamp: time,
             Game: "Snake",
             Score: score
-            //username: USERNAME
           };
           updateUserActivityAndScores(activity);
           snake_score_update = true;

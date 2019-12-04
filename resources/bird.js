@@ -120,33 +120,11 @@ let bird = function() {
             canvas.width / 2 - 100,
             canvas.height / 2 + 90
           );
-          /*if (bird_score_update == false) {
-                      let url = "http://localhost:3000/user/update/score";
-                      let request_body = {
-                        name: "Bird game",
-                        score: score
-                      };
-                      let fetch_obj = {
-                        method: "POST",
-                        headers: {
-                          Accept: "application/json",
-                          "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(request_body)
-                      };
-                      fetch(url, fetch_obj).then(function(response) {
-                        response.json().then(data => {
-                          console.log(data);
-                        });
-                      });
-                      bird_score_update = true;
-                    }*/
           let time = new Date();
           let activity = {
             Timestamp: time,
             Game: "Flappy Bird",
             Score: score
-            // username: USERNAME
           };
           if (bird_score_update === false) {
             updateUserActivityAndScores(activity);
