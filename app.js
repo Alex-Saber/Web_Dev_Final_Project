@@ -128,6 +128,27 @@ app.post("/user/update/score", (request, response) => {
     });
 });
 
+app.post("/update/scoreboards", (request, response) => {
+    console.log("POST /");
+    console.log(request.body);
+
+    let user_activity = request.body;
+
+    user_activity.username = global_username;
+
+    console.log(user_activity);
+    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function(err, db) {
+
+        db.db("atac").collection("activities", function(err, collection) {
+            collection.insertOne(user_activity,
+                function() {
+                 response.send({"Success":"Updated user activities"});
+                 db.close();
+            });
+        });
+    });
+});
+
 app.post("/user", (request, response) => {
     console.log("POST /");
     console.log(request.body);

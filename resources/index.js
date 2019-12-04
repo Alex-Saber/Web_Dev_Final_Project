@@ -56,9 +56,7 @@ let updateUserActivityAndScores = function(activity) {
   //write activity to db
   let url = "http://localhost:3000/user/update/score";
   console.log(url);
-  let request_body = {
-    "user_activity": activity
-  };
+  let request_body = activity
 
   let fetch_obj = {
     method: "POST",
@@ -76,6 +74,11 @@ let updateUserActivityAndScores = function(activity) {
     }
   });
 
+  let url2 = "http://localhost:3000/update/scoreboards";
+
+  fetch(url2, fetch_obj).then(function (response) {
+      console.log(response.status);
+  });
 
   //update activity table
   let userActivity = {
