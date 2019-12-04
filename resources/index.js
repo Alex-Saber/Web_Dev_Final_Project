@@ -98,6 +98,7 @@ let populateScoreboardsInfo = function() {
     scoreboards[i][1] = getScores(scoreboards[i][2]);
     console.log("test: ", scoreboards[i][1]);
     $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
+    $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
   }
 };
 
@@ -108,6 +109,7 @@ let populateThisScoreboardInfo = function(game) {
     if (scoreboards[i][2] == game) {
       scoreboards[i][1] = getScores(scoreboards[i][2]);
       $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
+      $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
     }
   }
 };
@@ -178,12 +180,8 @@ let populateAccountInfo = function(userInfo) {
   document.querySelector("#account-username").textContent += userInfo.username;
   document.querySelector("#account-name").textContent += userInfo.name;
   document.querySelector("#account-email").textContent += userInfo.email;
-  scores = [];
-  for (var act in userInfo.user_activity) {
-    scores.push(userInfo.user_activity[act]);
-  }
   $("#user-activity-table").bootstrapTable({ data: userInfo.user_activity });
-  $("#user-activity-table").bootstrapTable("load", scores);
+  $("#user-activity-table").bootstrapTable("load", userInfo.user_activity);
   let length = userInfo.user_activity.length;
   let len = gameScores.length;
   for (let i = 0; i < length; ++i) {
