@@ -44,15 +44,13 @@ let getScores = function(game, i) {
     console.log(response.status);
     if (response.status === 200) {
       response.json().then(data => {
-        console.log("sixth: scores fetched");
+        console.log("scores fetched");
         var index = 1;
         for (var score in data) {
           data[score].Status = index;
           ++index;
         }
         scoreboards[i][1] = data;
-        console.log(scoreboards[i][2]);
-        console.log("score: ", scoreboards[i][1]);
         $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
         $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
       });
@@ -80,16 +78,6 @@ let populateThisScoreboardInfo = function(game) {
     }
   }
 };
-/*let populateThisScoreboardInfo = function(activity) {
-  let len = scoreboards.length;
-  for (let i = 0; i < len; ++i) {
-    if (scoreboards[i][2] == activity.Game) {
-      scoreboards[i][1].push(activity);
-      $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
-      $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
-    }
-  }
-};*/
 
 /*clear the particular scoreboard's data*/
 let unpopulateThisScoreboardInfo = function(game) {
@@ -134,11 +122,6 @@ let updateUserActivityAndScores = function(activity) {
   });
 
   //update activity table
-  /*let userActivity = {
-    Timestamp: activity.Timestamp,
-    Game: activity.Game,
-    Score: activity.Score
-  };*/
   $("#user-activity-table").bootstrapTable("append", activity);
   //update highscores table
   let len = gameScores.length;
@@ -152,6 +135,7 @@ let updateUserActivityAndScores = function(activity) {
     }
   }
   //update scoreboard
+  console.log("update scoreboard");
   unpopulateThisScoreboardInfo(activity.Game);
   populateThisScoreboardInfo(activity.Game);
 };
