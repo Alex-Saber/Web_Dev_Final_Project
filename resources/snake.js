@@ -13,6 +13,15 @@ let snake = function() {
     var food_x = 120;
     var food_y = 120;
 
+    var eat_sound = new Audio();
+    eat_sound.src = "../sound/snake eat.wav";
+
+    var die_sound = new Audio();
+    die_sound.src = "../sound/snake die.wav";
+
+    var nitro_sound = new Audio();
+    nitro_sound.src = "../sound/snake nitro.mp3";
+
     var food_array = [];
     var background = new Image();
     background.src = "../images/grass.png";
@@ -38,8 +47,10 @@ let snake = function() {
       }
       if (e.keyCode == 88) {
         if (nitro_mode == false) {
+          nitro_sound.play();
           nitro_mode = true;
         } else if (nitro_mode == true) {
+          nitro_sound.pause();
           nitro_mode = false;
         }
       }
@@ -97,6 +108,7 @@ let snake = function() {
           if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             dead = true;
             console.log("eat self");
+            die_sound.play();
           }
         }
         //counter = 0;
@@ -120,6 +132,7 @@ let snake = function() {
           // food_x = new_head_x;
           // food_y = new_head_y;
           score += 1;
+          eat_sound.play();
         } else {
           snake.pop();
         }
@@ -141,6 +154,7 @@ let snake = function() {
           snake[0].y >= canvas.height
         ) {
           dead = true;
+          die_sound.play();
         }
       } else {
         ctx.font = "bold 40px Arial";

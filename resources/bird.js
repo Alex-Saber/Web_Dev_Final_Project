@@ -18,8 +18,21 @@ let bird = function() {
     var BotPipe = new Image();
     BotPipe.src = "../images/pipeSouth.png";
 
-    //var GameOver = new Audio();
-    //GameOver.src = "../sound/OHH.mp3";
+    var jump_sound = new Audio();
+    jump_sound.src = "../sound/sfx_wing.wav";
+
+    var hit_sound = new Audio();
+    hit_sound.src = "../sound/sfx_hit.wav";
+
+    var die_sound = new Audio();
+    die_sound.src = "../sound/sfx_die.wav";
+
+    var score_sound = new Audio();
+    score_sound.src = "../sound/sfx_point.wav";
+
+    var cheer_sound = new Audio();
+    cheer_sound.src = "../sound/OHH.mp3";
+
     var bird_x = 10;
     var bird_y = 150;
     var score = 0;
@@ -37,6 +50,7 @@ let bird = function() {
       if (event.keyCode === 38) {
         if (jump === false) {
           jump = true;
+          jump_sound.play();
         }
       }
     }
@@ -89,7 +103,14 @@ let bird = function() {
 
         if (pipe_array[i].x === 0) {
           score++;
+          if (pause == false) {
+            score_sound.play();
+          }
+          if (score % 10 == 0) {
+            cheer_sound.play();
+          }
         }
+        sound_play = false;
 
         // //Collision logic
         if (
@@ -129,9 +150,13 @@ let bird = function() {
           if (bird_score_update === false) {
             updateUserActivityAndScores(activity);
             bird_score_update = true;
+            hit_sound.play();
           }
         }
         if (pause == true) {
+          if (bird_y <= canvas.height) {
+            die_sound.play();
+          }
           bird_y += gravity;
           gravity += 0.1;
           if (bird_y >= canvas.height) {
