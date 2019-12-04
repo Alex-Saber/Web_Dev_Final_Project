@@ -3,7 +3,6 @@ let oldGame = document.createElement("script");
 oldGame.type = "text/javascript";
 oldGame.src = "";
 let oldGameSrc = false;
-let USERNAME = "";
 
 let gameScripts = [
   ["#flappy-bird-page", "../bird.js"],
@@ -15,6 +14,13 @@ let gameScores = [
   ["Flappy Bird", "0", "#bird_score"],
   ["Snake", "0", "#snake_score"],
   ["Space Invaders", "0", "#invaders_score"]
+];
+
+//The scoreboard's data and table id and game name
+let scoreboards = [
+  ["#flappy-bird-scoreboard-table", [], "Flappy Bird"],
+  ["snake-scoreboard-table", [], "Snake"],
+  ["space-invaders-scoreboard-table", [], "Space Invaders"]
 ];
 
 /* This function changes page display based on which menu
@@ -50,13 +56,80 @@ let toggleClasses = function(nextPage) {
   document.querySelector(".form-control").className = "form-control";
 };
 
-let populateScoreboardsInfo = function() {};
+/*get the highscores and rankings for every player from the particular game*/
+let getScores = function(game) {
+  console.log("third: " + new Date());
+  //Search db for each user's high score for the game passed in
+  let scores = [];
+  let url = "http://localhost:3000/activities/" + game + "/";
+  console.log(url);
 
+  let fetch_obj = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+  console.log("fourth");
+  fetch(url, fetch_obj).then(function(response) {
+    console.log(response.status);
+    if (response.status === 200) {
+      console.log("fifth");
+      response.json().then(data => {
+        console.log("sixth: scores fetched");
+        console.log("data: ", data);
+        scores = data;
+        return scores;
+      });
+    } else if (response.status === 401) {
+      console.log("scores not fetched");
+      return scores;
+    }
+  });
+};
+
+/*load all the scoreboard's data*/
+let populateScoreboardsInfo = function() {
+  console.log("first");
+  let len = scoreboards.length;
+  for (let i = 0; i < len; ++i) {
+    console.log("second: " + i + " game: " + scoreboards[i][2]);
+    scoreboards[i][1] = getScores(scoreboards[i][2]);
+    console.log("test: ", scoreboards[i][1]);
+    $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
+  }
+};
+
+/*load the particular scoreboard's data*/
+let populateThisScoreboardInfo = function(game) {
+  let len = scoreboards.length;
+  for (let i = 0; i < len; ++i) {
+    if (scoreboards[i][2] == game) {
+      scoreboards[i][1] = getScores(scoreboards[i][2]);
+      $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
+    }
+  }
+};
+
+/*clear the particular scoreboard's data*/
+let unpopulateThisScoreboardInfo = function(game) {
+  let len = scoreboards.length;
+  for (let i = 0; i < len; ++i) {
+    if (scoreboards[i][2] == game) {
+      scoreboards[i][1] = [];
+      $(scoreboards[i][0]).bootstrapTable("removeAll");
+    }
+  }
+};
+
+/*Update user activity and scores if new highscore, and update scoreboards
+if new highscore make them go up in ranking*/
 let updateUserActivityAndScores = function(activity) {
   //write activity to db
   let url = "http://localhost:3000/user/update/score";
   console.log(url);
-  let request_body = activity
+  let request_body = activity;
 
   let fetch_obj = {
     method: "POST",
@@ -76,15 +149,15 @@ let updateUserActivityAndScores = function(activity) {
 
   let url2 = "http://localhost:3000/update/scoreboards";
 
-  fetch(url2, fetch_obj).then(function (response) {
-      console.log(response.status);
+  fetch(url2, fetch_obj).then(function(response) {
+    console.log(response.status);
   });
 
   //update activity table
   let userActivity = {
-    Timestamp: activity.timestamp,
-    Game: activity.game,
-    Score: activity.score
+    Timestamp: activity.Timestamp,
+    Game: activity.Game,
+    Score: activity.Score
   };
   $("#user-activity-table").bootstrapTable("append", userActivity);
   //update highscores table
@@ -102,11 +175,15 @@ let updateUserActivityAndScores = function(activity) {
 
 /*Populate the Account Info page with the user's information*/
 let populateAccountInfo = function(userInfo) {
-  USERNAME = userInfo.username;
   document.querySelector("#account-username").textContent += userInfo.username;
   document.querySelector("#account-name").textContent += userInfo.name;
   document.querySelector("#account-email").textContent += userInfo.email;
+  scores = [];
+  for (var act in userInfo.user_activity) {
+    scores.push(userInfo.user_activity[act]);
+  }
   $("#user-activity-table").bootstrapTable({ data: userInfo.user_activity });
+  $("#user-activity-table").bootstrapTable("load", scores);
   let length = userInfo.user_activity.length;
   let len = gameScores.length;
   for (let i = 0; i < length; ++i) {
@@ -128,7 +205,6 @@ let unpopulateAccountInfo = function() {
   document.querySelector("#account-name").textContent = "Name: ";
   document.querySelector("#account-email").textContent = "Email: ";
   let len = gameScores.length;
-  let blankData = [];
   $("#user-activity-table").bootstrapTable("removeAll");
   for (let s = 0; s < len; ++s) {
     gameScores[s][1] = "0";
@@ -148,6 +224,7 @@ let makeAccountPageVisible = function() {
 
 /* This function allows a user to login to their account*/
 let signIn = function(username, password) {
+  console.log("sign in");
   /*Auth*/
   // Send post request to server with username and password to handle database grabbing.
   // If the username or password is incorrect, display error message
@@ -174,7 +251,6 @@ let signIn = function(username, password) {
       // Fill account page with information from the post request.
       response.json().then(data => {
         populateAccountInfo(data);
-        populateScoreboardsInfo();
         makeAccountPageVisible();
       });
     } else if (response.status === 401) {
@@ -193,6 +269,7 @@ let signOut = function() {
   toggleClasses("#home-page");
   /*Remove user info from account info page*/
   unpopulateAccountInfo();
+  console.log("sign out");
 };
 
 let checkFormInput = function(id) {
@@ -301,8 +378,7 @@ let arrowKeysHandler = function(e) {
   }
 };
 
-window.addEventListener("keydown", arrowKeysHandler, false);
-
+/*Make the titles of the games on the hompage carousel visible links to the games*/
 let carouselTitleColorChange = function() {
   $(".carousel-item").on("mouseover", function() {
     $(".carousel-img-title").css("color", "rgb(109, 182, 250)");
@@ -314,6 +390,6 @@ let carouselTitleColorChange = function() {
   });
 };
 
-let startGame = function(gameName) {
-
-};
+//**********************************  Run methods  ********************************************************
+window.addEventListener("keydown", arrowKeysHandler, false);
+let startGame = function(gameName) {};
