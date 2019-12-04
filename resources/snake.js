@@ -13,6 +13,7 @@ let snake = function() {
     var food_x = 120;
     var food_y = 120;
 
+    var food_array = [];
     var background = new Image();
     background.src = "../images/grass.png";
 
@@ -22,6 +23,7 @@ let snake = function() {
     var delay = 5;
     var snake_score_update = false;
     var direction = "R";
+    var nitro_mode = false;
     document.addEventListener("keydown", movement);
 
     function movement(e) {
@@ -33,6 +35,13 @@ let snake = function() {
         direction = "R";
       } else if (e.keyCode == 40 && direction != "U") {
         direction = "D";
+      }
+      if (e.keyCode == 88) {
+        if (nitro_mode == false) {
+          nitro_mode = true;
+        } else if (nitro_mode == true) {
+          nitro_mode = false;
+        }
       }
     }
 
@@ -56,16 +65,32 @@ let snake = function() {
         var new_head_x = snake[0].x;
         var new_head_y = snake[0].y;
         if (direction == "L") {
-          new_head_x -= 5;
+          if (nitro_mode == true) {
+            new_head_x -= 20;
+          } else {
+            new_head_x -= 5;
+          }
         }
         if (direction == "R") {
-          new_head_x += 5;
+          if (nitro_mode == true) {
+            new_head_x += 20;
+          } else {
+            new_head_x += 5;
+          }
         }
         if (direction == "U") {
-          new_head_y -= 5;
+          if (nitro_mode == true) {
+            new_head_y -= 20;
+          } else {
+            new_head_y -= 5;
+          }
         }
         if (direction == "D") {
-          new_head_y += 5;
+          if (nitro_mode == true) {
+            new_head_y += 20;
+          } else {
+            new_head_y += 5;
+          }
         }
         //self collision logic
         for (var i = 1; i < snake.length; i++) {
@@ -97,6 +122,15 @@ let snake = function() {
           score += 1;
         } else {
           snake.pop();
+        }
+        if (nitro_mode == true) {
+          for (var i = 0; i < 10; i++) {
+            x = Math.floor(Math.random() * 25 + 2) * block;
+            y = Math.floor(Math.random() * 25 + 2) * block;
+            food_x = Math.floor(Math.random() * 25 + 2) * block;
+            food_y = Math.floor(Math.random() * 25 + 2) * block;
+            ctx.drawImage(food, x, y);
+          }
         }
 
         //game over logic
