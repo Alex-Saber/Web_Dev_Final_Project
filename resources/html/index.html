@@ -155,7 +155,8 @@
   <section class="container-fluid invisible" id="flappy-bird-page">
     <div class="game-layout">
       <div class="game">
-        <canvas class="myCanvas" id="flappy-canvas" width="280" height="500"></canvas>
+        <img class="visible" id="bird-gif" width="280" height="500" src="../images/bird.gif" alt="Flappy bird">
+        <canvas class="myCanvas invisible" id="flappy-canvas" width="280" height="500"></canvas>
       </div>
       <div class="instructions">
         <button class="btn btn-primary btn-lg" onclick="bird()">Start Game</button>
@@ -174,8 +175,8 @@
     <div class="game-layout">
 
       <div class="game">
-        <!--snake canvas-->
-        <canvas class="myCanvas" id="snake-canvas" width="600" height="600"></canvas>
+        <img class="visible" id="snake-gif" width="600" height="600" src="../images/snake.gif" alt="Snake">
+        <canvas class="myCanvas invisible" id="snake-canvas" width="600" height="600"></canvas>
       </div>
       <div class="instructions">
         <button class="btn btn-primary btn-lg" onclick="snake()">Start Game</button>
@@ -203,7 +204,8 @@
   <section class="container-fluid invisible" id="space-invaders-page">
     <div class="game-layout">
       <div class="game">
-        <canvas class="myCanvas" id="invaders-canvas" width="600" height="600"></canvas>
+        <img class="visible" id="shooter-gif" width="600" height="600" src="../images/shooter.gif" alt="Space Invaders">
+        <canvas class="myCanvas invisible" id="invaders-canvas" width="600" height="600"></canvas>
       </div>
       <div class="instructions">
         <button class="btn btn-primary btn-lg" onclick="shooter()">Start Game</button>
@@ -542,4 +544,10 @@
     ATAC Arcade <i class="far fa-copyright"></i> 2019 
   </footer>
   </body>
+  <!--Game scripts-->
+  <sciprt>
+    <script type="text/javascript" src="../bird.js"></script>
+    <script type="text/javascript" src="../snake.js"></script>
+    <script type="text/javascript" src="../shooter.js"></script>
+  </sciprt>
 </html>

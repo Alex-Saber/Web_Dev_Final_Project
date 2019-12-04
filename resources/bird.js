@@ -1,4 +1,8 @@
 let bird = function() {
+  let gif = document.querySelector("#bird-gif");
+  let bird_canvas = document.querySelector("#flappy-canvas");
+  gif.className = "invisible";
+  bird_canvas.className = "myCanvas";
   function playBird() {
     var canvas = document.getElementById("flappy-canvas");
     var ctx = canvas.getContext("2d");

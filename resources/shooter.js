@@ -1,4 +1,8 @@
 let shooter = function() {
+  let gif = document.querySelector("#shooter-gif");
+  let bird_canvas = document.querySelector("#invaders-canvas");
+  gif.className = "invisible";
+  bird_canvas.className = "myCanvas";
   let playShooter = function() {
     var canvas = document.getElementById("invaders-canvas");
     var ctx = canvas.getContext("2d");

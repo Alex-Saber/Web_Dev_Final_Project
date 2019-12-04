@@ -1,14 +1,4 @@
 let currentPage = "#home-page";
-let oldGame = document.createElement("script");
-oldGame.type = "text/javascript";
-oldGame.src = "";
-let oldGameSrc = false;
-
-let gameScripts = [
-  ["#flappy-bird-page", "../bird.js"],
-  ["#space-invaders-page", "../shooter.js"],
-  ["#snake-page", "../snake.js"]
-];
 
 let gameScores = [
   ["Flappy Bird", "0", "#bird_score"],
@@ -29,26 +19,6 @@ let toggleClasses = function(nextPage) {
   /*Toggle pages*/
   document.querySelector(currentPage).className = "container-fluid invisible";
   document.querySelector(nextPage).className = "container-fluid visible";
-  /*Run corresponding game script if any and remove last game script if any*/
-  var newGame = document.createElement("script");
-  newGame.type = "text/javascript";
-  newGame.src = "";
-  let newGameSrc = false;
-  let gameScriptsLength = gameScripts.length;
-  for (let i = 0; i < gameScriptsLength; i += 1) {
-    if (nextPage == gameScripts[i][0]) {
-      newGame.src = gameScripts[i][1];
-      newGameSrc = true;
-    }
-  }
-  if (newGameSrc) {
-    if (oldGameSrc) {
-      document.body.removeChild(oldGame);
-    }
-    document.body.appendChild(newGame);
-    oldGame = newGame;
-    oldGameSrc = true;
-  }
   /*Update current page value*/
   currentPage = nextPage;
   /*Reset form values*/

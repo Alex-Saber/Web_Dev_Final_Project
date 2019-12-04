@@ -1,4 +1,8 @@
 let snake = function() {
+  let gif = document.querySelector("#snake-gif");
+  let bird_canvas = document.querySelector("#snake-canvas");
+  gif.className = "invisible";
+  bird_canvas.className = "myCanvas";
   let playSnake = function() {
     var canvas = document.getElementById("snake-canvas");
     var ctx = canvas.getContext("2d");
