@@ -19,8 +19,8 @@ let gameScores = [
 //The scoreboard's data and table id and game name
 let scoreboards = [
   ["#flappy-bird-scoreboard-table", [], "Flappy Bird"],
-  ["snake-scoreboard-table", [], "Snake"],
-  ["space-invaders-scoreboard-table", [], "Space Invaders"]
+  ["#snake-scoreboard-table", [], "Snake"],
+  ["#space-invaders-scoreboard-table", [], "Space Invaders"]
 ];
 
 /* This function changes page display based on which menu
@@ -57,8 +57,7 @@ let toggleClasses = function(nextPage) {
 };
 
 /*get the highscores and rankings for every player from the particular game*/
-let getScores = function(game) {
-  console.log("third: " + new Date());
+let getScores = function(game, i) {
   //Search db for each user's high score for the game passed in
   let scores = [];
   let url = "http://localhost:3000/activities/" + game + "/";
@@ -71,34 +70,29 @@ let getScores = function(game) {
       "Content-Type": "application/json"
     }
   };
-  console.log("fourth");
   fetch(url, fetch_obj).then(function(response) {
     console.log(response.status);
     if (response.status === 200) {
-      console.log("fifth");
       response.json().then(data => {
         console.log("sixth: scores fetched");
-        console.log("data: ", data);
-        scores = data;
-        return scores;
+        scoreboards[i][1] = data;
+        console.log(scoreboards[i][2]);
+        console.log("score: ", scoreboards[i][1]);
+        $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
+        $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
       });
     } else if (response.status === 401) {
       console.log("scores not fetched");
-      return scores;
     }
   });
 };
 
 /*load all the scoreboard's data*/
 let populateScoreboardsInfo = function() {
-  console.log("first");
+  console.log("this game");
   let len = scoreboards.length;
   for (let i = 0; i < len; ++i) {
-    console.log("second: " + i + " game: " + scoreboards[i][2]);
-    scoreboards[i][1] = getScores(scoreboards[i][2]);
-    console.log("test: ", scoreboards[i][1]);
-    $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
-    $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
+    getScores(scoreboards[i][2], i);
   }
 };
 
@@ -107,12 +101,20 @@ let populateThisScoreboardInfo = function(game) {
   let len = scoreboards.length;
   for (let i = 0; i < len; ++i) {
     if (scoreboards[i][2] == game) {
-      scoreboards[i][1] = getScores(scoreboards[i][2]);
+      getScores(game, i);
+    }
+  }
+};
+/*let populateThisScoreboardInfo = function(activity) {
+  let len = scoreboards.length;
+  for (let i = 0; i < len; ++i) {
+    if (scoreboards[i][2] == activity.Game) {
+      scoreboards[i][1].push(activity);
       $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
       $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
     }
   }
-};
+};*/
 
 /*clear the particular scoreboard's data*/
 let unpopulateThisScoreboardInfo = function(game) {
@@ -128,7 +130,7 @@ let unpopulateThisScoreboardInfo = function(game) {
 /*Update user activity and scores if new highscore, and update scoreboards
 if new highscore make them go up in ranking*/
 let updateUserActivityAndScores = function(activity) {
-  //write activity to db
+  //write activity to user collection
   let url = "http://localhost:3000/user/update/score";
   console.log(url);
   let request_body = activity;
@@ -149,6 +151,7 @@ let updateUserActivityAndScores = function(activity) {
     }
   });
 
+  //write activity to activities collection
   let url2 = "http://localhost:3000/update/scoreboards";
 
   fetch(url2, fetch_obj).then(function(response) {
@@ -156,23 +159,26 @@ let updateUserActivityAndScores = function(activity) {
   });
 
   //update activity table
-  let userActivity = {
+  /*let userActivity = {
     Timestamp: activity.Timestamp,
     Game: activity.Game,
     Score: activity.Score
-  };
-  $("#user-activity-table").bootstrapTable("append", userActivity);
+  };*/
+  $("#user-activity-table").bootstrapTable("append", activity);
   //update highscores table
   let len = gameScores.length;
   for (let g = 0; g < len; ++g) {
     if (
-      userActivity.Game == gameScores[g][0] &&
-      gameScores[g][1] < userActivity.Score
+      activity.Game == gameScores[g][0] &&
+      gameScores[g][1] < activity.Score
     ) {
-      gameScores[g][1] = userActivity.Score;
+      gameScores[g][1] = activity.Score;
       document.querySelector(gameScores[g][2]).textContent = gameScores[g][1];
     }
   }
+  //update scoreboard
+  unpopulateThisScoreboardInfo(activity.Game);
+  populateThisScoreboardInfo(activity.Game);
 };
 
 /*Populate the Account Info page with the user's information*/
@@ -391,3 +397,4 @@ let carouselTitleColorChange = function() {
 //**********************************  Run methods  ********************************************************
 window.addEventListener("keydown", arrowKeysHandler, false);
 let startGame = function(gameName) {};
+populateScoreboardsInfo();

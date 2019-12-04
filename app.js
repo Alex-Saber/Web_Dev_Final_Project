@@ -188,7 +188,7 @@ app.get("/activities/:game", (request, response) => {
     "mongodb://localhost:27017",
     { useUnifiedTopology: true },
     function(err, db) {
-      db.db("atac").collection("activities", function(err, collection) {
+      /*db.db("atac").collection("activities", function(err, collection) {
         if (err) response.send(err);
         collection
           .aggregate([
@@ -200,11 +200,11 @@ app.get("/activities/:game", (request, response) => {
             response.json(data);
             db.close();
           });
-        /*.then(data => {
+        .then(data => {
             response.json(data);
-          });*/
-      });
-      /*db.db("atac").collection("activities", function(err, collection) {
+          });
+      });*/
+      db.db("atac").collection("activities", function(err, collection) {
         collection
           .find({ Game: request.params.game })
           .toArray(function(err, data) {
@@ -212,7 +212,7 @@ app.get("/activities/:game", (request, response) => {
             response.send(data);
             db.close();
           });
-      });*/
+      });
 
       //db.close();
     }
