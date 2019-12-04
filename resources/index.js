@@ -45,6 +45,11 @@ let getScores = function(game, i) {
     if (response.status === 200) {
       response.json().then(data => {
         console.log("sixth: scores fetched");
+        var index = 1;
+        for (var score in data) {
+          data[score].Status = index;
+          ++index;
+        }
         scoreboards[i][1] = data;
         console.log(scoreboards[i][2]);
         console.log("score: ", scoreboards[i][1]);
@@ -362,6 +367,10 @@ let carouselTitleColorChange = function() {
     $(".carousel-img-title").css("color", "rgb(61, 98, 219)");
     $(".carousel-item").css("cursor", "default");
   });
+};
+
+let Status = function(value, row, index) {
+  return index;
 };
 
 //**********************************  Run methods  ********************************************************
