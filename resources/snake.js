@@ -13,6 +13,16 @@ let snake = function() {
     var food_x = 120;
     var food_y = 120;
 
+    var eat_sound = new Audio();
+    eat_sound.src = "../sound/snake eat.wav";
+
+    var die_sound = new Audio();
+    die_sound.src = "../sound/snake die.wav";
+
+    var nitro_sound = new Audio();
+    nitro_sound.src = "../sound/snake nitro.mp3";
+
+    var food_array = [];
     var background = new Image();
     background.src = "../images/grass.png";
 
@@ -22,6 +32,7 @@ let snake = function() {
     var delay = 5;
     var snake_score_update = false;
     var direction = "R";
+    var nitro_mode = false;
     document.addEventListener("keydown", movement);
 
     function movement(e) {
@@ -33,6 +44,15 @@ let snake = function() {
         direction = "R";
       } else if (e.keyCode == 40 && direction != "U") {
         direction = "D";
+      }
+      if (e.keyCode == 88) {
+        if (nitro_mode == false) {
+          nitro_sound.play();
+          nitro_mode = true;
+        } else if (nitro_mode == true) {
+          nitro_sound.pause();
+          nitro_mode = false;
+        }
       }
     }
 
@@ -56,22 +76,39 @@ let snake = function() {
         var new_head_x = snake[0].x;
         var new_head_y = snake[0].y;
         if (direction == "L") {
-          new_head_x -= 5;
+          if (nitro_mode == true) {
+            new_head_x -= 20;
+          } else {
+            new_head_x -= 5;
+          }
         }
         if (direction == "R") {
-          new_head_x += 5;
+          if (nitro_mode == true) {
+            new_head_x += 20;
+          } else {
+            new_head_x += 5;
+          }
         }
         if (direction == "U") {
-          new_head_y -= 5;
+          if (nitro_mode == true) {
+            new_head_y -= 20;
+          } else {
+            new_head_y -= 5;
+          }
         }
         if (direction == "D") {
-          new_head_y += 5;
+          if (nitro_mode == true) {
+            new_head_y += 20;
+          } else {
+            new_head_y += 5;
+          }
         }
         //self collision logic
         for (var i = 1; i < snake.length; i++) {
           if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             dead = true;
             console.log("eat self");
+            die_sound.play();
           }
         }
         //counter = 0;
@@ -95,8 +132,18 @@ let snake = function() {
           // food_x = new_head_x;
           // food_y = new_head_y;
           score += 1;
+          eat_sound.play();
         } else {
           snake.pop();
+        }
+        if (nitro_mode == true) {
+          for (var i = 0; i < 10; i++) {
+            x = Math.floor(Math.random() * 25 + 2) * block;
+            y = Math.floor(Math.random() * 25 + 2) * block;
+            food_x = Math.floor(Math.random() * 25 + 2) * block;
+            food_y = Math.floor(Math.random() * 25 + 2) * block;
+            ctx.drawImage(food, x, y);
+          }
         }
 
         //game over logic
@@ -107,6 +154,7 @@ let snake = function() {
           snake[0].y >= canvas.height
         ) {
           dead = true;
+          die_sound.play();
         }
       } else {
         ctx.font = "bold 40px Arial";
@@ -119,34 +167,12 @@ let snake = function() {
           canvas.width / 2 - 100,
           canvas.height / 2 + 70
         );
-        /*if (snake_score_update == false) {
-                  let url = "http://localhost:3000/user/update/score";
-                  let request_body = {
-                    name: "Snake game",
-                    score: score
-                  };
-                  let fetch_obj = {
-                    method: "POST",
-                    headers: {
-                      Accept: "application/json",
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(request_body)
-                  };
-                  fetch(url, fetch_obj).then(function(response) {
-                    response.json().then(data => {
-                      console.log(data);
-                    });
-                  });
-                  snake_score_update = true;
-                }*/
         if (snake_score_update == false) {
           let time = new Date();
           let activity = {
             Timestamp: time,
             Game: "Snake",
             Score: score
-            //username: USERNAME
           };
           updateUserActivityAndScores(activity);
           snake_score_update = true;

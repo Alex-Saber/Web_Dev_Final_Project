@@ -44,126 +44,177 @@ app.get("/", (err, res) => {
   res.render("index.html");
 });
 
+app.post("/user/login", (request, response) => {
+  console.log("POST /");
+  console.log(request.body);
 
-app.post('/user/login', (request, response) => {
-	console.log('POST /');
-	console.log(request.body);
+  let username = request.body.username;
+  let password = request.body.password;
 
-	let username = request.body.username;
-	let password = request.body.password;
+  MongoClient.connect(
+    "mongodb://localhost:27017",
+    { useUnifiedTopology: true },
+    function(err, db) {
+      db.db("atac").collection("users", function(err, collection) {
+        collection.findOne({ username: request.body.username }, function(
+          err,
+          result
+        ) {
+          if (result !== null && result.password === password) {
+            global_username = username;
+            console.log(result);
+            response.send(result);
+          }
 
-    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function (err, db) {
+          console.log(global_username);
 
-        db.db("atac").collection("users", function (err, collection) {
-
-        	collection.findOne({"username": request.body.username}, function(err, result) {
-
-        	    if (result !== null && result.password === password) {
-        	        global_username = username;
-                    console.log(result);
-                    response.send(result);
-                }
-
-                console.log(global_username);
-
-				db.close();
-	    	});
-		});
-    });
+          db.close();
+        });
+      });
+    }
+  );
 });
 
+app.post("/user/create", (request, response) => {
+  console.log("POST /");
+  console.log(request.body);
 
-app.post('/user/create', (request, response) => {
-	console.log('POST /')
-	console.log(request.body)
+  let username = request.body.username;
+  let password = request.body.password;
+  let name = request.body.name;
+  let email = request.body.email;
 
-	let username = request.body.username;
-	let password = request.body.password;
-	let name = request.body.name;
-	let email = request.body.email;
+  let newDoc = {
+    username: username,
+    password: password,
+    name: name,
+    email: email,
+    user_activity: []
+  };
 
-	let newDoc = {"username": username,
-				  "password": password,
-		          "name": name,
-		          "email": email,
-	              "user_activity": []};
+  MongoClient.connect(
+    "mongodb://localhost:27017",
+    { useUnifiedTopology: true },
+    function(err, db) {
+      db.db("atac").collection("users", function(err, collection) {
+        collection.insertOne(newDoc, function(err, result) {
+          global_username = username;
 
+          console.log(result);
 
-    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function (err, db) {
+          response.send(newDoc);
 
-        db.db("atac").collection("users", function (err, collection) {
-
-        	collection.insertOne(newDoc, function(err, result) {
-
-        	    global_username = username;
-
-        		console.log(result);
-
-				response.send(newDoc);
-
-				db.close();
-	    	});
-		});
-    });
+          db.close();
+        });
+      });
+    }
+  );
 });
 
 app.post("/user/update/score", (request, response) => {
-    console.log("POST /");
-    console.log(request.body);
+  console.log("POST /");
+  console.log(request.body);
 
-    let user_activity = request.body.user_activity;
+  let user_activity = request.body;
 
-    console.log(user_activity);
-    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function(err, db) {
+  console.log(user_activity);
+  MongoClient.connect(
+    "mongodb://localhost:27017",
+    { useUnifiedTopology: true },
+    function(err, db) {
+      db.db("atac").collection("users", function(err, collection) {
+        collection.updateOne(
+          { username: global_username },
+          { $addToSet: { user_activity: user_activity } },
 
-        db.db("atac").collection("users", function(err, collection) {
-            collection.updateOne({"username": global_username}, {$addToSet: {"user_activity": user_activity}},
+          function() {
+            response.send({ Success: "Updated user activity" });
 
-                function() {
-                 response.send({"Success":"Updated user activity"});
-
-                 db.close();
-            });
-        });
-    });
+            db.close();
+          }
+        );
+      });
+    }
+  );
 });
 
 app.post("/update/scoreboards", (request, response) => {
-    console.log("POST /");
-    console.log(request.body);
+  console.log("POST /");
+  console.log(request.body);
 
-    let user_activity = request.body;
+  let user_activity = request.body;
 
-    user_activity.username = global_username;
+  user_activity.Username = global_username;
 
-    console.log(user_activity);
-    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function(err, db) {
-
-        db.db("atac").collection("activities", function(err, collection) {
-            collection.insertOne(user_activity,
-                function() {
-                 response.send({"Success":"Updated user activities"});
-                 db.close();
-            });
+  console.log(user_activity);
+  MongoClient.connect(
+    "mongodb://localhost:27017",
+    { useUnifiedTopology: true },
+    function(err, db) {
+      db.db("atac").collection("activities", function(err, collection) {
+        collection.insertOne(user_activity, function() {
+          response.send({ Success: "Updated user activities" });
+          db.close();
         });
-    });
+      });
+    }
+  );
 });
 
 app.post("/user", (request, response) => {
-    console.log("POST /");
-    console.log(request.body);
+  console.log("POST /");
+  console.log(request.body);
 
-    let username = request.body.username;
+  let username = request.body.username;
 
-    MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true}, function(err, db) {
-
-        db.db("atac").collection("users", function(err, collection) {
-            collection.findOne({"username": username},
-                function(err, user_info) {
-                 response.send(user_info);
-                 db.close();
-            });
+  MongoClient.connect(
+    "mongodb://localhost:27017",
+    { useUnifiedTopology: true },
+    function(err, db) {
+      db.db("atac").collection("users", function(err, collection) {
+        collection.findOne({ username: username }, function(err, user_info) {
+          response.send(user_info);
+          db.close();
         });
-    });
+      });
+    }
+  );
 });
 
+app.get("/activities/:game", (request, response) => {
+  console.log("GET /");
+
+  MongoClient.connect(
+    "mongodb://localhost:27017",
+    { useUnifiedTopology: true },
+    function(err, db) {
+      /*db.db("atac").collection("activities", function(err, collection) {
+        if (err) response.send(err);
+        collection
+          .aggregate([
+            { $match: { Game: request.params.game } },
+            { $group: { Username: "$name", Score: { $max: "$amount" } } }
+          ])
+          .toArray(function(err, data) {
+            console.log(data);
+            response.json(data);
+            db.close();
+          });
+        .then(data => {
+            response.json(data);
+          });
+      });*/
+      db.db("atac").collection("activities", function(err, collection) {
+        collection
+          .find({ Game: request.params.game })
+          .toArray(function(err, data) {
+            console.log(data);
+            response.send(data);
+            db.close();
+          });
+      });
+
+      //db.close();
+    }
+  );
+});

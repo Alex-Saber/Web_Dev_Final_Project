@@ -27,8 +27,22 @@ let shooter = function() {
     var enemy = new Image();
     enemy.src = "../images/enemy1.png";
 
+    var laser_sound = new Audio();
+    laser_sound.src = "../sound/Ship_shoot.wav";
+
+    var enemy_die = new Audio();
+    enemy_die.src = "../sound/enemy_die.wav";
+
+    var ship_die = new Audio();
+    ship_die.src = "../sound/Ship_die.wav";
+
     var laser_length = 1000000;
     var laser_array = [];
+    var laser_array2 = [];
+    var laser_array3 = [];
+    var laser_array4 = [];
+    var laser_array5 = [];
+    var laser_array6 = [];
     var laser = new Image();
     laser.src = "../images/bullet.png";
 
@@ -40,8 +54,16 @@ let shooter = function() {
       else if (e.keyCode == 37) left = true;
       if (e.keyCode == 38) up = true;
       else if (e.keyCode == 40) down = true;
-      if (e.keyCode == 88 && laser_array.length <= laser_length)
+      if (e.keyCode == 88 && laser_array.length <= laser_length) {
         laser_array.push([ship_x, ship_y, 0]);
+        laser_array2.push([ship_x, ship_y, 0]);
+        laser_array3.push([ship_x, ship_y, 0]);
+        if (laser_sound.paused == true) {
+          laser_sound.play();
+        } else {
+          laser_sound.pause();
+        }
+      }
     }
 
     function keyUp(e) {
@@ -91,6 +113,8 @@ let shooter = function() {
         if (laser_array.length != 0) {
           for (var i = 0; i < laser_array.length; i++) {
             ctx.drawImage(laser, laser_array[i][0], laser_array[i][1]);
+            ctx.drawImage(laser, laser_array2[i][0], laser_array2[i][1]);
+            ctx.drawImage(laser, laser_array3[i][0], laser_array3[i][1]);
           }
         }
         for (var i = 0; i < laser_array.length; i++) {
@@ -98,18 +122,35 @@ let shooter = function() {
           if (laser_array[i][1] <= 0) {
             laser_array[i].splice(i, 1);
           }
+          laser_array2[i][1] -= 10;
+          laser_array2[i][0] -= 5;
+          if (laser_array2[i][1] <= 0) {
+            laser_array2[i].splice(i, 1);
+          }
+          laser_array3[i][1] -= 10;
+          laser_array3[i][0] += 5;
+          if (laser_array3[i][1] <= 0) {
+            laser_array3[i].splice(i, 1);
+          }
         }
         //Collision
         var remove = false;
         for (var i = 0; i < laser_array.length; i++) {
           for (var j = 0; j < enemies_array.length; j++) {
             if (
-              laser_array[i][1] <= enemies_array[j][1] + enemy.height &&
-              laser_array[i][0] >= enemies_array[j][0] &&
-              laser_array[i][0] <= enemies_array[j][0] + enemy.width
+              (laser_array[i][1] <= enemies_array[j][1] + enemy.height &&
+                laser_array[i][0] >= enemies_array[j][0] &&
+                laser_array[i][0] <= enemies_array[j][0] + enemy.width) ||
+              (laser_array2[i][1] <= enemies_array[j][1] + enemy.height &&
+                laser_array2[i][0] >= enemies_array[j][0] &&
+                laser_array2[i][0] <= enemies_array[j][0] + enemy.width) ||
+              (laser_array3[i][1] <= enemies_array[j][1] + enemy.height &&
+                laser_array3[i][0] >= enemies_array[j][0] &&
+                laser_array3[i][0] <= enemies_array[j][0] + enemy.width)
             ) {
               remove = true;
               enemies_array.splice(j, 1);
+              enemy_die.play();
               score += 1;
               enemies_array.push([
                 Math.random() * (canvas.width - 10) + 1,
@@ -123,6 +164,9 @@ let shooter = function() {
           }
           if (remove == true) {
             laser_array.splice(i, 1);
+            laser_array2.splice(i, 1);
+            laser_array3.splice(i, 1);
+
             remove = false;
           }
         }
@@ -134,6 +178,7 @@ let shooter = function() {
             ship_y > enemies_array[i][1] &&
             ship_y < enemies_array[i][1] + enemy.height
           ) {
+            ship_die.play();
             alive = false;
           }
           if (
@@ -142,6 +187,7 @@ let shooter = function() {
             ship_y > enemies_array[i][1] &&
             ship_y < enemies_array[i][1] + enemy.height
           ) {
+            ship_die.play();
             alive = false;
           }
           if (
@@ -150,6 +196,7 @@ let shooter = function() {
             ship_x > enemies_array[i][0] &&
             ship_x < enemies_array[i][0] + enemy.width
           ) {
+            ship_die.play();
             alive = false;
           }
 
@@ -159,6 +206,7 @@ let shooter = function() {
             ship_x + ship.width < enemies[i][0] + enemy.width &&
             ship_x + ship.width > enemies_array[i][0]
           ) {
+            ship_die.play();
             alive = false;
           }
         }
@@ -180,34 +228,12 @@ let shooter = function() {
           canvas.width / 2 - 100,
           canvas.height / 2 + 70
         );
-        /* if (shooter_score_update == false) {
-                  let url = "http://localhost:3000/user/update/score";
-                  let request_body = {
-                    name: "Space invader game",
-                    score: score
-                  };
-                  let fetch_obj = {
-                    method: "POST",
-                    headers: {
-                      Accept: "application/json",
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(request_body)
-                  };
-                  fetch(url, fetch_obj).then(function(response) {
-                    response.json().then(data => {
-                      console.log(data);
-                    });
-                  });
-                  shooter_score_update = true;
-                }*/
         if (shooter_score_update == false) {
           let time = new Date();
           let activity = {
             Timestamp: time,
             Game: "Space Invaders",
             Score: score
-            //username: USERNAME
           };
           updateUserActivityAndScores(activity);
           shooter_score_update = true;
