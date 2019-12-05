@@ -6,9 +6,7 @@ const port = process.env.PORT;
 const helmet = require("helmet");
 const fs = require("fs");
 var MongoClient = require("mongodb").MongoClient;
-var mongoose = require("mongoose");
-var url = process.env.MONGODB_URI;
-mongoose.connect(url);
+const url = process.env.MONGODB_URI;
 
 let global_username = null;
 
@@ -40,7 +38,7 @@ app.options("*", function(req, res) {
   res.send(200);
 });
 
-app.listen(process.env.PORT || 3000, err => {
+app.listen(process.env.PORT, err => {
   if (err) {
     throw err;
   }

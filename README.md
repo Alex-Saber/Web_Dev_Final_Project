@@ -2,6 +2,8 @@
 
 ATAC was created by Alex Saber, Trung Nguyen, and Angelic Phan in a Full Stack Web Development class (CS 465P) taught by Caternia Paun. Our site offers a variety of games: Flappy Bird, Snake, and Space Invaders!. Users may either play without an account, or create one in order to keep track of your personal highscores.
 
+DISCLAIMER: use Google Chrome as your browser. There are issues with Safari.
+
 ## Tools
 
 ### Frontend
@@ -20,7 +22,7 @@ ATAC was created by Alex Saber, Trung Nguyen, and Angelic Phan in a Full Stack W
 ### Database
 
 - MongoDB
-- Mongoose
+- MongoClient
 
 ### Deployment
 
