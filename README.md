@@ -2,7 +2,10 @@
 
 ATAC was created by Alex Saber, Trung Nguyen, and Angelic Phan in a Full Stack Web Development class (CS 465P) taught by Caternia Paun. Our site offers a variety of games: Flappy Bird, Snake, and Space Invaders!. Users may either play without an account, or create one in order to keep track of your personal highscores.
 
-DISCLAIMER: use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer.
+####DISCLAIMERS:
+
+- use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer
+- our site is only compatible on Desktop.
 
 ## Tools
 
@@ -28,7 +31,10 @@ DISCLAIMER: use Google Chrome or FireFox as your browser. There are issues with 
 
 We used Heroku for our deployment: http://ata-atac-arcade.herokuapp.com
 
-DISCLAIMER: use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer.
+####DISCLAIMERS:
+
+- use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer
+- our site is only compatible on Desktop..
 
 ## Images and Sound Used
 
