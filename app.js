@@ -7,9 +7,8 @@ const helmet = require("helmet");
 const fs = require("fs");
 var MongoClient = require("mongodb").MongoClient;
 var mongoose = require("mongoose");
-var MONGO_URI =
-  "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz";
-mongoose.connect(MONGO_URI);
+var url = process.env.MONGOLAB_URI;
+mongoose.connect(url);
 
 let global_username = null;
 
@@ -60,28 +59,24 @@ app.post("/user/login", (request, response) => {
   let username = request.body.username;
   let password = request.body.password;
 
-  MongoClient.connect(
-    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
-    { useUnifiedTopology: true },
-    function(err, db) {
-      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
-        collection.findOne({ username: request.body.username }, function(
-          err,
-          result
-        ) {
-          if (result !== null && result.password === password) {
-            global_username = username;
-            console.log(result);
-            response.send(result);
-          }
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
+      collection.findOne({ username: request.body.username }, function(
+        err,
+        result
+      ) {
+        if (result !== null && result.password === password) {
+          global_username = username;
+          console.log(result);
+          response.send(result);
+        }
 
-          console.log(global_username);
+        console.log(global_username);
 
-          db.close();
-        });
+        db.close();
       });
-    }
-  );
+    });
+  });
 });
 
 app.post("/user/logout", (request, response) => {
@@ -108,23 +103,19 @@ app.post("/user/create", (request, response) => {
     user_activity: []
   };
 
-  MongoClient.connect(
-    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
-    { useUnifiedTopology: true },
-    function(err, db) {
-      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
-        collection.insertOne(newDoc, function(err, result) {
-          global_username = username;
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
+      collection.insertOne(newDoc, function(err, result) {
+        global_username = username;
 
-          console.log(result);
+        console.log(result);
 
-          response.send(newDoc);
+        response.send(newDoc);
 
-          db.close();
-        });
+        db.close();
       });
-    }
-  );
+    });
+  });
 });
 
 app.post("/user/update/score", (request, response) => {
@@ -134,24 +125,20 @@ app.post("/user/update/score", (request, response) => {
   let user_activity = request.body;
 
   console.log(user_activity);
-  MongoClient.connect(
-    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
-    { useUnifiedTopology: true },
-    function(err, db) {
-      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
-        collection.updateOne(
-          { username: global_username },
-          { $addToSet: { user_activity: user_activity } },
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
+      collection.updateOne(
+        { username: global_username },
+        { $addToSet: { user_activity: user_activity } },
 
-          function() {
-            response.send({ Success: "Updated user activity" });
+        function() {
+          response.send({ Success: "Updated user activity" });
 
-            db.close();
-          }
-        );
-      });
-    }
-  );
+          db.close();
+        }
+      );
+    });
+  });
 });
 
 app.post("/update/scoreboards", (request, response) => {
@@ -167,21 +154,17 @@ app.post("/update/scoreboards", (request, response) => {
   }
 
   console.log(user_activity);
-  MongoClient.connect(
-    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
-    { useUnifiedTopology: true },
-    function(err, db) {
-      db.db("heroku_0pbn2hkz").collection("activities", function(
-        err,
-        collection
-      ) {
-        collection.insertOne(user_activity, function() {
-          response.send({ Success: "Updated user activities" });
-          db.close();
-        });
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    db.db("heroku_0pbn2hkz").collection("activities", function(
+      err,
+      collection
+    ) {
+      collection.insertOne(user_activity, function() {
+        response.send({ Success: "Updated user activities" });
+        db.close();
       });
-    }
-  );
+    });
+  });
 });
 
 app.post("/user", (request, response) => {
@@ -190,28 +173,21 @@ app.post("/user", (request, response) => {
 
   let username = request.body.username;
 
-  MongoClient.connect(
-    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
-    { useUnifiedTopology: true },
-    function(err, db) {
-      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
-        collection.findOne({ username: username }, function(err, user_info) {
-          response.send(user_info);
-          db.close();
-        });
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
+      collection.findOne({ username: username }, function(err, user_info) {
+        response.send(user_info);
+        db.close();
       });
-    }
-  );
+    });
+  });
 });
 
 app.get("/activities/:game", (request, response) => {
   console.log("GET /");
 
-  MongoClient.connect(
-    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
-    { useUnifiedTopology: true },
-    function(err, db) {
-      /*db.db("heroku_0pbn2hkz").collection("activities", function(err, collection) {
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    /*db.db("heroku_0pbn2hkz").collection("activities", function(err, collection) {
         if (err) response.send(err);
         collection
           .aggregate([
@@ -227,21 +203,20 @@ app.get("/activities/:game", (request, response) => {
             response.json(data);
           });
       });*/
-      db.db("heroku_0pbn2hkz").collection("activities", function(
-        err,
-        collection
-      ) {
-        collection
-          .find({ Game: request.params.game })
-          .sort({ Score: -1 })
-          .toArray(function(err, data) {
-            console.log(data);
-            response.send(data);
-            db.close();
-          });
-      });
+    db.db("heroku_0pbn2hkz").collection("activities", function(
+      err,
+      collection
+    ) {
+      collection
+        .find({ Game: request.params.game })
+        .sort({ Score: -1 })
+        .toArray(function(err, data) {
+          console.log(data);
+          response.send(data);
+          db.close();
+        });
+    });
 
-      //db.close();
-    }
-  );
+    //db.close();
+  });
 });
