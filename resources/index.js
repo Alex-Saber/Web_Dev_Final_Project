@@ -54,7 +54,7 @@ let getScores = function(game, i) {
         $(scoreboards[i][0]).bootstrapTable({ data: scoreboards[i][1] });
         $(scoreboards[i][0]).bootstrapTable("load", scoreboards[i][1]);
       });
-    } else if (response.status === 401) {
+    } else if (response.status === 503) {
       console.log("scores not fetched");
     }
   });
@@ -217,8 +217,9 @@ let signIn = function(username, password) {
         populateAccountInfo(data);
         makeAccountPageVisible();
       });
-    } else if (response.status === 401) {
+    } else if (response.status === 503) {
       // Account credentials are incorrect
+      console.log("account credentials are incorrect");
     }
   });
 };
@@ -310,8 +311,9 @@ let createAccount = function(username, password, name, email) {
         populateAccountInfo(data);
         makeAccountPageVisible();
       });
-    } else if (response.status === 401) {
+    } else if (response.status === 503) {
       // Account credentials already exist
+      console.log("account credentials already exist");
     }
   });
 };
