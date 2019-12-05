@@ -64,7 +64,7 @@ app.post("/user/login", (request, response) => {
     "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
-      db.db("atac").collection("users", function(err, collection) {
+      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
         collection.findOne({ username: request.body.username }, function(
           err,
           result
@@ -112,7 +112,7 @@ app.post("/user/create", (request, response) => {
     "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
-      db.db("atac").collection("users", function(err, collection) {
+      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
         collection.insertOne(newDoc, function(err, result) {
           global_username = username;
 
@@ -138,7 +138,7 @@ app.post("/user/update/score", (request, response) => {
     "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
-      db.db("atac").collection("users", function(err, collection) {
+      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
         collection.updateOne(
           { username: global_username },
           { $addToSet: { user_activity: user_activity } },
@@ -171,7 +171,10 @@ app.post("/update/scoreboards", (request, response) => {
     "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
-      db.db("atac").collection("activities", function(err, collection) {
+      db.db("heroku_0pbn2hkz").collection("activities", function(
+        err,
+        collection
+      ) {
         collection.insertOne(user_activity, function() {
           response.send({ Success: "Updated user activities" });
           db.close();
@@ -191,7 +194,7 @@ app.post("/user", (request, response) => {
     "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
-      db.db("atac").collection("users", function(err, collection) {
+      db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
         collection.findOne({ username: username }, function(err, user_info) {
           response.send(user_info);
           db.close();
@@ -208,7 +211,7 @@ app.get("/activities/:game", (request, response) => {
     "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
-      /*db.db("atac").collection("activities", function(err, collection) {
+      /*db.db("heroku_0pbn2hkz").collection("activities", function(err, collection) {
         if (err) response.send(err);
         collection
           .aggregate([
@@ -224,7 +227,10 @@ app.get("/activities/:game", (request, response) => {
             response.json(data);
           });
       });*/
-      db.db("atac").collection("activities", function(err, collection) {
+      db.db("heroku_0pbn2hkz").collection("activities", function(
+        err,
+        collection
+      ) {
         collection
           .find({ Game: request.params.game })
           .sort({ Score: -1 })
