@@ -212,6 +212,7 @@ app.get("/activities/:game", (request, response) => {
       db.db("atac").collection("activities", function(err, collection) {
         collection
           .find({ Game: request.params.game })
+          .sort({Score: -1})
           .toArray(function(err, data) {
             console.log(data);
             response.send(data);
