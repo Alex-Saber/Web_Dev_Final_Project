@@ -213,6 +213,7 @@ let signIn = function(username, password) {
     if (response.status === 200) {
       // Fill account page with information from the post request.
       response.json().then(data => {
+        unpopulateAccountInfo();
         populateAccountInfo(data);
         makeAccountPageVisible();
       });
@@ -305,8 +306,8 @@ let createAccount = function(username, password, name, email) {
     if (response.status === 200) {
       // Fill account page with information from the post request.
       response.json().then(data => {
+        unpopulateAccountInfo();
         populateAccountInfo(data);
-        populateScoreboardsInfo();
         makeAccountPageVisible();
       });
     } else if (response.status === 401) {
