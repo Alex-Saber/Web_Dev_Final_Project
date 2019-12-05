@@ -1,8 +1,6 @@
 require("dotenv").config();
 var mongoose = require("mongoose");
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/ata-atac-arcade"
-);
+mongoose.connect("mongodb://localhost/ata-atac-arcade");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
