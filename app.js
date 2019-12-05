@@ -19,7 +19,10 @@ app.use(express.static(__dirname + "/resources"));
 app.use(express.static(__dirname + "/resources/html"));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "http://ata-atac-arcade.herokuapp.com"
+  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"

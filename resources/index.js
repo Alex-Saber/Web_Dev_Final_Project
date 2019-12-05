@@ -30,7 +30,7 @@ let toggleClasses = function(nextPage) {
 let getScores = function(game, i) {
   //Search db for each user's high score for the game passed in
   let scores = [];
-  let url = "http://localhost:3000/activities/" + game + "/";
+  let url = "http://ata-atac-arcade.herokuapp.com/activities/" + game + "/";
   console.log(url);
 
   let fetch_obj = {
@@ -94,7 +94,7 @@ let unpopulateThisScoreboardInfo = function(game) {
 if new highscore make them go up in ranking*/
 let updateUserActivityAndScores = function(activity) {
   //write activity to user collection
-  let url = "http://localhost:3000/user/update/score";
+  let url = "http://ata-atac-arcade.herokuapp.com/user/update/score";
   console.log(url);
   let request_body = activity;
 
@@ -115,7 +115,7 @@ let updateUserActivityAndScores = function(activity) {
   });
 
   //write activity to activities collection
-  let url2 = "http://localhost:3000/update/scoreboards";
+  let url2 = "http://ata-atac-arcade.herokuapp.com/update/scoreboards";
 
   fetch(url2, fetch_obj).then(function(response) {
     console.log(response.status);
@@ -192,7 +192,7 @@ let signIn = function(username, password) {
   // Send post request to server with username and password to handle database grabbing.
   // If the username or password is incorrect, display error message
   // Otherwise redirect to the account page.
-  let url = "http://localhost:3000/user/login";
+  let url = "http://ata-atac-arcade.herokuapp.com/user/login";
   console.log(url);
   let request_body = {
     username: username,
@@ -235,7 +235,7 @@ let signOut = function() {
   unpopulateAccountInfo();
   console.log("sign out");
 
-  let url = "http://localhost:3000/user/logout";
+  let url = "http://ata-atac-arcade.herokuapp.com/user/logout";
   console.log(url);
   let request_body = {};
 
@@ -283,7 +283,7 @@ let checkLoginFields = function() {
 
 /* create new user account*/
 let createAccount = function(username, password, name, email) {
-  let url = "http://localhost:3000/user/create";
+  let url = "http://ata-atac-arcade.herokuapp.com/user/create";
   console.log(url);
   let request_body = {
     username: username,
