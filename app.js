@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const fs = require("fs");
 var MongoClient = require("mongodb").MongoClient;
 var mongoose = require("mongoose");
-var url = process.env.MONGOLAB_URI;
+var url = process.env.MONGODB_URI;
 mongoose.connect(url);
 
 let global_username = null;
