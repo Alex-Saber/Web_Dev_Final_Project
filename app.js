@@ -1,6 +1,8 @@
 require("dotenv").config();
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz");
+mongoose.connect(
+  "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz"
+);
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -58,7 +60,7 @@ app.post("/user/login", (request, response) => {
   let password = request.body.password;
 
   MongoClient.connect(
-    "mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz",
+    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -106,7 +108,7 @@ app.post("/user/create", (request, response) => {
   };
 
   MongoClient.connect(
-    "mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz",
+    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -132,7 +134,7 @@ app.post("/user/update/score", (request, response) => {
 
   console.log(user_activity);
   MongoClient.connect(
-    "mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz",
+    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -165,7 +167,7 @@ app.post("/update/scoreboards", (request, response) => {
 
   console.log(user_activity);
   MongoClient.connect(
-    "mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz",
+    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("activities", function(err, collection) {
@@ -185,7 +187,7 @@ app.post("/user", (request, response) => {
   let username = request.body.username;
 
   MongoClient.connect(
-    "mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz",
+    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -202,7 +204,7 @@ app.get("/activities/:game", (request, response) => {
   console.log("GET /");
 
   MongoClient.connect(
-    "mongodb://@ds135233.mlab.com:35233/heroku_0pbn2hkz",
+    "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz",
     { useUnifiedTopology: true },
     function(err, db) {
       /*db.db("atac").collection("activities", function(err, collection) {
