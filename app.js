@@ -6,7 +6,7 @@ mongoose.connect(
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const helmet = require("helmet");
 const fs = require("fs");
 var MongoClient = require("mongodb").MongoClient;
@@ -57,7 +57,7 @@ app.post("/user/login", (request, response) => {
   let password = request.body.password;
 
   MongoClient.connect(
-    "mongodb://ata-atac-arcade",
+    "mongodb://localhost/ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -105,7 +105,7 @@ app.post("/user/create", (request, response) => {
   };
 
   MongoClient.connect(
-    "mongodb://ata-atac-arcade",
+    "mongodb://localhost/ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -131,7 +131,7 @@ app.post("/user/update/score", (request, response) => {
 
   console.log(user_activity);
   MongoClient.connect(
-    "mongodb://ata-atac-arcade",
+    "mongodb://localhost/ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -164,7 +164,7 @@ app.post("/update/scoreboards", (request, response) => {
 
   console.log(user_activity);
   MongoClient.connect(
-    "mongodb://ata-atac-arcade",
+    "mongodb://localhost/ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("activities", function(err, collection) {
@@ -184,7 +184,7 @@ app.post("/user", (request, response) => {
   let username = request.body.username;
 
   MongoClient.connect(
-    "mongodb://ata-atac-arcade",
+    "mongodb://localhost/ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -201,7 +201,7 @@ app.get("/activities/:game", (request, response) => {
   console.log("GET /");
 
   MongoClient.connect(
-    "mongodb://ata-atac-arcade",
+    "mongodb://localhost/ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       /*db.db("atac").collection("activities", function(err, collection) {
