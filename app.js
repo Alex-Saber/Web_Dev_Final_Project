@@ -75,6 +75,13 @@ app.post("/user/login", (request, response) => {
   );
 });
 
+app.post("/user/logout", (request, response) => {
+  console.log("POST /");
+  console.log(request.body);
+  global_username = null;
+  response.send({"Status":"Success"});
+});
+
 app.post("/user/create", (request, response) => {
   console.log("POST /");
   console.log(request.body);

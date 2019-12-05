@@ -233,6 +233,23 @@ let signOut = function() {
   /*Remove user info from account info page*/
   unpopulateAccountInfo();
   console.log("sign out");
+
+  let url = "http://localhost:3000/user/logout";
+  console.log(url);
+  let request_body = {};
+
+  let fetch_obj = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(request_body)
+  };
+
+  fetch(url, fetch_obj).then(function(response) {
+    console.log(response.status);
+  });
 };
 
 let checkFormInput = function(id) {
