@@ -1,8 +1,4 @@
 require("dotenv").config();
-var mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz"
-);
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -10,6 +6,10 @@ const port = 3000;
 const helmet = require("helmet");
 const fs = require("fs");
 var MongoClient = require("mongodb").MongoClient;
+var mongoose = require("mongoose");
+var MONGO_URI =
+  "mongodb://atac:atacarcade3@ds135233.mlab.com:35233/heroku_0pbn2hkz";
+mongoose.connect(MONGO_URI);
 
 let global_username = null;
 
@@ -47,6 +47,7 @@ app.listen(process.env.PORT || 3000, err => {
   }
   console.log("Node Server running on port: " + port);
 });
+("module.exports = app;");
 
 app.get("/", (err, res) => {
   res.render("index.html");
@@ -238,6 +239,3 @@ app.get("/activities/:game", (request, response) => {
     }
   );
 });
-
-app.listen(port);
-("module.exports = app;");
