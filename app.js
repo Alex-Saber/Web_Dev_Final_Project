@@ -57,7 +57,7 @@ app.post("/user/login", (request, response) => {
   let password = request.body.password;
 
   MongoClient.connect(
-    "mongodb://localhost:27017",
+    "mongodb://ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -105,7 +105,7 @@ app.post("/user/create", (request, response) => {
   };
 
   MongoClient.connect(
-    "mongodb://localhost:27017",
+    "mongodb://ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -131,7 +131,7 @@ app.post("/user/update/score", (request, response) => {
 
   console.log(user_activity);
   MongoClient.connect(
-    "mongodb://localhost:27017",
+    "mongodb://ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -164,7 +164,7 @@ app.post("/update/scoreboards", (request, response) => {
 
   console.log(user_activity);
   MongoClient.connect(
-    "mongodb://localhost:27017",
+    "mongodb://ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("activities", function(err, collection) {
@@ -184,7 +184,7 @@ app.post("/user", (request, response) => {
   let username = request.body.username;
 
   MongoClient.connect(
-    "mongodb://localhost:27017",
+    "mongodb://ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       db.db("atac").collection("users", function(err, collection) {
@@ -201,7 +201,7 @@ app.get("/activities/:game", (request, response) => {
   console.log("GET /");
 
   MongoClient.connect(
-    "mongodb://localhost:27017",
+    "mongodb://ata-atac-arcade",
     { useUnifiedTopology: true },
     function(err, db) {
       /*db.db("atac").collection("activities", function(err, collection) {
