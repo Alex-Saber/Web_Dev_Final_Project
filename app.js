@@ -1,3 +1,8 @@
+require("dotenv").config();
+var mongoose = require("mongoose");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/ata-atac-arcade"
+);
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -79,7 +84,7 @@ app.post("/user/logout", (request, response) => {
   console.log("POST /");
   console.log(request.body);
   global_username = null;
-  response.send({"Status":"Success"});
+  response.send({ Status: "Success" });
 });
 
 app.post("/user/create", (request, response) => {
@@ -152,10 +157,9 @@ app.post("/update/scoreboards", (request, response) => {
   let user_activity = request.body;
 
   if (global_username !== null) {
-      user_activity.Username = global_username;
-  }
-  else {
-      user_activity.Username = "Anonymous";
+    user_activity.Username = global_username;
+  } else {
+    user_activity.Username = "Anonymous";
   }
 
   console.log(user_activity);
@@ -219,7 +223,7 @@ app.get("/activities/:game", (request, response) => {
       db.db("atac").collection("activities", function(err, collection) {
         collection
           .find({ Game: request.params.game })
-          .sort({Score: -1})
+          .sort({ Score: -1 })
           .toArray(function(err, data) {
             console.log(data);
             response.send(data);
@@ -231,3 +235,7 @@ app.get("/activities/:game", (request, response) => {
     }
   );
 });
+
+const port = process.env.PORT || 3000;
+app.listen(port);
+("module.exports = app;");
