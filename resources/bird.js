@@ -49,7 +49,6 @@ let bird = function() {
     pipe_array[0] = { x: canvas.width, y: 0 };
 
     document.addEventListener("keyup", go_up);
-
     function go_up(event) {
       if (event.keyCode === 38) {
         if (jump === false) {
@@ -58,6 +57,19 @@ let bird = function() {
         }
       }
     }
+
+    //MOBILE TEST
+    document.addEventListener("touchstart", go_up_test);
+    function go_up_test(event) {
+      event.preventDefault();
+      if (event.keyCode === 38) {
+        if (jump === false) {
+          jump = true;
+          jump_sound.play();
+        }
+      }
+    }
+    //MOBILE TEST
 
     let gravity = 0.5;
 
