@@ -93,6 +93,8 @@ app.post("/user/create", (request, response) => {
   let name = request.body.name;
   let email = request.body.email;
 
+  let already_exists = false;
+
   let newDoc = {
     username: username,
     password: password,
@@ -103,15 +105,33 @@ app.post("/user/create", (request, response) => {
 
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
-      collection.insertOne(newDoc, function(err, result) {
-        global_username = username;
 
-        console.log(result);
-
-        response.send(newDoc);
+      collection.findOne({ username: username }, function(
+        err,
+        result
+      ) {
+        if (result !== null) {
+          console.log("Account already exists");
+          response.send({Error: "Account Exists"});
+        }
 
         db.close();
+
+        already_exists = true;
       });
+
+      if (!already_exists) {
+          collection.insertOne(newDoc, function (err, result) {
+              global_username = username;
+
+              console.log(result);
+
+              response.send(newDoc);
+
+              db.close();
+          });
+      }
+
     });
   });
 });

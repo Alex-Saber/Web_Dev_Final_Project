@@ -304,17 +304,15 @@ let createAccount = function(username, password, name, email) {
 
   fetch(url, fetch_obj).then(function(response) {
     console.log(response.status);
-    if (response.status === 200) {
-      // Fill account page with information from the post request.
-      response.json().then(data => {
-        unpopulateAccountInfo();
-        populateAccountInfo(data);
-        makeAccountPageVisible();
-      });
-    } else if (response.status === 503) {
-      // Account credentials already exist
-      console.log("account credentials already exist");
-    }
+    // Fill account page with information from the post request.
+    response.json().then(data => {
+
+      if (data.Error === null) {
+          unpopulateAccountInfo();
+          populateAccountInfo(data);
+          makeAccountPageVisible();
+      }
+    });
   });
 };
 
