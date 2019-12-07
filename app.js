@@ -68,6 +68,13 @@ app.post("/user/login", (request, response) => {
           console.log(result);
           response.send(result);
         }
+        else if (result === null) {
+          console.log("Account doesnt exist");
+          response.send({Error: "Account Doesn't Exist"});
+        }
+        else if (result.password !== password) {
+          response.send({Error: "Password Incorrect"});
+        }
 
         console.log(global_username);
 

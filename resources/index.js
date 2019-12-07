@@ -213,6 +213,15 @@ let signIn = function(username, password) {
     if (response.status === 200) {
       // Fill account page with information from the post request.
       response.json().then(data => {
+        if (data.hasOwnProperty('Error')) {
+          if (data.Error === "Account Doesn't Exist") {
+              alert("Account doesn't exist. Please Try again.");
+          }
+          if (data.Error === "Password Incorrect") {
+              alert("Password Incorrect. Please Try again.");
+          }
+          return;
+        }
         unpopulateAccountInfo();
         populateAccountInfo(data);
         makeAccountPageVisible();
