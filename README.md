@@ -2,10 +2,10 @@
 
 ATAC was created by Alex Saber, Trung Nguyen, and Angelic Phan in a Full Stack Web Development class (CS 465P) taught by Caternia Paun. Our site offers a variety of games: Flappy Bird, Snake, and Space Invaders!. Users may either play without an account, or create one in order to keep track of your personal highscores.
 
-####DISCLAIMERS:
+###DISCLAIMERS:
 
 - use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer
-- our site is only compatible on Desktop.
+- our site is only compatible on Desktop
 
 ## Tools
 
@@ -31,10 +31,10 @@ ATAC was created by Alex Saber, Trung Nguyen, and Angelic Phan in a Full Stack W
 
 We used Heroku for our deployment: http://ata-atac-arcade.herokuapp.com
 
-####DISCLAIMERS:
+###DISCLAIMERS:
 
 - use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer
-- our site is only compatible on Desktop..
+- our site is only compatible on Desktop
 
 ## Images and Sound Used
 
@@ -50,4 +50,3 @@ The game images and sounds do not belong to us. We found them through the follow
 - Space invader main ship explosion sound source : https://freesound.org/people/LittleRobotSoundFactory/sounds/270311/
 - Space invader enemies ship explosion sound source : https://freesound.org/people/LittleRobotSoundFactory/sounds/270306/
 - Space invader laser sound source : https://freesound.org/people/LittleRobotSoundFactory/sounds/270344/
-
