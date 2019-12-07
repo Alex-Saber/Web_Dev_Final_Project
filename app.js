@@ -106,10 +106,12 @@ app.post("/user/create", (request, response) => {
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     db.db("heroku_0pbn2hkz").collection("users", function(err, collection) {
 
+
       collection.findOne({ username: username }, function(
         err,
         result
       ) {
+        console.log(result);
         if (result !== null) {
           console.log("Account already exists");
           response.send({Error: "Account Exists"});
