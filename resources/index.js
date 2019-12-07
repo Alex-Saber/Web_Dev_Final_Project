@@ -306,12 +306,14 @@ let createAccount = function(username, password, name, email) {
     console.log(response.status);
     // Fill account page with information from the post request.
     response.json().then(data => {
-
-      if (data.Error === null) {
-          unpopulateAccountInfo();
-          populateAccountInfo(data);
-          makeAccountPageVisible();
+      console.log(data);
+      if (data.hasOwnProperty('Error')) {
+          return;
+          alert("Account name already exists. Please Try again.");
       }
+      unpopulateAccountInfo();
+      populateAccountInfo(data);
+      makeAccountPageVisible();
     });
   });
 };
