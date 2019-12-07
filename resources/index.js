@@ -308,8 +308,8 @@ let createAccount = function(username, password, name, email) {
     response.json().then(data => {
       console.log(data);
       if (data.hasOwnProperty('Error')) {
-          return;
           alert("Account name already exists. Please Try again.");
+          return;
       }
       unpopulateAccountInfo();
       populateAccountInfo(data);
