@@ -4,7 +4,7 @@ ATAC was created by Alex Saber, Trung Nguyen, and Angelic Phan in a Full Stack W
 
 ###DISCLAIMERS:
 
-- use Google Chrome or FireFox as your browser. There are issues with Safari, and it has not been tested on Internet Explorer
+- use Google Chrome as your browser. There are issues with Safari and FireFox, and it has not been tested on Internet Explorer
 - our site is only compatible on Desktop
 
 ## Tools
